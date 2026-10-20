@@ -1,0 +1,25 @@
+---
+layout: default
+title: Projects
+description: Projects and write-ups by Kolos Hetyéssy.
+---
+{%- comment -%}
+  Lists every file in _projects/. The menu item and the home page section appear
+  automatically once the first project exists (copy _templates/project.md).
+{%- endcomment -%}
+{%- assign projects = site.projects | sort: "order" -%}
+<section class="wrap page">
+  <header class="page-head">
+    <p class="eyebrow">Projects</p>
+    <h1>Projects</h1>
+  </header>
+  {%- if projects.size > 0 %}
+  <div class="grid grid--3">
+    {%- for p in projects %}
+    {% include project-card.html project=p %}
+    {%- endfor %}
+  </div>
+  {%- else %}
+  <p class="lede">Write-ups are on the way.</p>
+  {%- endif %}
+</section>

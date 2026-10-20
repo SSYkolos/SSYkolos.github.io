@@ -1,0 +1,18 @@
+---
+layout: default
+title: Products
+description: Bank Statement Reconciler API, CAD DXF Quote API and Maps Lead Extractor, by Kolos Hetyéssy.
+---
+{%- assign products = site.products | sort: "order" -%}
+<section class="wrap page">
+  <header class="page-head">
+    <p class="eyebrow">Products</p>
+    <h1>Products</h1>
+    <p class="lede">Each one does a narrow job and does it carefully. Marketplace listings are being prepared; the links will appear here when they go live.</p>
+  </header>
+  <div class="grid grid--3">
+    {%- for p in products %}
+    {% include product-card.html product=p %}
+    {%- endfor %}
+  </div>
+</section>

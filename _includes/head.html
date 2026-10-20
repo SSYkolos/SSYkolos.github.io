@@ -1,0 +1,27 @@
+{%- assign profile = site.data.profile -%}
+{%- if page.title and page.url != "/" -%}
+  {%- assign doc_title = page.title | append: " — " | append: profile.name -%}
+{%- else -%}
+  {%- assign doc_title = profile.name | append: " — " | append: profile.role -%}
+{%- endif -%}
+{%- assign doc_desc = page.description | default: page.summary | default: site.description | strip_html | strip_newlines -%}
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>{{ doc_title }}</title>
+<meta name="description" content="{{ doc_desc | escape }}">
+<meta name="author" content="{{ profile.name }}">
+<link rel="canonical" href="{{ page.url | absolute_url }}">
+<meta property="og:type" content="website">
+<meta property="og:title" content="{{ doc_title | escape }}">
+<meta property="og:description" content="{{ doc_desc | escape }}">
+<meta property="og:url" content="{{ page.url | absolute_url }}">
+{%- assign connect = "'self'" -%}
+{%- for api in site.demo_api -%}{%- if api[1] and api[1] != "" -%}{%- assign connect = connect | append: " " | append: api[1] -%}{%- endif -%}{%- endfor %}
+<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self'; style-src 'self'; img-src 'self' data:; font-src 'self'; connect-src {{ connect }}; object-src 'none'; base-uri 'self'; form-action 'self'">
+<meta name="referrer" content="strict-origin-when-cross-origin">
+<meta name="color-scheme" content="light dark">
+<meta name="theme-color" content="#f4f4f1" media="(prefers-color-scheme: light)">
+<meta name="theme-color" content="#0a0c0f" media="(prefers-color-scheme: dark)">
+<link rel="icon" href="{{ '/assets/favicon.svg' | relative_url }}" type="image/svg+xml">
+<link rel="preload" href="{{ '/assets/fonts/ibm-plex-sans-latin-400-normal.woff2' | relative_url }}" as="font" type="font/woff2" crossorigin>
+<link rel="stylesheet" href="{{ '/assets/css/site.css' | relative_url }}">
