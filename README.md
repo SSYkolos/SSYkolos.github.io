@@ -16,6 +16,8 @@ This repository contains only the website, no product source code.
 | `about.md` | About / CV page, hidden until `published: true` |
 | `privacy.md` | Privacy of this website itself |
 | `_templates/` | Copy-ready starting files for a new product or project (not published) |
+| `_tools/` | Scripts that build the product demos (not published) |
+| `_data/demos/`, `assets/demo/` | Demo results and downloadable sample files, written by the scripts in `_tools/` |
 | `_layouts/`, `_includes/` | Page frames and reusable pieces (header, footer, cards, figures) |
 | `assets/css/site.css` | All styling. Colours are variables at the top; dark mode follows the system |
 | `assets/fonts/` | IBM Plex Sans / Mono, self-hosted (SIL Open Font License) |
@@ -31,6 +33,18 @@ This repository contains only the website, no product source code.
 - **Add a page:** create `<name>.md` with `title:` and `permalink: /<name>/`, then add it to `_data/navigation.yml`.
 
 Every push to `main` rebuilds the site in about a minute.
+
+## Product demos ("See it work")
+
+The API pages show the engines' real output for sample files, with CSS-only tabs (no JavaScript).
+After changing an engine, rebuild the demo data with that project's own Python, then commit:
+
+```bash
+../b2b-statement-reconciler/.venv/Scripts/python _tools/build_reconciler_demo.py
+../cad-dxf-bom-api/.venv/Scripts/python _tools/build_dxf_demo.py
+```
+
+All names, IBANs and amounts in the samples are fictional.
 
 ## Stable URLs (do not rename)
 

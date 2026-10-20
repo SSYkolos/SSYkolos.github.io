@@ -1,0 +1,297 @@
+[
+ {
+  "id": "mt940-de",
+  "title": "German MT940",
+  "blurb": "A savings-bank file with ?20 subfields, a direct debit and its return (an RD reversal), and a Latin-1 umlaut in a counterparty name.",
+  "file": "sparkasse-style-mt940.sta",
+  "size": 837,
+  "input": ":20:STARTUMSE\n:25:50010517/0648489890\n:28C:00012/001\n:60F:C260130EUR8420,10\n:61:2601300130CR2380,00NTRFNONREF//POS 1\n:86:166?00GUTSCHR. UEBERWEISUNG?109310?20EREF+RE-2026-0042?21SVWZ\n+Rechnung 2026-0042 vom?22 05.01.2026 Wartungsvertrag?30COBADEFFX\nXX?31DE89370400440532013000?32Müller Maschinenbau GmbH\n:61:2601300130DR129,90NDDTNONREF//POS 2\n:86:105?00FOLGELASTSCHRIFT?109248?20EREF+NT-INV-889123?21MREF+M-0\n099-77?22CRED+DE98ZZZ09999999999?23SVWZ+Nordnetz Rechnung Janu?24\nar 2026 Kd-Nr 4455?30DUSSDEDDXXX?31DE65100700000123456789?32Nordn\netz Telekom GmbH\n:61:2601300130RD129,90NRTINONREF//POS 3\n:86:109?00RUECKLASTSCHRIFT?109248?20EREF+NT-INV-889123?21MREF+M-0\n099-77?22CRED+DE98ZZZ09999999999?23SVWZ+Ruecklastschrift?30DUSSDE\nDDXXX?31DE65100700000123456789?32Nordnetz Telekom GmbH?34901\n:62F:C260130EUR10800,10\n-",
+  "input_truncated": false,
+  "detected_format": "MT940",
+  "overall_verdict": "VERIFIED",
+  "statement_count": 1,
+  "transaction_count": 3,
+  "warnings": [],
+  "statements": [
+   {
+    "reference": "STARTUMSE",
+    "account": "50010517/0648489890",
+    "currency": "EUR",
+    "opening": "8420.10",
+    "credits": "2509.90",
+    "debits": "129.90",
+    "calculated": "10800.10",
+    "closing": "10800.10",
+    "difference": "0.00",
+    "verdict": "VERIFIED",
+    "method": "BALANCE_EQUATION",
+    "notes": []
+   }
+  ],
+  "transactions": [
+   {
+    "date": "2026-01-30",
+    "direction": "CREDIT",
+    "reversal": false,
+    "status": "BOOKED",
+    "amount": "2380.00",
+    "currency": "EUR",
+    "name": "Müller Maschinenbau GmbH",
+    "iban": "DE89370400440532013000",
+    "reference": "RE-2026-0042",
+    "purpose": "Rechnung 2026-0042 vom 05.01.2026 Wartungsvertrag"
+   },
+   {
+    "date": "2026-01-30",
+    "direction": "DEBIT",
+    "reversal": false,
+    "status": "BOOKED",
+    "amount": "-129.90",
+    "currency": "EUR",
+    "name": "Nordnetz Telekom GmbH",
+    "iban": "DE65100700000123456789",
+    "reference": "NT-INV-889123",
+    "purpose": "Nordnetz Rechnung Januar 2026 Kd-Nr 4455"
+   },
+   {
+    "date": "2026-01-30",
+    "direction": "CREDIT",
+    "reversal": true,
+    "status": "BOOKED",
+    "amount": "129.90",
+    "currency": "EUR",
+    "name": "Nordnetz Telekom GmbH",
+    "iban": "DE65100700000123456789",
+    "reference": "NT-INV-889123",
+    "purpose": "Ruecklastschrift"
+   }
+  ],
+  "json": "{\n  \"api_version\": \"2.0\",\n  \"detected_format\": \"MT940\",\n  \"file_count\": 1,\n  \"statement_count\": 1,\n  \"transaction_count\": 3,\n  \"overall_verdict\": \"VERIFIED\",\n  \"verdict_counts\": {\n    \"VERIFIED\": 1\n  },\n  \"warnings\": [],\n  \"statements\": [\n    {\n      \"statement_index\": 0,\n      \"source_file\": \"sparkasse-style-mt940.sta\",\n      \"format\": \"MT940\",\n      \"statement_reference\": \"STARTUMSE\",\n      \"sequence_number\": \"00012/001\",\n      \"account_id\": \"50010517/0648489890\",\n      \"account_servicer_bic\": \"\",\n      \"currency\": \"EUR\",\n      \"creation_datetime\": \"\",\n      \"opening_balance\": \"8420.10\",\n      \"opening_balance_date\": \"2026-01-30\",\n      \"opening_balance_type\": \"60F\",\n      \"closing_balance\": \"10800.10\",\n      \"closing_balance_date\": \"2026-01-30\",\n      \"closing_balance_type\": \"62F\",\n      \"closing_available_balance\": null,\n      \"closing_available_balance_date\": null,\n      \"closing_available_balance_type\": null,\n      \"total_credits\": \"2509.90\",\n      \"total_debits\": \"129.90\",\n      \"credit_count\": 2,\n      \"debit_count\": 1,\n      \"pending_count\": 0,\n      \"calculated_closing_balance\": \"10800.10\",\n      \"discrepancy_amount\": \"0.00\",\n      \"audit_method\": \"BALANCE_EQUATION\",\n      \"audit_verdict\": \"VERIFIED\",\n      \"audit_notes\": [],\n      \"statement_information\": \"\",\n      \"transaction_count\": 3,\n      \"transactions\": [\n        {\n          \"transaction_hash\": \"6055cc8f87dbc3b7e2dad51b69fe465bd1ae7f72a63665a9f4ba24ec8ac157ca\",\n          \"booking_date\": \"2026-01-30\",\n          \"value_date\": \"2026-01-30\",\n          \"direction\": \"CREDIT\",\n          \"is_reversal\": false,\n          \"status\": \"BOOKED\",\n          \"amount\": \"2380.00\",\n          \"signed_amount\": \"2380.00\",\n          \"currency\": \"EUR\",\n          \"bank_transaction_code\": \"NTRF\",\n          \"bank_transaction_code_proprietary\": \"\",\n          \"gvc\": \"166\",\n          \"booking_text\": \"GUTSCHR. UEBERWEISUNG\",\n          \"bank_reference\": \"POS 1\",\n          \"customer_reference\": \"NONREF\",\n          \"end_to_end_id\": \"RE-2026-0042\",\n          \"mandate_id\": \"\",\n          \"creditor_id\": \"\",\n          \"counterparty_name\": \"Müller Maschinenbau GmbH\",\n          \"counterparty_iban\": \"DE89370400440532013000\",\n          \"counterparty_bic\": \"COBADEFFXXX\",\n          \"counterparty_account\": \"DE89370400440532013000\",\n          \"purpose\": \"Rechnung 2026-0042 vom 05.01.2026 Wartungsvertrag\",\n          \"return_reason\": \"\",\n          \"raw_information\": \"166?00GUTSCHR. UEBERWEISUNG?109310?20EREF+RE-2026-0042?21SVWZ\\n+Rechnung 2026-0042 vom?22 05.01.2026 Wartungsvertrag?30COBADEFFX\\nXX?31DE89370400440532013000?32Müller Maschinenbau GmbH\",\n          \"structured_fields\": {\n            \"PRIMANOTA\": \"9310\",\n            \"EREF\": \"RE-2026-0042\",\n            \"SVWZ\": \"Rechnung 2026-0042 vom 05.01.2026 Wartungsvertrag\",\n            \"FUNDS_CODE\": \"R\"\n          },\n          \"batch_details\": []\n        },\n        {\n          \"transaction_hash\": \"1015154cfe7ca2bfca28a5f61ef3d97a18ba0553e811427e01310cfaa41b7be5\",\n          \"booking_date\": \"2026-01-30\",\n          \"value_date\": \"2026-01-30\",\n          \"direction\": \"DEBIT\",\n          \"is_reversal\": false,\n          \"status\": \"BOOKED\",\n          \"amount\": \"129.90\",\n          \"signed_amount\": \"-129.90\",\n          \"currency\": \"EUR\",\n          \"bank_transaction_code\": \"NDDT\",\n          \"bank_transaction_code_proprietary\": \"\",\n          \"gvc\": \"105\",\n          \"booking_text\": \"FOLGELASTSCHRIFT\",\n          \"bank_reference\": \"POS 2\",\n          \"customer_reference\": \"NONREF\",\n          \"end_to_end_id\": \"NT-INV-889123\",\n          \"mandate_id\": \"M-0099-77\",\n          \"creditor_id\": \"DE98ZZZ09999999999\",\n          \"counterparty_name\": \"Nordnetz Telekom GmbH\",\n          \"counterparty_iban\": \"DE65100700000123456789\",\n          \"counterparty_bic\": \"DUSSDEDDXXX\",\n          \"counterparty_account\": \"DE65100700000123456789\",\n          \"purpose\": \"Nordnetz Rechnung Januar 2026 Kd-Nr 4455\",\n          \"return_reason\": \"\",\n          \"raw_information\": \"105?00FOLGELASTSCHRIFT?109248?20EREF+NT-INV-889123?21MREF+M-0\\n099-77?22CRED+DE98ZZZ09999999999?23SVWZ+Nordnetz Rechnung Janu?24\\nar 2026 Kd-Nr 4455?30DUSSDEDDXXX?31DE65100700000123456789?32Nordn\\netz Telekom GmbH\",\n          \"structured_fields\": {\n            \"PRIMANOTA\": \"9248\",\n            \"EREF\": \"NT-INV-889123\",\n            \"MREF\": \"M-0099-77\",\n            \"CRED\": \"DE98ZZZ09999999999\",\n            \"SVWZ\": \"Nordnetz Rechnung Januar 2026 Kd-Nr 4455\",\n            \"FUNDS_CODE\": \"R\"\n          },\n          \"batch_details\": []\n        },\n        {\n          \"transaction_hash\": \"4c84375ac5d6822d48eb01512a6fa53389d679143821f0a32375deaf196221f4\",\n          \"booking_date\": \"2026-01-30\",\n          \"value_date\": \"2026-01-30\",\n          \"direction\": \"CREDIT\",\n          \"is_reversal\": true,\n          \"status\": \"BOOKED\",\n          \"amount\": \"129.90\",\n          \"signed_amount\": \"129.90\",\n          \"currency\": \"EUR\",\n          \"bank_transaction_code\": \"NRTI\",\n          \"bank_transaction_code_proprietary\": \"\",\n          \"gvc\": \"109\",\n          \"booking_text\": \"RUECKLASTSCHRIFT\",\n          \"bank_reference\": \"POS 3\",\n          \"customer_reference\": \"NONREF\",\n          \"end_to_end_id\": \"NT-INV-889123\",\n          \"mandate_id\": \"M-0099-77\",\n          \"creditor_id\": \"DE98ZZZ09999999999\",\n          \"counterparty_name\": \"Nordnetz Telekom GmbH\",\n          \"counterparty_iban\": \"DE65100700000123456789\",\n          \"counterparty_bic\": \"DUSSDEDDXXX\",\n          \"counterparty_account\": \"DE65100700000123456789\",\n          \"purpose\": \"Ruecklastschrift\",\n          \"return_reason\": \"901\",\n          \"raw_information\": \"109?00RUECKLASTSCHRIFT?109248?20EREF+NT-INV-889123?21MREF+M-0\\n099-77?22CRED+DE98ZZZ09999999999?23SVWZ+Ruecklastschrift?30DUSSDE\\nDDXXX?31DE65100700000123456789?32Nordnetz Telekom GmbH?34901\",\n          \"structured_fields\": {\n            \"PRIMANOTA\": \"9248\",\n            \"EREF\": \"NT-INV-889123\",\n            \"MREF\": \"M-0099-77\",\n            \"CRED\": \"DE98ZZZ09999999999\",\n            \"SVWZ\": \"Ruecklastschrift\"\n          },\n          \"batch_details\": []\n        }\n      ]\n    }\n  ]\n}",
+  "csv": "﻿source_file,statement_index,statement_reference,account_id,audit_verdict,transaction_hash,booking_date,value_date,direction,is_reversal,status,amount,signed_amount,currency,counterparty_name,counterparty_iban,counterparty_bic,counterparty_account,purpose,end_to_end_id,mandate_id,creditor_id,bank_transaction_code,bank_transaction_code_proprietary,gvc,booking_text,return_reason,bank_reference,customer_reference\r\nsparkasse-style-mt940.sta,0,STARTUMSE,50010517/0648489890,VERIFIED,6055cc8f87dbc3b7e2dad51b69fe465bd1ae7f72a63665a9f4ba24ec8ac157ca,2026-01-30,2026-01-30,CREDIT,false,BOOKED,2380.00,2380.00,EUR,Müller Maschinenbau GmbH,DE89370400440532013000,COBADEFFXXX,DE89370400440532013000,Rechnung 2026-0042 vom 05.01.2026 Wartungsvertrag,RE-2026-0042,,,NTRF,,166,GUTSCHR. UEBERWEISUNG,,POS 1,NONREF\r\nsparkasse-style-mt940.sta,0,STARTUMSE,50010517/0648489890,VERIFIED,1015154cfe7ca2bfca28a5f61ef3d97a18ba0553e811427e01310cfaa41b7be5,2026-01-30,2026-01-30,DEBIT,false,BOOKED,129.90,-129.90,EUR,Nordnetz Telekom GmbH,DE65100700000123456789,DUSSDEDDXXX,DE65100700000123456789,Nordnetz Rechnung Januar 2026 Kd-Nr 4455,NT-INV-889123,M-0099-77,DE98ZZZ09999999999,NDDT,,105,FOLGELASTSCHRIFT,,POS 2,NONREF\r\nsparkasse-style-mt940.sta,0,STARTUMSE,50010517/0648489890,VERIFIED,4c84375ac5d6822d48eb01512a6fa53389d679143821f0a32375deaf196221f4,2026-01-30,2026-01-30,CREDIT,true,BOOKED,129.90,129.90,EUR,Nordnetz Telekom GmbH,DE65100700000123456789,DUSSDEDDXXX,DE65100700000123456789,Ruecklastschrift,NT-INV-889123,M-0099-77,DE98ZZZ09999999999,NRTI,,109,RUECKLASTSCHRIFT,901,POS 3,NONREF\r\n"
+ },
+ {
+  "id": "mt940-gap",
+  "title": "Missing statement",
+  "blurb": "Three daily statements that each add up, but statement 00006 is missing. The balance chain shows it.",
+  "file": "ing-style-mt940-gap.sta",
+  "size": 1127,
+  "input": ":20:P260105000000001\n:25:NL69INGB0123456789EUR\n:28C:00004\n:60F:C260102EUR12500,00\n:61:2601050105C2500,00NTRFNONREF//2601050012345678\n:86:/EREF/INV-2026-0012//CNTP/NL44RABO0123456789/RABONL2U/Acme Tr\nading B.V./AMSTERDAM//REMI/USTD//Invoice INV-2026-0012 January ho\nsting/\n:61:2601050105D189,95NDDTEREF//2601050012345679\n:86:/EREF/CH-778899//MARF/MNDT-CH-01//CSID/NL12ZZZ123456780000//C\nNTP/IE29AIBK93115212345678/AIBKIE2D/Cloudhost Europe Ltd///REMI/U\nSTD//Hosting invoice 778899/\n:62F:C260105EUR14810,05\n:64:C260105EUR14810,05\n:20:P260106000000001\n:25:NL69INGB0123456789EUR\n:28C:00005\n:60F:C260105EUR14810,05\n:61:2601060106D1000,00NTRFNONREF//2601060099\n:86:/EREF/NOTPROVIDED//CNTP/NL91ABNA0417164300/ABNANL2A/J. de Vri\nes///REMI/USTD//Freelance design week 1/\n:62F:C260106EUR13810,05\n:64:C260106EUR13810,05\n:20:P260108000000001\n:25:NL69INGB0123456789EUR\n:28C:00007\n:60F:C260107EUR13310,05\n:61:2601080108C750,00NTRFNONREF//2601080011\n:86:/EREF/INV-2026-0019//CNTP/NL44RABO0123456789/RABONL2U/Acme Tr\nading B.V.///REMI/USTD//Invoice INV-2026-0019/\n:62F:C260108EUR14060,05\n:64:C260108EUR14060,05",
+  "input_truncated": false,
+  "detected_format": "MT940",
+  "overall_verdict": "DISCREPANCY",
+  "statement_count": 3,
+  "transaction_count": 4,
+  "warnings": [
+   {
+    "type": "BALANCE_CONTINUITY_BREAK",
+    "message": "Statement 'P260106000000001' closes at 13810.05 on 2026-01-06 but the next statement 'P260108000000001' opens at 13310.05 - a statement may be missing."
+   }
+  ],
+  "statements": [
+   {
+    "reference": "P260105000000001",
+    "account": "NL69INGB0123456789",
+    "currency": "EUR",
+    "opening": "12500.00",
+    "credits": "2500.00",
+    "debits": "189.95",
+    "calculated": "14810.05",
+    "closing": "14810.05",
+    "difference": "0.00",
+    "verdict": "VERIFIED",
+    "method": "BALANCE_EQUATION",
+    "notes": []
+   },
+   {
+    "reference": "P260106000000001",
+    "account": "NL69INGB0123456789",
+    "currency": "EUR",
+    "opening": "14810.05",
+    "credits": "0.00",
+    "debits": "1000.00",
+    "calculated": "13810.05",
+    "closing": "13810.05",
+    "difference": "0.00",
+    "verdict": "VERIFIED",
+    "method": "BALANCE_EQUATION",
+    "notes": []
+   },
+   {
+    "reference": "P260108000000001",
+    "account": "NL69INGB0123456789",
+    "currency": "EUR",
+    "opening": "13310.05",
+    "credits": "750.00",
+    "debits": "0.00",
+    "calculated": "14060.05",
+    "closing": "14060.05",
+    "difference": "0.00",
+    "verdict": "VERIFIED",
+    "method": "BALANCE_EQUATION",
+    "notes": []
+   }
+  ],
+  "transactions": [
+   {
+    "date": "2026-01-05",
+    "direction": "CREDIT",
+    "reversal": false,
+    "status": "BOOKED",
+    "amount": "2500.00",
+    "currency": "EUR",
+    "name": "Acme Trading B.V.",
+    "iban": "NL44RABO0123456789",
+    "reference": "INV-2026-0012",
+    "purpose": "Invoice INV-2026-0012 January hosting"
+   },
+   {
+    "date": "2026-01-05",
+    "direction": "DEBIT",
+    "reversal": false,
+    "status": "BOOKED",
+    "amount": "-189.95",
+    "currency": "EUR",
+    "name": "Cloudhost Europe Ltd",
+    "iban": "IE29AIBK93115212345678",
+    "reference": "CH-778899",
+    "purpose": "Hosting invoice 778899"
+   },
+   {
+    "date": "2026-01-06",
+    "direction": "DEBIT",
+    "reversal": false,
+    "status": "BOOKED",
+    "amount": "-1000.00",
+    "currency": "EUR",
+    "name": "J. de Vries",
+    "iban": "NL91ABNA0417164300",
+    "reference": "",
+    "purpose": "Freelance design week 1"
+   },
+   {
+    "date": "2026-01-08",
+    "direction": "CREDIT",
+    "reversal": false,
+    "status": "BOOKED",
+    "amount": "750.00",
+    "currency": "EUR",
+    "name": "Acme Trading B.V.",
+    "iban": "NL44RABO0123456789",
+    "reference": "INV-2026-0019",
+    "purpose": "Invoice INV-2026-0019"
+   }
+  ],
+  "json": "{\n  \"api_version\": \"2.0\",\n  \"detected_format\": \"MT940\",\n  \"file_count\": 1,\n  \"statement_count\": 3,\n  \"transaction_count\": 4,\n  \"overall_verdict\": \"DISCREPANCY\",\n  \"verdict_counts\": {\n    \"VERIFIED\": 3\n  },\n  \"warnings\": [\n    {\n      \"type\": \"BALANCE_CONTINUITY_BREAK\",\n      \"account_id\": \"NL69INGB0123456789\",\n      \"message\": \"Statement 'P260106000000001' closes at 13810.05 on 2026-01-06 but the next statement 'P260108000000001' opens at 13310.05 - a statement may be missing.\",\n      \"statement_indexes\": [\n        1,\n        2\n      ]\n    }\n  ],\n  \"statements\": [\n    {\n      \"statement_index\": 0,\n      \"source_file\": \"ing-style-mt940-gap.sta\",\n      \"format\": \"MT940\",\n      \"statement_reference\": \"P260105000000001\",\n      \"sequence_number\": \"00004\",\n      \"account_id\": \"NL69INGB0123456789\",\n      \"account_servicer_bic\": \"\",\n      \"currency\": \"EUR\",\n      \"creation_datetime\": \"\",\n      \"opening_balance\": \"12500.00\",\n      \"opening_balance_date\": \"2026-01-02\",\n      \"opening_balance_type\": \"60F\",\n      \"closing_balance\": \"14810.05\",\n      \"closing_balance_date\": \"2026-01-05\",\n      \"closing_balance_type\": \"62F\",\n      \"closing_available_balance\": \"14810.05\",\n      \"closing_available_balance_date\": \"2026-01-05\",\n      \"closing_available_balance_type\": \"64\",\n      \"total_credits\": \"2500.00\",\n      \"total_debits\": \"189.95\",\n      \"credit_count\": 1,\n      \"debit_count\": 1,\n      \"pending_count\": 0,\n      \"calculated_closing_balance\": \"14810.05\",\n      \"discrepancy_amount\": \"0.00\",\n      \"audit_method\": \"BALANCE_EQUATION\",\n      \"audit_verdict\": \"VERIFIED\",\n      \"audit_notes\": [],\n      \"statement_information\": \"\",\n      \"transaction_count\": 2,\n      \"transactions\": [\n        {\n          \"transaction_hash\": \"61076fadce378a0e422aa63472d2ccf52e655092d532cd4587015ca2b9ec6bf2\",\n          \"booking_date\": \"2026-01-05\",\n          \"value_date\": \"2026-01-05\",\n          \"direction\": \"CREDIT\",\n          \"is_reversal\": false,\n          \"status\": \"BOOKED\",\n          \"amount\": \"2500.00\",\n          \"signed_amount\": \"2500.00\",\n          \"currency\": \"EUR\",\n          \"bank_transaction_code\": \"NTRF\",\n          \"bank_transaction_code_proprietary\": \"\",\n          \"gvc\": \"\",\n          \"booking_text\": \"\",\n          \"bank_reference\": \"2601050012345678\",\n          \"customer_reference\": \"NONREF\",\n          \"end_to_end_id\": \"INV-2026-0012\",\n          \"mandate_id\": \"\",\n          \"creditor_id\": \"\",\n          \"counterparty_name\": \"Acme Trading B.V.\",\n          \"counterparty_iban\": \"NL44RABO0123456789\",\n          \"counterparty_bic\": \"RABONL2U\",\n          \"counterparty_account\": \"NL44RABO0123456789\",\n          \"purpose\": \"Invoice INV-2026-0012 January hosting\",\n          \"return_reason\": \"\",\n          \"raw_information\": \"/EREF/INV-2026-0012//CNTP/NL44RABO0123456789/RABONL2U/Acme Tr\\nading B.V./AMSTERDAM//REMI/USTD//Invoice INV-2026-0012 January ho\\nsting/\",\n          \"structured_fields\": {\n            \"EREF\": \"INV-2026-0012\",\n            \"CNTP\": \"NL44RABO0123456789/RABONL2U/Acme Trading B.V./AMSTERDAM\",\n            \"REMI\": \"USTD//Invoice INV-2026-0012 January hosting\",\n            \"CNTP_CITY\": \"AMSTERDAM\"\n          },\n          \"batch_details\": []\n        },\n        {\n          \"transaction_hash\": \"4be118e9ddb9d0b155c8617855e416ff414b16a0cccfc478c0142c23fe5d6042\",\n          \"booking_date\": \"2026-01-05\",\n          \"value_date\": \"2026-01-05\",\n          \"direction\": \"DEBIT\",\n          \"is_reversal\": false,\n          \"status\": \"BOOKED\",\n          \"amount\": \"189.95\",\n          \"signed_amount\": \"-189.95\",\n          \"currency\": \"EUR\",\n          \"bank_transaction_code\": \"NDDT\",\n          \"bank_transaction_code_proprietary\": \"\",\n          \"gvc\": \"\",\n          \"booking_text\": \"\",\n          \"bank_reference\": \"2601050012345679\",\n          \"customer_reference\": \"EREF\",\n          \"end_to_end_id\": \"CH-778899\",\n          \"mandate_id\": \"MNDT-CH-01\",\n          \"creditor_id\": \"NL12ZZZ123456780000\",\n          \"counterparty_name\": \"Cloudhost Europe Ltd\",\n          \"counterparty_iban\": \"IE29AIBK93115212345678\",\n          \"counterparty_bic\": \"AIBKIE2D\",\n          \"counterparty_account\": \"IE29AIBK93115212345678\",\n          \"purpose\": \"Hosting invoice 778899\",\n          \"return_reason\": \"\",\n          \"raw_information\": \"/EREF/CH-778899//MARF/MNDT-CH-01//CSID/NL12ZZZ123456780000//C\\nNTP/IE29AIBK93115212345678/AIBKIE2D/Cloudhost Europe Ltd///REMI/U\\nSTD//Hosting invoice 778899/\",\n          \"structured_fields\": {\n            \"EREF\": \"CH-778899\",\n            \"MARF\": \"MNDT-CH-01\",\n            \"CSID\": \"NL12ZZZ123456780000\",\n            \"CNTP\": \"IE29AIBK93115212345678/AIBKIE2D/Cloudhost Europe Ltd\",\n            \"REMI\": \"USTD//Hosting invoice 778899\"\n          },\n          \"batch_details\": []\n        }\n      ]\n    },\n    {\n      \"statement_index\": 1,\n      \"source_file\": \"ing-style-mt940-gap.sta\",\n      \"format\": \"MT940\",\n      \"statement_reference\": \"P260106000000001\",\n      \"sequence_number\": \"00005\",\n      \"account_id\": \"NL69INGB0123456789\",\n      \"account_servicer_bic\": \"\",\n      \"currency\": \"EUR\",\n      \"creation_datetime\": \"\",\n      \"opening_balance\": \"14810.05\",\n      \"opening_balance_date\": \"2026-01-05\",\n      \"opening_balance_type\": \"60F\",\n      \"closing_balance\": \"13810.05\",\n      \"closing_balance_date\": \"2026-01-06\",\n      \"closing_balance_type\": \"62F\",\n      \"closing_available_balance\": \"13810.05\",\n      \"closing_available_balance_date\": \"2026-01-06\",\n      \"closing_available_balance_type\": \"64\",\n      \"total_credits\": \"0.00\",\n      \"total_debits\": \"1000.00\",\n      \"credit_count\": 0,\n      \"debit_count\": 1,\n      \"pending_count\": 0,\n      \"calculated_closing_balance\": \"13810.05\",\n      \"discrepancy_amount\": \"0.00\",\n      \"audit_method\": \"BALANCE_EQUATION\",\n      \"audit_verdict\": \"VERIFIED\",\n      \"audit_notes\": [],\n      \"statement_information\": \"\",\n      \"transaction_count\": 1,\n      \"transactions\": [\n        {\n          \"transaction_hash\": \"3651b0d97028efbb0e73158862aef4e34ef19559602f27b013f53da98f9fb3e8\",\n          \"booking_date\": \"2026-01-06\",\n          \"value_date\": \"2026-01-06\",\n          \"direction\": \"DEBIT\",\n          \"is_reversal\": false,\n          \"status\": \"BOOKED\",\n          \"amount\": \"1000.00\",\n          \"signed_amount\": \"-1000.00\",\n          \"currency\": \"EUR\",\n          \"bank_transaction_code\": \"NTRF\",\n          \"bank_transaction_code_proprietary\": \"\",\n          \"gvc\": \"\",\n          \"booking_text\": \"\",\n          \"bank_reference\": \"2601060099\",\n          \"customer_reference\": \"NONREF\",\n          \"end_to_end_id\": \"\",\n          \"mandate_id\": \"\",\n          \"creditor_id\": \"\",\n          \"counterparty_name\": \"J. de Vries\",\n          \"counterparty_iban\": \"NL91ABNA0417164300\",\n          \"counterparty_bic\": \"ABNANL2A\",\n          \"counterparty_account\": \"NL91ABNA0417164300\",\n          \"purpose\": \"Freelance design week 1\",\n          \"return_reason\": \"\",\n          \"raw_information\": \"/EREF/NOTPROVIDED//CNTP/NL91ABNA0417164300/ABNANL2A/J. de Vri\\nes///REMI/USTD//Freelance design week 1/\",\n          \"structured_fields\": {\n            \"EREF\": \"NOTPROVIDED\",\n            \"CNTP\": \"NL91ABNA0417164300/ABNANL2A/J. de Vries\",\n            \"REMI\": \"USTD//Freelance design week 1\"\n          },\n          \"batch_details\": []\n        }\n      ]\n    },\n    {\n      \"statement_index\": 2,\n      \"source_file\": \"ing-style-mt940-gap.sta\",\n      \"format\": \"MT940\",\n      \"statement_reference\": \"P260108000000001\",\n      \"sequence_number\": \"00007\",\n      \"account_id\": \"NL69INGB0123456789\",\n      \"account_servicer_bic\": \"\",\n      \"currency\": \"EUR\",\n      \"creation_datetime\": \"\",\n      \"opening_balance\": \"13310.05\",\n      \"opening_balance_date\": \"2026-01-07\",\n      \"opening_balance_type\": \"60F\",\n      \"closing_balance\": \"14060.05\",\n      \"closing_balance_date\": \"2026-01-08\",\n      \"closing_balance_type\": \"62F\",\n      \"closing_available_balance\": \"14060.05\",\n      \"closing_available_balance_date\": \"2026-01-08\",\n      \"closing_available_balance_type\": \"64\",\n      \"total_credits\": \"750.00\",\n      \"total_debits\": \"0.00\",\n      \"credit_count\": 1,\n      \"debit_count\": 0,\n      \"pending_count\": 0,\n      \"calculated_closing_balance\": \"14060.05\",\n      \"discrepancy_amount\": \"0.00\",\n      \"audit_method\": \"BALANCE_EQUATION\",\n      \"audit_verdict\": \"VERIFIED\",\n      \"audit_notes\": [],\n      \"statement_information\": \"\",\n      \"transaction_count\": 1,\n      \"transactions\": [\n        {\n          \"transaction_hash\": \"8619fac5622b138f294db1d54472a9cd0a37a73046560879fb9a6e5d5424b47d\",\n          \"booking_date\": \"2026-01-08\",\n          \"value_date\": \"2026-01-08\",\n          \"direction\": \"CREDIT\",\n          \"is_reversal\": false,\n          \"status\": \"BOOKED\",\n          \"amount\": \"750.00\",\n          \"signed_amount\": \"750.00\",\n          \"currency\": \"EUR\",\n          \"bank_transaction_code\": \"NTRF\",\n          \"bank_transaction_code_proprietary\": \"\",\n          \"gvc\": \"\",\n          \"booking_text\": \"\",\n          \"bank_reference\": \"2601080011\",\n          \"customer_reference\": \"NONREF\",\n          \"end_to_end_id\": \"INV-2026-0019\",\n          \"mandate_id\": \"\",\n          \"creditor_id\": \"\",\n          \"counterparty_name\": \"Acme Trading B.V.\",\n          \"counterparty_iban\": \"NL44RABO0123456789\",\n          \"counterparty_bic\": \"RABONL2U\",\n          \"counterparty_account\": \"NL44RABO0123456789\",\n          \"purpose\": \"Invoice INV-2026-0019\",\n          \"return_reason\": \"\",\n          \"raw_information\": \"/EREF/INV-2026-0019//CNTP/NL44RABO0123456789/RABONL2U/Acme Tr\\nading B.V.///REMI/USTD//Invoice INV-2026-0019/\",\n          \"structured_fields\": {\n            \"EREF\": \"INV-2026-0019\",\n            \"CNTP\": \"NL44RABO0123456789/RABONL2U/Acme Trading B.V.\",\n            \"REMI\": \"USTD//Invoice INV-2026-0019\"\n          },\n          \"batch_details\": []\n        }\n      ]\n    }\n  ]\n}",
+  "csv": "﻿source_file,statement_index,statement_reference,account_id,audit_verdict,transaction_hash,booking_date,value_date,direction,is_reversal,status,amount,signed_amount,currency,counterparty_name,counterparty_iban,counterparty_bic,counterparty_account,purpose,end_to_end_id,mandate_id,creditor_id,bank_transaction_code,bank_transaction_code_proprietary,gvc,booking_text,return_reason,bank_reference,customer_reference\r\ning-style-mt940-gap.sta,0,P260105000000001,NL69INGB0123456789,VERIFIED,61076fadce378a0e422aa63472d2ccf52e655092d532cd4587015ca2b9ec6bf2,2026-01-05,2026-01-05,CREDIT,false,BOOKED,2500.00,2500.00,EUR,Acme Trading B.V.,NL44RABO0123456789,RABONL2U,NL44RABO0123456789,Invoice INV-2026-0012 January hosting,INV-2026-0012,,,NTRF,,,,,2601050012345678,NONREF\r\ning-style-mt940-gap.sta,0,P260105000000001,NL69INGB0123456789,VERIFIED,4be118e9ddb9d0b155c8617855e416ff414b16a0cccfc478c0142c23fe5d6042,2026-01-05,2026-01-05,DEBIT,false,BOOKED,189.95,-189.95,EUR,Cloudhost Europe Ltd,IE29AIBK93115212345678,AIBKIE2D,IE29AIBK93115212345678,Hosting invoice 778899,CH-778899,MNDT-CH-01,NL12ZZZ123456780000,NDDT,,,,,2601050012345679,EREF\r\ning-style-mt940-gap.sta,1,P260106000000001,NL69INGB0123456789,VERIFIED,3651b0d97028efbb0e73158862aef4e34ef19559602f27b013f53da98f9fb3e8,2026-01-06,2026-01-06,DEBIT,false,BOOKED,1000.00,-1000.00,EUR,J. de Vries,NL91ABNA0417164300,ABNANL2A,NL91ABNA0417164300,Freelance design week 1,,,,NTRF,,,,,2601060099,NONREF\r\ning-style-mt940-gap.sta,2,P260108000000001,NL69INGB0123456789,VERIFIED,8619fac5622b138f294db1d54472a9cd0a37a73046560879fb9a6e5d5424b47d,2026-01-08,2026-01-08,CREDIT,false,BOOKED,750.00,750.00,EUR,Acme Trading B.V.,NL44RABO0123456789,RABONL2U,NL44RABO0123456789,Invoice INV-2026-0019,INV-2026-0019,,,NTRF,,,,,2601080011,NONREF\r\n"
+ },
+ {
+  "id": "camt053",
+  "title": "ISO 20022 camt.053",
+  "blurb": "An XML statement with a batch booking, a returned payment and a pending entry.",
+  "file": "camt053-v02.xml",
+  "size": 5808,
+  "input": "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n<Document xmlns=\"urn:iso:std:iso:20022:tech:xsd:camt.053.001.02\" xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\">\n  <BkToCstmrStmt>\n    <GrpHdr>\n      <MsgId>CAMT053-20260228-0001</MsgId>\n      <CreDtTm>2026-02-28T22:15:00</CreDtTm>\n    </GrpHdr>\n    <Stmt>\n      <Id>2026-02-28-00059</Id>\n      <ElctrncSeqNb>59</ElctrncSeqNb>\n      <CreDtTm>2026-02-28T22:15:00</CreDtTm>\n      <Acct>\n        <Id><IBAN>DE89370400440532013000</IBAN></Id>\n        <Ccy>EUR</Ccy>\n        <Svcr><FinInstnId><BIC>COBADEFFXXX</BIC></FinInstnId></Svcr>\n      </Acct>\n      <Bal>\n        <Tp><CdOrPrtry><Cd>PRCD</Cd></CdOrPrtry></Tp>\n        <Amt Ccy=\"EUR\">15000.00</Amt>\n        <CdtDbtInd>CRDT</CdtDbtInd>\n        <Dt><Dt>2026-02-27</Dt></Dt>\n      </Bal>\n      <Bal>\n        <Tp><CdOrPrtry><Cd>CLBD</Cd></CdOrPrtry></Tp>\n        <Amt Ccy=\"EUR\">17419.60</Amt>\n        <CdtDbtInd>CRDT</CdtDbtInd>\n        <Dt><Dt>2026-02-28</Dt></Dt>\n      </Bal>\n      <Bal>\n        <Tp><CdOrPrtry><Cd>CLAV</Cd></CdOrPrtry></Tp>\n        <Amt Ccy=\"EUR\">17200.00</Amt>\n        <CdtDbtInd>CRDT</CdtDbtInd>\n        <Dt><Dt>2026-02-28</Dt></Dt>\n      </Bal>\n      <Ntry>\n        <Amt Ccy=\"EUR\">4200.00</Amt>\n        <CdtDbtInd>CRDT</CdtDbtInd>\n        <Sts>BOOK</Sts>\n        <BookgDt><Dt>2026-02-28</Dt></BookgDt>\n        <ValDt><Dt>2026-02-28</Dt></ValDt>\n        <AcctSvcrRef>2026022800001</AcctSvcrRef>\n        <BkTxCd>\n          <Domn><Cd>PMNT</Cd><Fmly><Cd>RCDT</Cd><SubFmlyCd>ESCT</SubFmlyCd></Fmly></Domn>\n          <Prtry><Cd>NTRF+166+931</Cd><Issr>DK</Issr></Prtry>\n        </BkTxCd>\n        <NtryDtls>\n          <TxDtls>\n            <Refs><EndToEndId>RE-2026-0101</EndToEndId></Refs>\n            <AmtDtls><TxAmt><Amt Ccy=\"EUR\">4200.00</Amt></TxAmt></AmtDtls>\n            <RltdPties>\n              <Dbtr><Nm>Schneider Logistik AG</Nm></Dbtr>\n              <DbtrAcct><Id><IBAN>DE44500105175407324931</IBAN></Id></DbtrAcct>\n            </RltdPties>\n            <RltdAgts><DbtrAgt><FinInstnId><BIC>INGDDEFFXXX</BIC></FinInstnId></DbtrAgt></RltdAgts>\n            <RmtInf><Ustrd>EREF+RE-2026-0101 SVWZ+Rechnung 2026-0101</Ustrd></RmtInf>\n          </TxDtls>\n        </NtryDtls>\n        <AddtlNtryInf>GUTSCHR. UEBERWEISUNG</AddtlNtryInf>\n      </Ntry>\n      <Ntry>\n        <Amt Ccy=\"EUR\">1530.40</Amt>\n        <CdtDbtInd>DBIT</CdtDbtInd>\n        <Sts>BOOK</Sts>\n        <BookgDt><Dt>2026-02-28</Dt></BookgDt>\n        <ValDt><Dt>2026-02-28</Dt></ValDt>\n        <AcctSvcrRef>2026022800002</AcctSvcrRef>\n        <BkTxCd><Domn><Cd>PMNT</Cd><Fmly><Cd>ICDT</Cd><SubFmlyCd>ESCT</SubFmlyCd></Fmly></Domn></BkTxCd>\n        <NtryDtls>\n          <Btch><NbOfTxs>2</NbOfTxs></Btch>\n          <TxDtls>\n            <Refs><EndToEndId>PAY-RUN-7-A</EndToEndId></Refs>\n            <AmtDtls><TxAmt><Amt Ccy=\"EUR\">1000.00</Amt></TxAmt></AmtDtls>\n            <RltdPties>\n              <Cdtr><Nm>Lieferant A GmbH</Nm></Cdtr>\n              <CdtrAcct><Id><IBAN>DE65100700000123456789</IBAN></Id></CdtrAcct>\n            </RltdPties>\n            <RmtInf><Ustrd>Rechnung A-55</Ustrd></RmtInf>\n          </TxDtls>\n          <TxDtls>\n            <Refs><EndToEndId>PAY-RUN-7-B</EndToEndId></Refs>\n            <AmtDtls><TxAmt><Amt Ccy=\"EUR\">530.40</Amt></TxAmt></AmtDtls>\n            <RltdPties>\n              <Cdtr><Nm>Lieferant B KG</Nm></Cdtr>\n              <CdtrAcct><Id><IBAN>DE12500105170648489890</IBAN></Id></CdtrAcct>\n            </RltdPties>\n            <RmtInf><Ustrd>Rechnung B-981</Ustrd></RmtInf>\n          </TxDtls>\n        </NtryDtls>\n        <AddtlNtryInf>SAMMLER-UEBERWEISUNG</AddtlNtryInf>\n      </Ntry>\n      <Ntry>\n        <Amt Ccy=\"EUR\">250.00</Amt>\n        <CdtDbtInd>DBIT</CdtDbtInd>\n        <RvslInd>true</RvslInd>\n        <Sts>BOOK</Sts>\n        <BookgDt><Dt>2026-02-28</Dt></BookgDt>\n        <ValDt><Dt>2026-02-26</Dt></ValDt>\n        <BkTxCd><Domn><Cd>PMNT</Cd><Fmly><Cd>RCDT</Cd><SubFmlyCd>RRTN</SubFmlyCd></Fmly></Domn></BkTxCd>\n        <NtryDtls>\n          <TxDtls>\n            <Refs><EndToEndId>RE-2026-0077</EndToEndId></Refs>\n            <RltdPties>\n              <Dbtr><Nm>Kunde Falsch GmbH</Nm></Dbtr>\n              <DbtrAcct><Id><IBAN>NL91ABNA0417164300</IBAN></Id></DbtrAcct>\n            </RltdPties>\n            <RmtInf><Ustrd>Rueckueberweisung RE-2026-0077</Ustrd></RmtInf>\n            <RtrInf><Rsn><Cd>AC04</Cd></Rsn></RtrInf>\n          </TxDtls>\n        </NtryDtls>\n      </Ntry>\n      <Ntry>\n        <Amt Ccy=\"EUR\">999.00</Amt>\n        <CdtDbtInd>CRDT</CdtDbtInd>\n        <Sts>PDNG</Sts>\n        <BookgDt><Dt>2026-03-01</Dt></BookgDt>\n        <ValDt><Dt>2026-03-01</Dt></ValDt>\n        <BkTxCd><Domn><Cd>PMNT</Cd><Fmly><Cd>RCDT</Cd><SubFmlyCd>ESCT</SubFmlyCd></Fmly></Domn></BkTxCd>\n      </Ntry>\n    </Stmt>\n    <Stmt>\n      <Id>2026-02-28-USD-00012</Id>\n      <Acct>\n        <Id><Othr><Id>0123456789-USD</Id></Othr></Id>\n        <Ccy>USD</Ccy>\n      </Acct>\n      <Bal>\n        <Tp><CdOrPrtry><Cd>OPBD</Cd></CdOrPrtry></Tp>\n        <Amt Ccy=\"USD\">1000.00</Amt>\n        <CdtDbtInd>CRDT</CdtDbtInd>\n        <Dt><Dt>2026-02-28</Dt></Dt>\n      </Bal>\n      <Bal>\n        <Tp><CdOrPrtry><Cd>CLBD</Cd></CdOrPrtry></Tp>\n        <Amt Ccy=\"USD\">1250.25</Amt>\n        <CdtDbtInd>CRDT</CdtDbtInd>\n        <Dt><Dt>2026-02-28</Dt></Dt>\n      </Bal>\n      <Ntry>\n        <Amt Ccy=\"USD\">250.25</Amt>\n        <CdtDbtInd>CRDT</CdtDbtInd>",
+  "input_truncated": true,
+  "detected_format": "CAMT.053",
+  "overall_verdict": "VERIFIED",
+  "statement_count": 2,
+  "transaction_count": 5,
+  "warnings": [],
+  "statements": [
+   {
+    "reference": "2026-02-28-00059",
+    "account": "DE89370400440532013000",
+    "currency": "EUR",
+    "opening": "15000.00",
+    "credits": "4200.00",
+    "debits": "1780.40",
+    "calculated": "17419.60",
+    "closing": "17419.60",
+    "difference": "0.00",
+    "verdict": "VERIFIED",
+    "method": "BALANCE_EQUATION",
+    "notes": [
+     "1 pending/informational entries are listed but excluded from the balance check."
+    ]
+   },
+   {
+    "reference": "2026-02-28-USD-00012",
+    "account": "0123456789-USD",
+    "currency": "USD",
+    "opening": "1000.00",
+    "credits": "250.25",
+    "debits": "0.00",
+    "calculated": "1250.25",
+    "closing": "1250.25",
+    "difference": "0.00",
+    "verdict": "VERIFIED",
+    "method": "BALANCE_EQUATION",
+    "notes": []
+   }
+  ],
+  "transactions": [
+   {
+    "date": "2026-02-28",
+    "direction": "CREDIT",
+    "reversal": false,
+    "status": "BOOKED",
+    "amount": "4200.00",
+    "currency": "EUR",
+    "name": "Schneider Logistik AG",
+    "iban": "DE44500105175407324931",
+    "reference": "RE-2026-0101",
+    "purpose": "Rechnung 2026-0101"
+   },
+   {
+    "date": "2026-02-28",
+    "direction": "DEBIT",
+    "reversal": false,
+    "status": "BOOKED",
+    "amount": "-1530.40",
+    "currency": "EUR",
+    "name": "",
+    "iban": "",
+    "reference": "",
+    "purpose": "SAMMLER-UEBERWEISUNG"
+   },
+   {
+    "date": "2026-02-28",
+    "direction": "DEBIT",
+    "reversal": true,
+    "status": "BOOKED",
+    "amount": "-250.00",
+    "currency": "EUR",
+    "name": "Kunde Falsch GmbH",
+    "iban": "NL91ABNA0417164300",
+    "reference": "RE-2026-0077",
+    "purpose": "Rueckueberweisung RE-2026-0077"
+   },
+   {
+    "date": "2026-03-01",
+    "direction": "CREDIT",
+    "reversal": false,
+    "status": "PENDING",
+    "amount": "999.00",
+    "currency": "EUR",
+    "name": "",
+    "iban": "",
+    "reference": "",
+    "purpose": ""
+   },
+   {
+    "date": "2026-02-28",
+    "direction": "CREDIT",
+    "reversal": false,
+    "status": "BOOKED",
+    "amount": "250.25",
+    "currency": "USD",
+    "name": "US Client Inc",
+    "iban": "",
+    "reference": "",
+    "purpose": "PO 4410"
+   }
+  ],
+  "json": "{\n  \"api_version\": \"2.0\",\n  \"detected_format\": \"CAMT.053\",\n  \"file_count\": 1,\n  \"statement_count\": 2,\n  \"transaction_count\": 5,\n  \"overall_verdict\": \"VERIFIED\",\n  \"verdict_counts\": {\n    \"VERIFIED\": 2\n  },\n  \"warnings\": [],\n  \"statements\": [\n    {\n      \"statement_index\": 0,\n      \"source_file\": \"camt053-v02.xml\",\n      \"format\": \"CAMT.053\",\n      \"statement_reference\": \"2026-02-28-00059\",\n      \"sequence_number\": \"59\",\n      \"account_id\": \"DE89370400440532013000\",\n      \"account_servicer_bic\": \"COBADEFFXXX\",\n      \"currency\": \"EUR\",\n      \"creation_datetime\": \"2026-02-28T22:15:00\",\n      \"opening_balance\": \"15000.00\",\n      \"opening_balance_date\": \"2026-02-27\",\n      \"opening_balance_type\": \"PRCD\",\n      \"closing_balance\": \"17419.60\",\n      \"closing_balance_date\": \"2026-02-28\",\n      \"closing_balance_type\": \"CLBD\",\n      \"closing_available_balance\": \"17200.00\",\n      \"closing_available_balance_date\": \"2026-02-28\",\n      \"closing_available_balance_type\": \"CLAV\",\n      \"total_credits\": \"4200.00\",\n      \"total_debits\": \"1780.40\",\n      \"credit_count\": 1,\n      \"debit_count\": 2,\n      \"pending_count\": 1,\n      \"calculated_closing_balance\": \"17419.60\",\n      \"discrepancy_amount\": \"0.00\",\n      \"audit_method\": \"BALANCE_EQUATION\",\n      \"audit_verdict\": \"VERIFIED\",\n      \"audit_notes\": [\n        \"1 pending/informational entries are listed but excluded from the balance check.\"\n      ],\n      \"statement_information\": \"\",\n      \"transaction_count\": 4,\n      \"transactions\": [\n        {\n          \"transaction_hash\": \"edde312f91bf745245338ff7899a850cc9e85d3eb29a02e5f745bdc3cb8247f2\",\n          \"booking_date\": \"2026-02-28\",\n          \"value_date\": \"2026-02-28\",\n          \"direction\": \"CREDIT\",\n          \"is_reversal\": false,\n          \"status\": \"BOOKED\",\n          \"amount\": \"4200.00\",\n          \"signed_amount\": \"4200.00\",\n          \"currency\": \"EUR\",\n          \"bank_transaction_code\": \"PMNT/RCDT/ESCT\",\n          \"bank_transaction_code_proprietary\": \"NTRF+166+931\",\n          \"gvc\": \"166\",\n          \"booking_text\": \"GUTSCHR. UEBERWEISUNG\",\n          \"bank_reference\": \"2026022800001\",\n          \"customer_reference\": \"\",\n          \"end_to_end_id\": \"RE-2026-0101\",\n          \"mandate_id\": \"\",\n          \"creditor_id\": \"\",\n          \"counterparty_name\": \"Schneider Logistik AG\",\n          \"counterparty_iban\": \"DE44500105175407324931\",\n          \"counterparty_bic\": \"INGDDEFFXXX\",\n          \"counterparty_account\": \"\",\n          \"purpose\": \"Rechnung 2026-0101\",\n          \"return_reason\": \"\",\n          \"raw_information\": \"GUTSCHR. UEBERWEISUNG\",\n          \"structured_fields\": {\n            \"EREF\": \"RE-2026-0101\",\n            \"SVWZ\": \"Rechnung 2026-0101\"\n          },\n          \"batch_details\": []\n        },\n        {\n          \"transaction_hash\": \"9fbd582ad36eb1115be52ae3004342f27ecd4f842b97fead3033e8ab247ba909\",\n          \"booking_date\": \"2026-02-28\",\n          \"value_date\": \"2026-02-28\",\n          \"direction\": \"DEBIT\",\n          \"is_reversal\": false,\n          \"status\": \"BOOKED\",\n          \"amount\": \"1530.40\",\n          \"signed_amount\": \"-1530.40\",\n          \"currency\": \"EUR\",\n          \"bank_transaction_code\": \"PMNT/ICDT/ESCT\",\n          \"bank_transaction_code_proprietary\": \"\",\n          \"gvc\": \"\",\n          \"booking_text\": \"SAMMLER-UEBERWEISUNG\",\n          \"bank_reference\": \"2026022800002\",\n          \"customer_reference\": \"\",\n          \"end_to_end_id\": \"\",\n          \"mandate_id\": \"\",\n          \"creditor_id\": \"\",\n          \"counterparty_name\": \"\",\n          \"counterparty_iban\": \"\",\n          \"counterparty_bic\": \"\",\n          \"counterparty_account\": \"\",\n          \"purpose\": \"SAMMLER-UEBERWEISUNG\",\n          \"return_reason\": \"\",\n          \"raw_information\": \"SAMMLER-UEBERWEISUNG\",\n          \"structured_fields\": {},\n          \"batch_details\": [\n            {\n              \"amount\": \"1000.00\",\n              \"end_to_end_id\": \"PAY-RUN-7-A\",\n              \"counterparty_name\": \"Lieferant A GmbH\",\n              \"counterparty_iban\": \"DE65100700000123456789\",\n              \"purpose\": \"Rechnung A-55\"\n            },\n            {\n              \"amount\": \"530.40\",\n              \"end_to_end_id\": \"PAY-RUN-7-B\",\n              \"counterparty_name\": \"Lieferant B KG\",\n              \"counterparty_iban\": \"DE12500105170648489890\",\n              \"purpose\": \"Rechnung B-981\"\n            }\n          ]\n        },\n        {\n          \"transaction_hash\": \"d93b3cfacdcf528df0e4ebcd6f3c9d794ec5f03c0805d23affbcf81b3fd0a229\",\n          \"booking_date\": \"2026-02-28\",\n          \"value_date\": \"2026-02-26\",\n          \"direction\": \"DEBIT\",\n          \"is_reversal\": true,\n          \"status\": \"BOOKED\",\n          \"amount\": \"250.00\",\n          \"signed_amount\": \"-250.00\",\n          \"currency\": \"EUR\",\n          \"bank_transaction_code\": \"PMNT/RCDT/RRTN\",\n          \"bank_transaction_code_proprietary\": \"\",\n          \"gvc\": \"\",\n          \"booking_text\": \"\",\n          \"bank_reference\": \"\",\n          \"customer_reference\": \"\",\n          \"end_to_end_id\": \"RE-2026-0077\",\n          \"mandate_id\": \"\",\n          \"creditor_id\": \"\",\n          \"counterparty_name\": \"Kunde Falsch GmbH\",\n          \"counterparty_iban\": \"NL91ABNA0417164300\",\n          \"counterparty_bic\": \"\",\n          \"counterparty_account\": \"\",\n          \"purpose\": \"Rueckueberweisung RE-2026-0077\",\n          \"return_reason\": \"AC04\",\n          \"raw_information\": \"\",\n          \"structured_fields\": {},\n          \"batch_details\": []\n        },\n        {\n          \"transaction_hash\": \"7fa1199ee5bb81530ceba380e14bbb886cf8ef3ae2e86001648ec2b9afecb0c6\",\n          \"booking_date\": \"2026-03-01\",\n          \"value_date\": \"2026-03-01\",\n          \"direction\": \"CREDIT\",\n          \"is_reversal\": false,\n          \"status\": \"PENDING\",\n          \"amount\": \"999.00\",\n          \"signed_amount\": \"999.00\",\n          \"currency\": \"EUR\",\n          \"bank_transaction_code\": \"PMNT/RCDT/ESCT\",\n          \"bank_transaction_code_proprietary\": \"\",\n          \"gvc\": \"\",\n          \"booking_text\": \"\",\n          \"bank_reference\": \"\",\n          \"customer_reference\": \"\",\n          \"end_to_end_id\": \"\",\n          \"mandate_id\": \"\",\n          \"creditor_id\": \"\",\n          \"counterparty_name\": \"\",\n          \"counterparty_iban\": \"\",\n          \"counterparty_bic\": \"\",\n          \"counterparty_account\": \"\",\n          \"purpose\": \"\",\n          \"return_reason\": \"\",\n          \"raw_information\": \"\",\n          \"structured_fields\": {},\n          \"batch_details\": []\n        }\n      ]\n    },\n    {\n      \"statement_index\": 1,\n      \"source_file\": \"camt053-v02.xml\",\n      \"format\": \"CAMT.053\",\n      \"statement_reference\": \"2026-02-28-USD-00012\",\n      \"sequence_number\": \"\",\n      \"account_id\": \"0123456789-USD\",\n      \"account_servicer_bic\": \"\",\n      \"currency\": \"USD\",\n      \"creation_datetime\": \"\",\n      \"opening_balance\": \"1000.00\",\n      \"opening_balance_date\": \"2026-02-28\",\n      \"opening_balance_type\": \"OPBD\",\n      \"closing_balance\": \"1250.25\",\n      \"closing_balance_date\": \"2026-02-28\",\n      \"closing_balance_type\": \"CLBD\",\n      \"closing_available_balance\": null,\n      \"closing_available_balance_date\": null,\n      \"closing_available_balance_type\": null,\n      \"total_credits\": \"250.25\",\n      \"total_debits\": \"0.00\",\n      \"credit_count\": 1,\n      \"debit_count\": 0,\n      \"pending_count\": 0,\n      \"calculated_closing_balance\": \"1250.25\",\n      \"discrepancy_amount\": \"0.00\",\n      \"audit_method\": \"BALANCE_EQUATION\",\n      \"audit_verdict\": \"VERIFIED\",\n      \"audit_notes\": [],\n      \"statement_information\": \"\",\n      \"transaction_count\": 1,\n      \"transactions\": [\n        {\n          \"transaction_hash\": \"a056ed22ce64de42f29cb6aa16110185b4141003a2876335ff4954224ebdc7e4\",\n          \"booking_date\": \"2026-02-28\",\n          \"value_date\": \"2026-02-28\",\n          \"direction\": \"CREDIT\",\n          \"is_reversal\": false,\n          \"status\": \"BOOKED\",\n          \"amount\": \"250.25\",\n          \"signed_amount\": \"250.25\",\n          \"currency\": \"USD\",\n          \"bank_transaction_code\": \"\",\n          \"bank_transaction_code_proprietary\": \"NTRF+166+000\",\n          \"gvc\": \"166\",\n          \"booking_text\": \"\",\n          \"bank_reference\": \"\",\n          \"customer_reference\": \"\",\n          \"end_to_end_id\": \"\",\n          \"mandate_id\": \"\",\n          \"creditor_id\": \"\",\n          \"counterparty_name\": \"US Client Inc\",\n          \"counterparty_iban\": \"\",\n          \"counterparty_bic\": \"\",\n          \"counterparty_account\": \"\",\n          \"purpose\": \"PO 4410\",\n          \"return_reason\": \"\",\n          \"raw_information\": \"\",\n          \"structured_fields\": {},\n          \"batch_details\": []\n        }\n      ]\n    }\n  ]\n}",
+  "csv": "﻿source_file,statement_index,statement_reference,account_id,audit_verdict,transaction_hash,booking_date,value_date,direction,is_reversal,status,amount,signed_amount,currency,counterparty_name,counterparty_iban,counterparty_bic,counterparty_account,purpose,end_to_end_id,mandate_id,creditor_id,bank_transaction_code,bank_transaction_code_proprietary,gvc,booking_text,return_reason,bank_reference,customer_reference\r\ncamt053-v02.xml,0,2026-02-28-00059,DE89370400440532013000,VERIFIED,edde312f91bf745245338ff7899a850cc9e85d3eb29a02e5f745bdc3cb8247f2,2026-02-28,2026-02-28,CREDIT,false,BOOKED,4200.00,4200.00,EUR,Schneider Logistik AG,DE44500105175407324931,INGDDEFFXXX,,Rechnung 2026-0101,RE-2026-0101,,,PMNT/RCDT/ESCT,NTRF+166+931,166,GUTSCHR. UEBERWEISUNG,,2026022800001,\r\ncamt053-v02.xml,0,2026-02-28-00059,DE89370400440532013000,VERIFIED,9fbd582ad36eb1115be52ae3004342f27ecd4f842b97fead3033e8ab247ba909,2026-02-28,2026-02-28,DEBIT,false,BOOKED,1530.40,-1530.40,EUR,,,,,SAMMLER-UEBERWEISUNG,,,,PMNT/ICDT/ESCT,,,SAMMLER-UEBERWEISUNG,,2026022800002,\r\ncamt053-v02.xml,0,2026-02-28-00059,DE89370400440532013000,VERIFIED,d93b3cfacdcf528df0e4ebcd6f3c9d794ec5f03c0805d23affbcf81b3fd0a229,2026-02-28,2026-02-26,DEBIT,true,BOOKED,250.00,-250.00,EUR,Kunde Falsch GmbH,NL91ABNA0417164300,,,Rueckueberweisung RE-2026-0077,RE-2026-0077,,,PMNT/RCDT/RRTN,,,,AC04,,\r\ncamt053-v02.xml,0,2026-02-28-00059,DE89370400440532013000,VERIFIED,7fa1199ee5bb81530ceba380e14bbb886cf8ef3ae2e86001648ec2b9afecb0c6,2026-03-01,2026-03-01,CREDIT,false,PENDING,999.00,999.00,EUR,,,,,,,,,PMNT/RCDT/ESCT,,,,,,\r\ncamt053-v02.xml,1,2026-02-28-USD-00012,0123456789-USD,VERIFIED,a056ed22ce64de42f29cb6aa16110185b4141003a2876335ff4954224ebdc7e4,2026-02-28,2026-02-28,CREDIT,false,BOOKED,250.25,250.25,USD,US Client Inc,,,,PO 4410,,,,,NTRF+166+000,166,,,,\r\n"
+ }
+]

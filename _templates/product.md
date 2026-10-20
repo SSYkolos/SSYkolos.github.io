@@ -16,6 +16,7 @@ fact:                         # one real, checkable number for the card
   value: "100 %"
   label: what the number means
 visual:                       # optional: name of a file in _includes/visuals/ (without .html)
+demo:                         # optional: name of a file in _includes/demos/ (sample runs, see _tools/)
 channels:                     # store links; leave url empty to show "coming soon"
   - name: RapidAPI
     url: ""

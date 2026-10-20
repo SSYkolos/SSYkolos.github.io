@@ -13,6 +13,7 @@ fact:
   value: "±0.00"
   label: every statement balance-checked to the cent
 visual: audit
+demo: reconciler
 channels:
   - name: RapidAPI
     url: ""
@@ -65,7 +66,7 @@ tested:
 limits:
   - "Not supported yet: BAI2 (US), OFX/QFX, CODA (Belgium) and pain.001 (a payment order, not a statement). These get a clear `UNSUPPORTED_FORMAT` message."
   - Very old DOS-encoded (cp850) German files may still show wrong umlauts.
-  - Free text such as “AUFTRAGGEBER: name street zip city” keeps the name inside the purpose field, because name and address cannot be separated reliably.
+  - 'Free text such as “AUFTRAGGEBER: name street zip city” keeps the name inside the purpose field, because name and address cannot be separated reliably.'
   - "A camt.053 export needs a balance, so MT942 and camt.054 files (which have none) cannot be converted to it."
 privacy_summary: Statements are processed in memory and never written to disk. With redaction switched on, IBANs, counterparty names and emails are masked in the response.
 ---

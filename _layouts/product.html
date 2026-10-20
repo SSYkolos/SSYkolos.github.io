@@ -30,6 +30,14 @@ layout: default
     {%- endif %}
   </header>
 
+  {%- if page.demo %}
+  {%- assign n = n | plus: 1 %}
+  <section class="wrap section" id="try" aria-labelledby="try-title">
+    {% include section-head.html num=n title="See it work" id="try" intro="Pick a sample file. Everything below is the engine's real output for that file, nothing is mocked or edited. Download the samples to run them yourself once the API is live." %}
+    {% include demos/{{ page.demo }}.html %}
+  </section>
+  {%- endif %}
+
   {%- if page.features %}
   {%- assign n = n | plus: 1 %}
   <section class="wrap section" aria-labelledby="features-title">

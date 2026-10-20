@@ -13,6 +13,7 @@ fact:
   value: "0.02 mm"
   label: cut-length agreement on 14 reference drawings
 visual: plate
+demo: dxf
 channels:
   - name: RapidAPI
     url: ""
