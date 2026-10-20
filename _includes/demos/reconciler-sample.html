@@ -35,6 +35,9 @@
           <div><dt><span class="op">−</span> Debits</dt><dd>{{ s.debits }}</dd></div>
           <div class="mini__sum"><dt><span class="op">=</span> Calculated</dt><dd>{{ s.calculated }}</dd></div>
           <div><dt>Bank's closing</dt><dd>{{ s.closing }} {{ s.currency }}</dd></div>
+          {%- if s.method == "SUMMARY_TOTALS" %}
+          <div class="mini__note"><dt>Note</dt><dd>The detail lines cover only part of the account, so the balances are checked against the bank's own total credits and debits.</dd></div>
+          {%- endif %}
           {%- for n in s.notes %}
           <div class="mini__note"><dt>Note</dt><dd>{{ n }}</dd></div>
           {%- endfor %}

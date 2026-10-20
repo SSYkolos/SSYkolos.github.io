@@ -3,6 +3,8 @@
   one panel per sample via _includes/demos/<samples>-sample.html) plus the optional
   "Your own file" tab (_includes/demos/live.html, configured by the page's live_demo).
   include demo-tabs.html samples="reconciler" live="https://..." id="bank-statement-reconciler" product=<document>
+  With live_first=true the live tab comes first and is open. The CSS (assets/css/demo.css) pairs
+  radios, labels and panels by position, for up to 8 tabs.
 {%- endcomment -%}
 {%- assign demos = "" | split: "" -%}
 {%- if include.samples -%}{%- assign demos = site.data.demos[include.samples] -%}{%- endif -%}
@@ -10,26 +12,41 @@
 {%- assign group = include.id | prepend: "demo-" -%}
 {%- assign live_first = false -%}
 {%- if include.live_first and live != "" -%}{%- assign live_first = true -%}{%- endif -%}
+{%- capture live_radio -%}
+  <input class="demo__radio" type="radio" name="{{ group }}" id="{{ group }}-live"{% if demos.size == 0 or live_first %} checked{% endif %}>
+{%- endcapture -%}
+{%- capture live_label -%}
+    <label for="{{ group }}-live" class="demo__tab-live"><span class="demo__tab-dot" aria-hidden="true"></span> Your own file</label>
+{%- endcapture -%}
 <div class="demo">
+  {%- if live_first %}
+  {{ live_radio }}
+  {%- endif %}
   {%- for d in demos %}
   <input class="demo__radio" type="radio" name="{{ group }}" id="{{ group }}-{{ d.id }}"{% if forloop.first and live_first == false %} checked{% endif %}>
   {%- endfor %}
-  {%- if live != "" %}
-  <input class="demo__radio" type="radio" name="{{ group }}" id="{{ group }}-live"{% if demos.size == 0 or live_first %} checked{% endif %}>
+  {%- if live != "" and live_first == false %}
+  {{ live_radio }}
   {%- endif %}
   <div class="demo__tabs" role="presentation">
+    {%- if live_first %}
+    {{ live_label }}
+    {%- endif %}
     {%- for d in demos %}
     <label for="{{ group }}-{{ d.id }}"><span class="demo__tab-num">{{ forloop.index | prepend: "0" }}</span> {{ d.title }}</label>
     {%- endfor %}
-    {%- if live != "" %}
-    <label for="{{ group }}-live" class="demo__tab-live"><span class="demo__tab-dot" aria-hidden="true"></span> Your own file</label>
+    {%- if live != "" and live_first == false %}
+    {{ live_label }}
     {%- endif %}
   </div>
   <div class="demo__panels">
+    {%- if live_first %}
+    {% include demos/live.html endpoint=live product=include.product %}
+    {%- endif %}
     {%- for d in demos %}
     {% include demos/{{ include.samples }}-sample.html sample=d %}
     {%- endfor %}
-    {%- if live != "" %}
+    {%- if live != "" and live_first == false %}
     {% include demos/live.html endpoint=live product=include.product %}
     {%- endif %}
   </div>
