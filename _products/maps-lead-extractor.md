@@ -1,6 +1,9 @@
 ---
 title: Maps Lead Extractor
 order: 3
+category: sales
+tags: [google maps, leads, csv, email finder, b2b, chrome extension]
+featured: true
 kind: Chrome extension
 status: Launching soon
 tagline: "Export Google Maps businesses to CSV: phone, website, address, rating, plus emails and social profiles from the businesses' own websites."

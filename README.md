@@ -22,12 +22,32 @@ This repository contains only the website, no product source code.
 | `assets/css/site.css` | All styling. Colours are variables at the top; dark mode follows the system |
 | `assets/fonts/` | IBM Plex Sans / Mono, self-hosted (SIL Open Font License) |
 
+## Adding a product
+
+```bash
+python _tools/new_product.py invoice-parser --title "Invoice Parser API" --category finance --kind "REST API" --live
+```
+
+It creates the product page, its privacy notice and (with `--live`) the product's part of the live demo, and prints
+the remaining steps. Everything about a product lives in its own files:
+
+| File | What it holds |
+|---|---|
+| `_products/<name>.md` | texts, `category`, `tags`, `featured`, specs, limits, `samples`, `live_demo` settings |
+| `_privacy/<name>.md` | privacy notice at `/products/<name>/privacy/` |
+| `_product_categories/<area>.md` | an area (title, order, summary); its page is `/categories/<area>/` |
+| `assets/js/demos/<name>.js` | live demo: checks before upload, error texts, how results are shown |
+| `_data/demos/<samples>.json`, `_includes/demos/<samples>-sample.html` | optional sample runs (built by a script in `_tools/`) |
+
+The product list (`/products/`) groups products by area and has a search and area filter; the home page shows the
+products marked `featured: true` (up to six) and links to the full list. Products in the same area link to each other.
+
 ## Common changes
 
 - **Set the contact email:** fill in `email:` in `_data/profile.yml`. It appears everywhere at once
   (footer, contact section, privacy policies).
 - **Add a store link:** in the product's file under `channels:`, set `url:`. The "coming soon" button becomes a real link.
-- **Add a product:** copy `_templates/product.md` to `_products/<name>.md`, and add `_privacy/<name>.md`.
+- **Add a product:** see "Adding a product" above.
 - **Add a project:** copy `_templates/project.md` to `_projects/<name>.md`. The Projects menu item and home section appear by themselves.
 - **Publish the About/CV page:** edit `about.md`, set `published: true`.
 - **Add a page:** create `<name>.md` with `title:` and `permalink: /<name>/`, then add it to `_data/navigation.yml`.

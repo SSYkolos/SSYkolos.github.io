@@ -1,6 +1,9 @@
 ---
 title: CAD DXF Quote API
 order: 2
+category: manufacturing
+tags: [dxf, cad, laser cutting, cnc, waterjet, plasma, cut length, pierce count, bom, sheet metal]
+featured: true
 kind: REST API
 status: Launching soon
 tagline: "Instant laser-cutting quotes from a DXF: exact cut length, pierce count, part area and BOM in one API call. No AI guesses, no zero-length surprises from splines or blocks."
@@ -13,7 +16,20 @@ fact:
   value: "0.02 mm"
   label: cut-length agreement on 14 reference drawings
 visual: plate
-demo: dxf
+samples: dxf
+live_demo:
+  api: dxf
+  path: /demo/analyze-dxf
+  accept: ".dxf"
+  max_mb: 5
+  noun: DXF drawing
+  formats: "DXF R12 – R2018+ · ASCII or binary"
+  options:
+    - type: text
+      param: exclude_layers
+      label: Ignore layers
+      hint: optional, comma-separated, e.g. a title-block frame or dimensions
+      placeholder: FRAME, DIMS
 channels:
   - name: RapidAPI
     url: ""

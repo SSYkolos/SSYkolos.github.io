@@ -1,0 +1,22 @@
+---
+layout: default
+---
+{%- assign items = site.products | where: "category", page.slug | sort: "order" -%}
+<section class="wrap page">
+  <header class="page-head">
+    <p class="eyebrow"><a href="{{ '/products/' | relative_url }}">Products</a> / {{ items.size }}</p>
+    <h1>{{ page.title }}</h1>
+    {%- if page.summary %}<p class="lede">{{ page.summary }}</p>{% endif %}
+  </header>
+  {%- if items.size > 0 %}
+  <div class="grid grid--3">
+    {%- for p in items %}
+    {% include product-card.html product=p %}
+    {%- endfor %}
+  </div>
+  {%- else %}
+  <p class="lede">Nothing here yet.</p>
+  {%- endif %}
+  {{ content }}
+  <p class="page-foot"><a class="link-arrow" href="{{ '/products/' | relative_url }}">All products →</a></p>
+</section>

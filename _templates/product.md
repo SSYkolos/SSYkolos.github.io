@@ -1,10 +1,13 @@
 ---
-# Copy this file to _products/<url-name>.md (lowercase, hyphens). The file name becomes the URL:
-# _products/my-tool.md -> /products/my-tool/
+# Created by: python _tools/new_product.py <url-name> (or copy this file to _products/<url-name>.md).
+# The file name becomes the URL: _products/my-tool.md -> /products/my-tool/
 # Delete any section you do not need; empty sections are not shown.
-title: Product name
-order: 4                      # position in lists
-kind: REST API                # or "Chrome extension", "Desktop app", ...
+title: __TITLE__
+order: __ORDER__              # position in lists
+category: __CATEGORY__        # a file name in _product_categories/ (finance, manufacturing, sales, ...)
+tags: []                      # words people search for: file formats, tasks, industries
+featured: false               # true = also shown on the home page (max. 6 there)
+kind: __KIND__                # REST API, Chrome extension, Apify actor, ...
 status: Launching soon
 tagline: One or two sentences shown at the top of the page.
 summary: One sentence for the product cards.
@@ -16,7 +19,8 @@ fact:                         # one real, checkable number for the card
   value: "100 %"
   label: what the number means
 visual:                       # optional: name of a file in _includes/visuals/ (without .html)
-demo:                         # optional: name of a file in _includes/demos/ (sample runs, see _tools/)
+samples:                      # optional: sample runs, _data/demos/<name>.json + _includes/demos/<name>-sample.html
+__LIVE_DEMO__
 channels:                     # store links; leave url empty to show "coming soon"
   - name: RapidAPI
     url: ""
@@ -29,12 +33,12 @@ specs:
   - label: Inputs
     value: "...  (Markdown allowed, e.g. `code`)"
 
-details_title: Example          # heading for the free text below the front matter
+details_title: Example        # heading for the free text below the front matter
 tested:
   - How it was tested.
 limits:
   - What it does not do yet.
-privacy_summary: One or two sentences. Add a matching file in _privacy/ with the same name for the full notice.
+privacy_summary: One or two sentences. The full notice is _privacy/<same name>.md.
 footnote:                     # optional small print at the bottom
 ---
 

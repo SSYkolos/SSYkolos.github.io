@@ -1,18 +1,45 @@
 ---
 layout: default
 title: Products
-description: Bank Statement Reconciler API, CAD DXF Quote API and Maps Lead Extractor, by Kolos Hetyéssy.
+description: APIs and browser tools by Kolos Hetyéssy for finance, manufacturing and sales data.
 ---
-{%- assign products = site.products | sort: "order" -%}
+{%- assign products = site.products -%}
+{%- assign cats = site.product_categories | sort: "order" -%}
 <section class="wrap page">
   <header class="page-head">
-    <p class="eyebrow">Products</p>
+    <p class="eyebrow">Products · {{ products.size }}</p>
     <h1>Products</h1>
-    <p class="lede">Each one does a narrow job and does it carefully. Marketplace listings are being prepared; the links will appear here when they go live.</p>
+    <p class="lede">Each one does a narrow job and does it carefully. Marketplace listings are being prepared; the links will appear on each page when they go live.</p>
   </header>
+
+  <div class="filter" hidden>
+    <label class="fb__label" for="pf-q">Search</label>
+    <input class="filter__input" type="search" id="pf-q" placeholder="Name, file format or task, e.g. MT940, DXF, leads" autocomplete="off" spellcheck="false">
+    <div class="filter__chips" role="group" aria-label="Area">
+      <button type="button" class="chip-btn" data-cat="" aria-pressed="true">All</button>
+      {%- for cat in cats %}
+      {%- assign n = products | where: "category", cat.slug | size %}
+      {%- if n > 0 %}
+      <button type="button" class="chip-btn" data-cat="{{ cat.slug }}" aria-pressed="false">{{ cat.title }}</button>
+      {%- endif %}
+      {%- endfor %}
+    </div>
+    <p class="filter__count" aria-live="polite"></p>
+  </div>
+
+  {%- comment -%} Few products: one grid. From six on: grouped by area (the filter works with both). {%- endcomment %}
+  {%- if products.size >= 6 %}
+  <div class="pgroups">
+    {% include product-groups.html %}
+  </div>
+  {%- else %}
   <div class="grid grid--3">
-    {%- for p in products %}
+    {%- assign sorted = products | sort: "order" %}
+    {%- for p in sorted %}
     {% include product-card.html product=p %}
     {%- endfor %}
   </div>
+  {%- endif %}
+  <p class="filter__empty" hidden>No product matches that yet. <a href="{{ '/' | relative_url }}#contact">Tell me what you need</a>: requests decide what gets built next.</p>
 </section>
+<script src="{{ '/assets/js/products-filter.js' | relative_url }}?v={{ site.time | date: '%s' }}" defer></script>

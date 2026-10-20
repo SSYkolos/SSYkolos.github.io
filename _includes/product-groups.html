@@ -1,0 +1,33 @@
+{%- comment -%}
+  All products, grouped by area (_product_categories/, in their "order"). Products without a
+  category are listed last under "More". include product-groups.html heading_level=2
+{%- endcomment -%}
+{%- assign products = site.products | sort: "order" -%}
+{%- assign cats = site.product_categories | sort: "order" -%}
+{%- for cat in cats %}
+  {%- assign items = products | where: "category", cat.slug %}
+  {%- if items.size > 0 %}
+<section class="pgroup" data-group="{{ cat.slug }}" aria-labelledby="group-{{ cat.slug }}">
+  <header class="pgroup__head">
+    <h2 id="group-{{ cat.slug }}"><a href="{{ cat.url | relative_url }}">{{ cat.title }}</a></h2>
+    <p>{{ cat.summary }} <span class="pgroup__count">{{ items.size }}</span></p>
+  </header>
+  <div class="grid grid--3">
+    {%- for p in items %}
+    {% include product-card.html product=p %}
+    {%- endfor %}
+  </div>
+</section>
+  {%- endif %}
+{%- endfor %}
+{%- assign loose = products | where_exp: "p", "p.category == nil" %}
+{%- if loose.size > 0 %}
+<section class="pgroup" data-group="other" aria-labelledby="group-other">
+  <header class="pgroup__head"><h2 id="group-other">More</h2></header>
+  <div class="grid grid--3">
+    {%- for p in loose %}
+    {% include product-card.html product=p %}
+    {%- endfor %}
+  </div>
+</section>
+{%- endif %}

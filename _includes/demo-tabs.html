@@ -1,0 +1,34 @@
+{%- comment -%}
+  "See it work" tabs on a product page: sample runs (CSS-only, from _data/demos/<samples>.json,
+  one panel per sample via _includes/demos/<samples>-sample.html) plus the optional
+  "Your own file" tab (_includes/demos/live.html, configured by the page's live_demo).
+  include demo-tabs.html samples="reconciler" live="https://..." id="bank-statement-reconciler"
+{%- endcomment -%}
+{%- assign demos = "" | split: "" -%}
+{%- if include.samples -%}{%- assign demos = site.data.demos[include.samples] -%}{%- endif -%}
+{%- assign live = include.live | default: "" -%}
+{%- assign group = include.id | prepend: "demo-" -%}
+<div class="demo">
+  {%- for d in demos %}
+  <input class="demo__radio" type="radio" name="{{ group }}" id="{{ group }}-{{ d.id }}"{% if forloop.first %} checked{% endif %}>
+  {%- endfor %}
+  {%- if live != "" %}
+  <input class="demo__radio" type="radio" name="{{ group }}" id="{{ group }}-live"{% if demos.size == 0 %} checked{% endif %}>
+  {%- endif %}
+  <div class="demo__tabs" role="presentation">
+    {%- for d in demos %}
+    <label for="{{ group }}-{{ d.id }}"><span class="demo__tab-num">{{ forloop.index | prepend: "0" }}</span> {{ d.title }}</label>
+    {%- endfor %}
+    {%- if live != "" %}
+    <label for="{{ group }}-live" class="demo__tab-live"><span class="demo__tab-dot" aria-hidden="true"></span> Your own file</label>
+    {%- endif %}
+  </div>
+  <div class="demo__panels">
+    {%- for d in demos %}
+    {% include demos/{{ include.samples }}-sample.html sample=d %}
+    {%- endfor %}
+    {%- if live != "" %}
+    {% include demos/live.html endpoint=live %}
+    {%- endif %}
+  </div>
+</div>

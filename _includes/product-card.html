@@ -1,5 +1,6 @@
 {%- assign p = include.product -%}
-<article class="card">
+{%- capture search -%}{{ p.title }} {{ p.kind }} {{ p.summary }} {{ p.io.in }} {{ p.io.out }} {{ p.tags | join: " " }}{% for ch in p.channels %} {{ ch.name }}{% endfor %}{%- endcapture -%}
+<article class="card" data-category="{{ p.category | default: 'other' }}" data-search="{{ search | downcase | strip_newlines | escape }}">
   <div class="card__meta">
     <span class="kind">{{ p.kind }}</span>
     <span class="status">{{ p.status }}</span>

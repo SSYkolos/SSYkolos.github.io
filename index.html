@@ -23,18 +23,23 @@ body_class: home
   </div>
 </section>
 {%- if site.feedback_api != "" %}
-<script src="{{ '/assets/js/feedback.js' | relative_url }}" defer></script>
+<script src="{{ '/assets/js/feedback.js' | relative_url }}?v={{ site.time | date: '%s' }}" defer></script>
 {%- endif %}
 
+{%- assign featured = products | where: "featured", true -%}
+{%- if featured.size == 0 %}{% assign featured = products %}{% endif -%}
 {%- if products.size > 0 %}
 {%- assign n = n | plus: 1 %}
 <section class="wrap section" aria-labelledby="products-title">
-  {% include section-head.html num=n title="Products" id="products" intro="Two APIs and a browser extension. Store listings go live soon; each page already describes exactly what the product does and does not do." %}
+  {% include section-head.html num=n title="Products" id="products" intro="Small tools that each do one job carefully. Every product page says exactly what it does and does not do, and most let you try it with your own file." %}
   <div class="grid grid--3">
-    {%- for p in products %}
+    {%- for p in featured limit: 6 %}
     {% include product-card.html product=p %}
     {%- endfor %}
   </div>
+  {%- if products.size > 3 or featured.size < products.size %}
+  <p class="section-more"><a class="link-arrow" href="{{ '/products/' | relative_url }}">All products ({{ products.size }}) →</a></p>
+  {%- endif %}
 </section>
 {%- endif %}
 

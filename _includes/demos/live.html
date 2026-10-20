@@ -1,26 +1,15 @@
 {%- comment -%}
-  "Your file" tab: upload a file to the live demo service. Enhanced by /assets/js/live-demo.js;
+  "Your own file" tab, configured by the product's live_demo front matter (see _templates/product.md).
+  Enhanced by /assets/js/live-demo.js (shared) and /assets/js/demos/<product>.js (rendering, product checks);
   without JavaScript it explains that and points to the samples.
-  include demos/live.html kind="reconciler|dxf" endpoint="https://..."
+  include demos/live.html endpoint="https://<demo service>"
 {%- endcomment -%}
-{%- if include.kind == "reconciler" -%}
-  {%- assign path = "/demo/reconcile" -%}
-  {%- assign accept = ".sta,.mt940,.mt942,.940,.942,.txt,.xml,.053,.052,.054,.zip" -%}
-  {%- assign max_mb = 2 -%}
-  {%- assign noun = "bank statement" -%}
-  {%- assign formats = "MT940 · MT942 · camt.052 / 053 / 054 · or a ZIP of them" -%}
-{%- else -%}
-  {%- assign path = "/demo/analyze-dxf" -%}
-  {%- assign accept = ".dxf" -%}
-  {%- assign max_mb = 5 -%}
-  {%- assign noun = "DXF drawing" -%}
-  {%- assign formats = "DXF R12 – R2018+ · ASCII or binary" -%}
-{%- endif -%}
-{%- assign uid = include.kind | prepend: "live-" -%}
+{%- assign cfg = page.live_demo -%}
+{%- assign slug = page.url | split: "/" | last -%}
+{%- assign uid = slug | prepend: "live-" -%}
 <section class="demo__panel live" aria-label="Try your own file" id="{{ uid }}"
-  data-kind="{{ include.kind }}" data-endpoint="{{ include.endpoint | append: path }}"
-  data-max-bytes="{{ max_mb | times: 1048576 }}" data-product="{{ include.product }}"
-  {%- if site.feedback_api != "" %} data-feedback="{{ site.feedback_api }}/v1/reports"{% endif %} data-privacy="{{ '/products/' | append: include.product | append: '/privacy/' | relative_url }}">
+  data-endpoint="{{ include.endpoint | append: cfg.path }}" data-max-bytes="{{ cfg.max_mb | times: 1048576 }}" data-product="{{ slug }}"
+  {%- if site.feedback_api != "" %} data-feedback="{{ site.feedback_api }}/v1/reports"{% endif %}>
 
   <p class="live__nojs">The live demo needs JavaScript, which seems to be switched off. The sample tabs show the engine's real output without it.</p>
 
@@ -28,24 +17,26 @@
     <div class="live__grid">
       <div class="live__main">
         <label class="drop" for="{{ uid }}-file">
-          <input class="drop__input" type="file" id="{{ uid }}-file" accept="{{ accept }}">
+          <input class="drop__input" type="file" id="{{ uid }}-file" accept="{{ cfg.accept }}">
           <span class="drop__icon" aria-hidden="true"></span>
-          <span class="drop__title">Drop your {{ noun }} here</span>
+          <span class="drop__title">Drop your {{ cfg.noun }} here</span>
           <span class="drop__or">or <span class="drop__pick">choose a file</span></span>
-          <span class="drop__meta">{{ formats }} · up to {{ max_mb }} MB</span>
+          <span class="drop__meta">{{ cfg.formats }} · up to {{ cfg.max_mb }} MB</span>
         </label>
 
-        {%- if include.kind == "reconciler" %}
+        {%- for o in cfg.options %}
+        {%- if o.type == "checkbox" %}
         <label class="option">
-          <input type="checkbox" class="live__redact" checked>
-          <span><b>Mask names, IBANs and emails</b> in the result. Recommended for real statements; switch it off to see every field the API extracts.</span>
+          <input type="checkbox" data-param="{{ o.param }}"{% if o.checked %} checked{% endif %}>
+          <span>{{ o.label }}</span>
         </label>
-        {%- else %}
+        {%- elsif o.type == "text" %}
         <label class="option option--text">
-          <span><b>Ignore layers</b> <span class="option__hint">optional, comma-separated, e.g. a title-block frame or dimensions</span></span>
-          <input type="text" class="live__layers" placeholder="FRAME, DIMS" autocomplete="off" spellcheck="false" maxlength="200">
+          <span><b>{{ o.label }}</b>{% if o.hint %} <span class="option__hint">{{ o.hint }}</span>{% endif %}</span>
+          <input type="text" data-param="{{ o.param }}" placeholder="{{ o.placeholder }}" autocomplete="off" spellcheck="false" maxlength="200">
         </label>
         {%- endif %}
+        {%- endfor %}
 
         <p class="live__quota" aria-live="polite">Free: 15 runs a day, no sign-up. Files that cannot be read do not count.</p>
       </div>
@@ -57,7 +48,7 @@
           <li>It is read in memory, and the result is sent straight back to this page.</li>
           <li>It is discarded right after that: never written to disk, never kept, never used for anything else.</li>
         </ol>
-        <p class="assure__note">No account, no cookies, no tracking. <a href="{{ '/products/' | append: include.product | append: '/privacy/' | relative_url }}#live-demo">Privacy notice</a></p>
+        <p class="assure__note">No account, no cookies, no tracking. <a href="{{ page.url | append: 'privacy/' | relative_url }}#live-demo">Privacy notice</a></p>
       </aside>
     </div>
 

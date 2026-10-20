@@ -1,6 +1,9 @@
 ---
 title: Bank Statement Reconciler
 order: 1
+category: finance
+tags: [mt940, mt942, camt.053, camt.054, iso 20022, sepa, reconciliation, csv, hledger, beancount]
+featured: true
 kind: REST API
 status: Launching soon
 tagline: Turn European bank statements into clean, verified data in one API call. Every balance checked to the cent, every counterparty extracted, no AI guesswork.
@@ -13,7 +16,19 @@ fact:
   value: "±0.00"
   label: every statement balance-checked to the cent
 visual: audit
-demo: reconciler
+samples: reconciler
+live_demo:
+  api: reconciler
+  path: /demo/reconcile
+  accept: ".sta,.mt940,.mt942,.940,.942,.txt,.xml,.053,.052,.054,.zip"
+  max_mb: 2
+  noun: bank statement
+  formats: "MT940 · MT942 · camt.052 / 053 / 054 · or a ZIP of them"
+  options:
+    - type: checkbox
+      param: redact_pii
+      checked: true
+      label: "<b>Mask names, IBANs and emails</b> in the result. Recommended for real statements; switch it off to see every field the API extracts."
 channels:
   - name: RapidAPI
     url: ""
