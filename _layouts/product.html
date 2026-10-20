@@ -1,0 +1,108 @@
+---
+layout: default
+---
+{%- assign privacy_url = page.url | append: "privacy/" -%}
+{%- assign privacy = site.privacy | where: "url", privacy_url | first -%}
+{%- assign n = 0 -%}
+<article class="product">
+  <header class="wrap product-hero">
+    <div class="product-hero__text">
+      <p class="eyebrow"><a href="{{ '/products/' | relative_url }}">Products</a> / {{ page.kind }}</p>
+      <h1>{{ page.title }}</h1>
+      <p class="lede">{{ page.tagline }}</p>
+      <p class="io io--large"><span class="io__in">{{ page.io.in }}</span> <span class="io__out"><span class="io__arrow" aria-label="to">→</span> {{ page.io.out }}</span></p>
+      <div class="actions">
+        {%- for ch in page.channels %}
+          {%- if ch.url and ch.url != "" %}
+        <a class="btn btn--primary" href="{{ ch.url }}">{{ ch.name }}</a>
+          {%- else %}
+        <span class="btn btn--soon" aria-disabled="true">{{ ch.name }}<small>coming soon</small></span>
+          {%- endif %}
+        {%- endfor %}
+      </div>
+      <p class="notify"><span class="status">{{ page.status }}</span>
+        {%- if site.data.profile.email != "" %} Want to know when it launches? {% capture subject %}{{ page.title }}: launch{% endcapture %}{% include email.html subject=subject label="Write to me" %}{% endif %}</p>
+    </div>
+    {%- if page.visual %}
+    <div class="product-hero__visual">
+      {% include visuals/{{ page.visual }}.html %}
+    </div>
+    {%- endif %}
+  </header>
+
+  {%- if page.features %}
+  {%- assign n = n | plus: 1 %}
+  <section class="wrap section" aria-labelledby="features-title">
+    {% include section-head.html num=n title="What it does" id="features" %}
+    <ol class="features">
+      {%- for f in page.features %}
+      <li class="feature">
+        <h3>{{ f.title }}</h3>
+        <p>{{ f.text }}</p>
+      </li>
+      {%- endfor %}
+    </ol>
+  </section>
+  {%- endif %}
+
+  {%- if page.specs %}
+  {%- assign n = n | plus: 1 %}
+  <section class="wrap section" aria-labelledby="specs-title">
+    {% include section-head.html num=n title="Specification" id="specs" %}
+    <dl class="specs">
+      {%- for s in page.specs %}
+      <div><dt>{{ s.label }}</dt><dd>{{ s.value | markdownify | remove: "<p>" | remove: "</p>" | strip }}</dd></div>
+      {%- endfor %}
+    </dl>
+  </section>
+  {%- endif %}
+
+  {%- assign body = content | strip -%}
+  {%- if body != "" %}
+  {%- assign n = n | plus: 1 %}
+  <section class="wrap section" aria-labelledby="details-title">
+    {% include section-head.html num=n title=page.details_title id="details" %}
+    <div class="prose prose--wide">
+{{ content }}
+    </div>
+  </section>
+  {%- endif %}
+
+  {%- if page.tested %}
+  {%- assign n = n | plus: 1 %}
+  <section class="wrap section" aria-labelledby="tested-title">
+    {% include section-head.html num=n title="How it was tested" id="tested" %}
+    <ul class="checks">
+      {%- for t in page.tested %}
+      <li>{{ t | markdownify | remove: "<p>" | remove: "</p>" | strip }}</li>
+      {%- endfor %}
+    </ul>
+  </section>
+  {%- endif %}
+
+  {%- if page.limits %}
+  {%- assign n = n | plus: 1 %}
+  <section class="wrap section" aria-labelledby="limits-title">
+    {% include section-head.html num=n title="Known limits" id="limits" intro="What it does not do yet, so you can decide before you integrate." %}
+    <ul class="limits">
+      {%- for l in page.limits %}
+      <li>{{ l | markdownify | remove: "<p>" | remove: "</p>" | strip }}</li>
+      {%- endfor %}
+    </ul>
+  </section>
+  {%- endif %}
+
+  {%- assign n = n | plus: 1 %}
+  <section class="wrap section" aria-labelledby="privacy-title">
+    {% include section-head.html num=n title="Privacy" id="privacy" %}
+    <div class="privacy-box">
+      <p>{{ page.privacy_summary }}</p>
+      {%- if privacy %}
+      <p><a class="link-arrow" href="{{ privacy.url | relative_url }}">Read the full privacy {% if page.kind contains "extension" %}policy{% else %}notice{% endif %} →</a></p>
+      {%- endif %}
+    </div>
+    {%- if page.footnote %}
+    <p class="footnote">{{ page.footnote }}</p>
+    {%- endif %}
+  </section>
+</article>

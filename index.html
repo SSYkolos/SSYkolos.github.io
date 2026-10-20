@@ -1,0 +1,91 @@
+---
+layout: default
+body_class: home
+---
+{%- assign profile = site.data.profile -%}
+{%- assign products = site.products | sort: "order" -%}
+{%- assign projects = site.projects | sort: "order" -%}
+{%- assign n = 0 -%}
+
+<section class="wrap hero">
+  <div class="hero__text">
+    <p class="eyebrow">{{ profile.name }} · {{ profile.role }} · {{ profile.location }}</p>
+    <h1>Precise tools for messy business files.</h1>
+    <p class="lede">Bank statements, CAD drawings, map listings. I build small, deterministic software that turns
+      them into clean, structured data, and tells you exactly where it could not.</p>
+    <div class="actions">
+      <a class="btn btn--primary" href="{{ '/products/' | relative_url }}">See the products</a>
+      <a class="btn" href="#contact">Contact</a>
+    </div>
+  </div>
+  <div class="hero__visual">
+    {% include visuals/audit.html %}
+  </div>
+</section>
+
+{%- if products.size > 0 %}
+{%- assign n = n | plus: 1 %}
+<section class="wrap section" aria-labelledby="products-title">
+  {% include section-head.html num=n title="Products" id="products" intro="Two APIs and a browser extension. Store listings go live soon; each page already describes exactly what the product does and does not do." %}
+  <div class="grid grid--3">
+    {%- for p in products %}
+    {% include product-card.html product=p %}
+    {%- endfor %}
+  </div>
+</section>
+{%- endif %}
+
+{%- assign n = n | plus: 1 %}
+<section class="wrap section" aria-labelledby="principles-title">
+  {% include section-head.html num=n title="How I build" id="principles" %}
+  <ol class="principles">
+    <li>
+      <h3>Deterministic</h3>
+      <p>The APIs use no AI. The same file always gives the same result, and every number can be traced back to the input.</p>
+    </li>
+    <li>
+      <h3>Private by default</h3>
+      <p>Uploaded files are processed in memory and never stored. The browser extension runs entirely on your computer.</p>
+    </li>
+    <li>
+      <h3>Tested on real files</h3>
+      <p>Public samples from real banks, thousands of deliberately damaged drawings, live runs in four Google Maps languages.</p>
+    </li>
+    <li>
+      <h3>Honest about limits</h3>
+      <p>Every product page lists what it does not support yet, before you spend time integrating it.</p>
+    </li>
+  </ol>
+</section>
+
+{%- if projects.size > 0 %}
+{%- assign n = n | plus: 1 %}
+<section class="wrap section" aria-labelledby="projects-title">
+  {% include section-head.html num=n title="Projects" id="projects" %}
+  <div class="grid grid--3">
+    {%- for p in projects limit: 3 %}
+    {% include project-card.html project=p %}
+    {%- endfor %}
+  </div>
+  {%- if projects.size > 3 %}
+  <p><a class="link-arrow" href="{{ '/projects/' | relative_url }}">All projects →</a></p>
+  {%- endif %}
+</section>
+{%- endif %}
+
+{%- assign n = n | plus: 1 %}
+<section class="wrap section" id="contact" aria-labelledby="contact-title">
+  {% include section-head.html num=n title="Contact" id="contact" %}
+  <div class="contact">
+    <p class="contact__text">A question about a product, or a bank file or drawing it does not handle yet? Send it over.
+      Real-world files are the fastest way to make these tools better.</p>
+    <p class="contact__line">{% include email.html %}</p>
+    {%- if profile.links.size > 0 %}
+    <ul class="contact__links">
+      {%- for link in profile.links %}
+      <li><a href="{{ link.url }}" rel="me">{{ link.name }} →</a></li>
+      {%- endfor %}
+    </ul>
+    {%- endif %}
+  </div>
+</section>

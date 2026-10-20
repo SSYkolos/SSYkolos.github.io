@@ -1,0 +1,35 @@
+{%- assign profile = site.data.profile -%}
+<header class="site-head">
+  <div class="wrap site-head__inner">
+    <a class="brand" href="{{ '/' | relative_url }}" aria-label="{{ profile.name }}, home">
+      <span class="mark" aria-hidden="true">KH</span>
+      <span class="brand__text">
+        <span class="brand__name">{{ profile.name }}</span>
+        <span class="brand__role">{{ profile.role }}</span>
+      </span>
+    </a>
+    <nav class="site-nav" aria-label="Main">
+      <ul>
+      {%- for item in site.data.navigation -%}
+        {%- assign show = false -%}
+        {%- if item.collection -%}
+          {%- if site[item.collection].size > 0 -%}{%- assign show = true -%}{%- endif -%}
+        {%- elsif item.anchor -%}
+          {%- assign show = true -%}
+        {%- else -%}
+          {%- assign target = site.pages | where: "url", item.url | first -%}
+          {%- if target -%}{%- assign show = true -%}{%- endif -%}
+        {%- endif -%}
+        {%- if show -%}
+          {%- assign current = false -%}
+          {%- unless item.anchor -%}
+            {%- assign prefix = page.url | slice: 0, item.url.size -%}
+            {%- if prefix == item.url -%}{%- assign current = true -%}{%- endif -%}
+          {%- endunless %}
+        <li><a href="{{ item.url | relative_url }}"{% if current %} aria-current="page"{% endif %}>{{ item.title }}</a></li>
+        {%- endif -%}
+      {%- endfor %}
+      </ul>
+    </nav>
+  </div>
+</header>

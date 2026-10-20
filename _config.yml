@@ -1,0 +1,45 @@
+# Site settings. Personal details (name, email, links) live in _data/profile.yml.
+title: Kolos Hetyéssy
+description: Software developer from Hungary building precise, deterministic tools for finance and manufacturing data.
+lang: en
+
+# When a custom domain is added, change this to https://your-domain (see README.md).
+url: https://ssykolos.github.io
+baseurl: ""
+
+markdown: kramdown
+kramdown:
+  input: GFM
+  hard_wrap: false
+
+plugins:
+  - jekyll-sitemap
+
+# Content types. Each one is a folder of Markdown files; adding a file adds a page.
+collections:
+  products:
+    output: true
+    permalink: /products/:name/
+  privacy:
+    output: true
+    permalink: /products/:name/privacy/
+  projects:
+    output: true
+    permalink: /projects/:name/
+
+defaults:
+  - scope: { path: "" }
+    values: { layout: page }
+  - scope: { path: "", type: products }
+    values: { layout: product }
+  - scope: { path: "", type: privacy }
+    values: { layout: legal }
+  - scope: { path: "", type: projects }
+    values: { layout: project }
+
+exclude:
+  - README.md
+  - _templates/
+  - Gemfile
+  - Gemfile.lock
+  - vendor/

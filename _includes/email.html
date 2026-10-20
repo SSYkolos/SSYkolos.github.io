@@ -1,0 +1,10 @@
+{%- comment -%}
+  Contact email from _data/profile.yml. Optional: include email.html subject="..."
+{%- endcomment -%}
+{%- assign email = site.data.profile.email -%}
+{%- if email and email != "" -%}
+  <a href="mailto:{{ email }}{% if include.subject %}?subject={{ include.subject | uri_escape }}{% endif %}">{{ include.label | default: email }}</a>
+{%- else -%}
+  <!-- TODO: set the contact email in _data/profile.yml -->
+  <span class="pending">contact email coming soon</span>
+{%- endif -%}
