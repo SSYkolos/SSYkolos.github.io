@@ -107,6 +107,22 @@ SAMPLES = [
         "content": (ENGINE / "tests" / "fixtures" / "camt053_v02_de.xml").read_bytes(),
         "blurb": "An XML statement with a batch booking, a returned payment and a pending entry.",
     },
+    {
+        "id": "bai2",
+        "title": "US BAI2",
+        "file": "bai2-two-groups.bai2",
+        "content": (ENGINE / "tests" / "fixtures" / "bai2_two_groups.bai2").read_bytes(),
+        "blurb": "Two groups, three accounts in USD and JPY: 88 continuation lines, value-dated funds, "
+                 "and an account where the bank's summary totals cover more than the listed detail.",
+    },
+    {
+        "id": "coda",
+        "title": "Belgian CODA",
+        "file": "coda-be-two-accounts.cod",
+        "content": (ENGINE / "tests" / "fixtures" / "coda_be_two_accounts.cod").read_bytes(),
+        "blurb": "A CODA 2.6 file with two accounts: a structured +++ communication, a SEPA direct debit, "
+                 "a globalised supplier batch and a free-text information record.",
+    },
 ]
 
 MAX_INPUT_LINES = 140

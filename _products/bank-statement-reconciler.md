@@ -2,15 +2,15 @@
 title: Bank Statement Reconciler
 order: 1
 category: finance
-tags: [mt940, mt942, camt.053, camt.054, iso 20022, sepa, reconciliation, csv, hledger, beancount]
+tags: [mt940, mt942, camt.053, camt.054, iso 20022, bai2, coda, sepa, reconciliation, csv, hledger, beancount]
 featured: true
 kind: REST API
 status: Launching soon
-tagline: Turn European bank statements into clean, verified data in one API call. Every balance checked to the cent, every counterparty extracted, no AI guesswork.
-summary: Parses MT940 and ISO 20022 camt files, normalizes every transaction and proves each statement adds up to the cent.
-description: Bank statement parser and reconciler API for MT940, MT942 and ISO 20022 camt.052/053/054. Verifies balances to the cent and exports JSON, CSV, hledger, Beancount and camt.053.
+tagline: Turn European and US bank statements into clean, verified data in one API call. Every balance checked to the cent, every counterparty extracted, no AI guesswork.
+summary: Parses MT940, ISO 20022 camt, BAI2 and CODA files, normalizes every transaction and proves each statement adds up to the cent.
+description: Bank statement parser and reconciler API for MT940, MT942, ISO 20022 camt.052/053/054, BAI2 and CODA. Verifies balances to the cent and exports JSON, CSV, hledger, Beancount and camt.053.
 io:
-  in: MT940 · MT942 · camt.052/053/054 · ZIP
+  in: MT940 · MT942 · camt.052/053/054 · BAI2 · CODA · ZIP
   out: JSON · CSV · hledger · Beancount · camt.053
 fact:
   value: "±0.00"
@@ -20,10 +20,10 @@ samples: reconciler
 live_demo:
   api: reconciler
   path: /demo/reconcile
-  accept: ".sta,.mt940,.mt942,.940,.942,.txt,.xml,.053,.052,.054,.zip"
+  accept: ".sta,.mt940,.mt942,.940,.942,.txt,.xml,.053,.052,.054,.bai,.bai2,.cod,.coda,.zip"
   max_mb: 2
   noun: bank statement
-  formats: "MT940 · MT942 · camt.052 / 053 / 054 · or a ZIP of them"
+  formats: "MT940 · MT942 · camt.052 / 053 / 054 · BAI2 · CODA · or a ZIP of them"
   options:
     - type: checkbox
       param: redact_pii
@@ -37,11 +37,11 @@ channels:
 
 features:
   - title: Balance audit on every statement
-    text: "Opening + credits − debits = closing, to the cent (or the bank's own control totals for MT942 and camt.054). Each statement gets VERIFIED, DISCREPANCY with the exact difference, or UNVERIFIABLE."
+    text: "Opening + credits − debits = closing, to the cent (or the bank's own control totals for MT942 and camt.054, and its summary totals when a BAI2 file lists only part of the detail). BAI2 and CODA trailer checksums are verified too. Each statement gets VERIFIED, DISCREPANCY with the exact difference, or UNVERIFIABLE."
   - title: Missing and duplicate statements
     text: Statements are put in date order per account, whatever order the files arrive in. A gap in the balance chain or a statement sent twice is flagged.
   - title: Real bank dialects
-    text: German ?20 subfields, Dutch /EREF/ tags, Polish ~20 subfields, SEPA keywords, SWIFT envelopes, multi-statement files, camt batch bookings, reversals and pending entries.
+    text: German ?20 subfields, Dutch /EREF/ tags, Polish ~20 subfields, SEPA keywords, SWIFT envelopes, multi-statement files, camt batch bookings, reversals and pending entries. BAI2 continuation records and funds types, CODA globalised batches and Belgian structured communications (+++…+++, check digits validated).
   - title: Counterparty extraction
     text: Name, IBAN, BIC, end-to-end ID, mandate ID, creditor ID, purpose, return reason, booking text and GVC, as separate fields.
   - title: Whole archives in one call
@@ -55,7 +55,7 @@ features:
 
 specs:
   - label: Inputs
-    value: SWIFT MT940 and MT942; ISO 20022 camt.052, camt.053, camt.054 (versions .02 – .08+); or a ZIP of any of these
+    value: SWIFT MT940 and MT942; ISO 20022 camt.052, camt.053, camt.054 (versions .02 – .08+); BAI2 (US banks); CODA 2.6 (Belgian banks); or a ZIP of any of these
   - label: Outputs
     value: JSON · CSV (Excel-ready) · hledger · Beancount · camt.053.001.08 XML
   - label: Verdicts
@@ -73,13 +73,17 @@ specs:
 
 details_title: A request and its answer
 tested:
-  - 128 automated tests, 10 realistic bank sample files and fuzz tests.
+  - 196 automated tests, realistic bank sample files and fuzz tests.
+  - The BAI2 parser reproduces every control total of the sample in the BAI2 specification's Appendix D.
+  - On public BAI2 and CODA sample files of two independent open-source parsers, account numbers, balances, amounts, references and texts match exactly.
   - Run against about 65 public sample files from real European banks, including camt.052/053/054 versions 1 to 8. Every complete file is read.
   - Amounts match an independent open-source MT940 parser on 34 of 34 comparable files. The one difference is that library's sign error on reversals, confirmed by the bank's own balances.
   - Every camt.053 export is valid against the official ISO 20022 schema.
   - The container build runs the full test suite and fails if a single test fails.
 limits:
-  - "Not supported yet: BAI2 (US), OFX/QFX, CODA (Belgium) and pain.001 (a payment order, not a statement). These get a clear `UNSUPPORTED_FORMAT` message."
+  - "Not supported yet: OFX/QFX, BAI versions other than 2, CODA versions other than 2, and pain.001 (a payment order, not a statement). These get a clear `UNSUPPORTED_FORMAT` message."
+  - "In BAI2, banks may send detail for only some items. When the account record carries the bank's totals (type codes 100 / 400), the balances are checked against them and the gap is reported as a `DETAIL_INCOMPLETE` warning."
+  - "CODA separate applications (zeroed balances) are `UNVERIFIABLE`. Booking texts name the transaction family, not every transaction code."
   - Very old DOS-encoded (cp850) German files may still show wrong umlauts.
   - 'Free text such as “AUFTRAGGEBER: name street zip city” keeps the name inside the purpose field, because name and address cannot be separated reliably.'
   - "A camt.053 export needs a balance, so MT942 and camt.054 files (which have none) cannot be converted to it."
