@@ -24,7 +24,7 @@ faq:
   - q: What about umlauts and Central European characters?
     a: "Files in UTF-8, Windows-1252 / Latin-1 and, for Hungarian, Polish, Czech and other Central European accounts, Windows-1250 / ISO-8859-2 / DOS 852 are decoded automatically. Very old DOS-encoded (cp850) German files may still show wrong umlauts."
   - q: Can I convert many files at once?
-    a: "The API accepts a ZIP of statements and returns one CSV for all of them. The free demo takes one file up to 2 MB, shows the first 25 transactions and allows 15 runs a day."
+    a: "The API accepts a ZIP of statements and returns one CSV for all of them. The free demo takes one file up to 2 MB, shows the first 25 transactions and allows 5 runs a day."
 ---
 
 The CSV has one row per transaction and 29 columns. The most useful ones:
