@@ -1,11 +1,12 @@
 {%- assign p = include.product -%}
+{%- assign h = include.h | default: 3 -%}
 {%- capture search -%}{{ p.title }} {{ p.kind }} {{ p.summary }} {{ p.io.in }} {{ p.io.out }} {{ p.tags | join: " " }}{% for ch in p.channels %} {{ ch.name }}{% endfor %}{%- endcapture -%}
 <article class="card" data-category="{{ p.category | default: 'other' }}" data-search="{{ search | downcase | strip_newlines | escape }}">
   <div class="card__meta">
     <span class="kind">{{ p.kind }}</span>
     <span class="status">{{ p.status }}</span>
   </div>
-  <h3 class="card__title"><a class="stretch" href="{{ p.url | relative_url }}">{{ p.title }}</a></h3>
+  <h{{ h }} class="card__title"><a class="stretch" href="{{ p.url | relative_url }}">{{ p.title }}</a></h{{ h }}>
   <p class="io"><span class="io__in">{{ p.io.in }}</span> <span class="io__out"><span class="io__arrow" aria-label="to">→</span> {{ p.io.out }}</span></p>
   <p class="card__text">{{ p.summary }}</p>
   {%- if p.fact %}

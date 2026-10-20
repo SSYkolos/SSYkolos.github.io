@@ -11,7 +11,7 @@ layout: default
   {%- if items.size > 0 %}
   <div class="grid grid--3">
     {%- for p in items %}
-    {% include product-card.html product=p %}
+    {% include product-card.html product=p h=2 %}
     {%- endfor %}
   </div>
   {%- else %}

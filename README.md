@@ -90,6 +90,14 @@ With it set, the home page shows a contact form (it also works without JavaScrip
 "Result doesn't look right?" under results. Run `python triage/triage.py` in `feedback-service` to turn new
 reports into private GitHub issues. Leave `feedback_api` empty to switch all of this off.
 
+## Speed
+
+- `assets/css/site.css` is shared; `assets/css/demo.css` loads only on pages with demos; `nojs.css` only without JavaScript.
+- Own CSS/JS links carry `?v=<build time>`, so a new deploy never mixes old and new files from the browser cache.
+- Hovering a link prerenders that page (speculation rules in `_includes/head.html`); page changes fade briefly
+  (view transitions, off with reduced motion). Browsers without support simply navigate normally.
+- The live demo wakes its Cloud Run service when the "Your own file" tab is opened; the services use startup CPU boost.
+
 ## Stable URLs (do not rename)
 
 - `/products/maps-lead-extractor/privacy/`: registered in the Chrome Web Store

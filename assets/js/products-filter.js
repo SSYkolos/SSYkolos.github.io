@@ -42,6 +42,5 @@
 
   var q = new URLSearchParams(location.search).get("q");
   if (q) input.value = q;
-  box.hidden = false;
   apply();
 })();

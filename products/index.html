@@ -12,7 +12,7 @@ description: APIs and browser tools by Kolos Hetyéssy for finance, manufacturin
     <p class="lede">Each one does a narrow job and does it carefully. Marketplace listings are being prepared; the links will appear on each page when they go live.</p>
   </header>
 
-  <div class="filter" hidden>
+  <div class="filter">
     <label class="fb__label" for="pf-q">Search</label>
     <input class="filter__input" type="search" id="pf-q" placeholder="Name, file format or task, e.g. MT940, DXF, leads" autocomplete="off" spellcheck="false">
     <div class="filter__chips" role="group" aria-label="Area">
@@ -36,7 +36,7 @@ description: APIs and browser tools by Kolos Hetyéssy for finance, manufacturin
   <div class="grid grid--3">
     {%- assign sorted = products | sort: "order" %}
     {%- for p in sorted %}
-    {% include product-card.html product=p %}
+    {% include product-card.html product=p h=2 %}
     {%- endfor %}
   </div>
   {%- endif %}
