@@ -395,7 +395,7 @@ b, strong { font-weight: 600; }
 .mini__note dd { color: var(--faint); max-width: 70%; }
 .mini--plain { margin-bottom: 12px; }
 .mini--plain > div + div { border-top: 1px solid var(--line); }
-.mini--plain .mini__sum { font-weight: 500; }
+.mini--plain .mini__sum { font-weight: 500; border-top: 0; }
 .mini--plain .mini__sum dd { color: var(--accent); }
 
 .demo__svg { aspect-ratio: 16 / 10; border: 1px solid var(--line); border-radius: var(--radius); padding: 14px;
