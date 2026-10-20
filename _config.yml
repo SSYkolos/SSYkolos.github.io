@@ -7,6 +7,12 @@ lang: en
 url: https://ssykolos.github.io
 baseurl: ""
 
+# Live demo services (Cloud Run, DEMO_MODE=1). Empty = no "Your file" tab and no JavaScript on the page.
+# For local testing, override these in _config.local.yml (see README.md).
+demo_api:
+  reconciler: ""
+  dxf: ""
+
 markdown: kramdown
 kramdown:
   input: GFM
@@ -43,3 +49,4 @@ exclude:
   - Gemfile
   - Gemfile.lock
   - vendor/
+  - _config.local.yml

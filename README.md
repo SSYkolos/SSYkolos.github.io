@@ -46,6 +46,22 @@ After changing an engine, rebuild the demo data with that project's own Python, 
 
 All names, IBANs and amounts in the samples are fictional.
 
+### Live demo ("Your own file" tab)
+
+Each API has a separate, rate-limited demo service (the same Docker image with `DEMO_MODE=1`; the paid `/v1`
+endpoints are closed there). Put its Cloud Run URL in `_config.yml`:
+
+```yaml
+demo_api:
+  reconciler: https://reconciler-demo-xxxxx.europe-west1.run.app
+  dxf: https://dxf-demo-xxxxx.europe-west1.run.app
+```
+
+Only then do the "Your own file" tab, the small script `assets/js/live-demo.js`, the privacy-notice sections about
+the demo and the matching Content-Security-Policy entry appear. Leave a value empty to switch that demo off.
+To test locally, run both images with `-e DEMO_MODE=1` on ports 8081 / 8082 and serve the site with
+`jekyll serve --config _config.yml,_config.local.yml` (the local file is git-ignored).
+
 ## Stable URLs (do not rename)
 
 - `/products/maps-lead-extractor/privacy/`: registered in the Chrome Web Store

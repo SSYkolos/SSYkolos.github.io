@@ -15,6 +15,21 @@ memory and never stored. No AI or third-party analysis service is involved.
 - The response (measurements, BOM, warnings and the optional SVG preview) is returned to you and is not kept by the
   service.
 
+{% if site.demo_api.dxf != "" %}
+## Live demo on this website {#live-demo}
+
+When you try your own file on the product page:
+
+- The file is sent over an encrypted connection to a separate demo service on Google Cloud Run in the EU
+  (Belgium). It is processed in memory, the result is sent back to your browser, and the file is discarded.
+  It is never written to disk or kept, and it is not used for anything else.
+- The result, including the preview of your drawing, exists only in your browser tab.
+- To keep the demo free for everyone, each visitor gets a limited number of runs per day. For this the service
+  keeps a counter under a salted hash of your IP address, in memory only. The salt and all counters are replaced
+  every day at 00:00 UTC.
+- The hosting logs described below apply to the demo service too. There are no cookies and no account.
+{% endif %}
+
 ## Hosting and marketplaces
 
 - The API runs on Google Cloud. Like any web service, the hosting infrastructure keeps standard request logs
