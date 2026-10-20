@@ -436,6 +436,30 @@ b, strong { font-weight: 600; }
 .sec-head--quiet::before { background: var(--line-strong); }
 .sec-head--quiet .sec-head__num { color: var(--faint); }
 
+/* ---------- Tool (keyword) pages ---------- */
+.tool-head { padding-top: clamp(44px, 7vw, 80px); margin-bottom: 0; }
+.tool-facts { list-style: none; padding: 0; margin: 22px 0 0; display: flex; flex-wrap: wrap; gap: 8px 22px; font: 12.5px var(--mono); color: var(--muted); }
+.tool-facts li { display: inline-flex; align-items: center; gap: 8px; }
+.tool-facts li::before { content: ""; width: 9px; height: 5px; border-left: 1.5px solid var(--ok); border-bottom: 1.5px solid var(--ok); transform: rotate(-45deg) translateY(-2px); }
+.section--tight { padding-top: clamp(28px, 4vw, 44px); }
+.steps { list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 240px), 1fr)); gap: 0 32px; counter-reset: s; }
+.steps li { counter-increment: s; padding: 16px 0 18px; border-top: 1px solid var(--line); color: var(--muted); }
+.steps li::before { content: counter(s, decimal-leading-zero); display: block; font: 12px var(--mono); color: var(--accent); margin-bottom: 8px; }
+.steps li strong, .steps li code { color: var(--text); }
+.faq { display: grid; max-width: 820px; border-top: 1px solid var(--line); }
+.faq__item { border-bottom: 1px solid var(--line); }
+.faq__item summary { cursor: pointer; list-style: none; padding: 16px 32px 16px 0; font-weight: 600; position: relative; }
+.faq__item summary::-webkit-details-marker { display: none; }
+.faq__item summary::after { content: "+"; position: absolute; right: 4px; top: 14px; font: 500 18px var(--mono); color: var(--accent); }
+.faq__item[open] summary::after { content: "−"; }
+.faq__a { padding: 0 0 18px; color: var(--muted); max-width: 72ch; }
+.faq__a p + p { margin-top: .8em; }
+.faq__a a { color: var(--accent); }
+.faq__a code { font-size: .88em; color: var(--text); }
+.tool-cta { display: grid; gap: 16px; max-width: 72ch; }
+.tool-cta p:first-child { color: var(--muted); font-size: 1.05rem; }
+.tools-index .pgroup + .pgroup, .page > .pgroup + .pgroup { margin-top: clamp(36px, 5vw, 56px); }
+
 /* ---------- Generic pages & prose ---------- */
 .page { padding-block: clamp(44px, 7vw, 88px) clamp(56px, 8vw, 96px); }
 .page-head { margin-bottom: clamp(28px, 4vw, 48px); max-width: 760px; }

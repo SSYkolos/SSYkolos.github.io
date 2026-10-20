@@ -2,10 +2,11 @@
   "Your own file" tab, configured by the product's live_demo front matter (see _templates/product.md).
   Enhanced by /assets/js/live-demo.js (shared) and /assets/js/demos/<product>.js (rendering, product checks);
   without JavaScript it explains that and points to the samples.
-  include demos/live.html endpoint="https://<demo service>"
+  include demos/live.html endpoint="https://<demo service>" product=<product document, default: this page>
 {%- endcomment -%}
-{%- assign cfg = page.live_demo -%}
-{%- assign slug = page.url | split: "/" | last -%}
+{%- assign prod = include.product | default: page -%}
+{%- assign cfg = prod.live_demo -%}
+{%- assign slug = prod.url | split: "/" | last -%}
 {%- assign uid = slug | prepend: "live-" -%}
 <section class="demo__panel live" aria-label="Try your own file" id="{{ uid }}"
   data-endpoint="{{ include.endpoint | append: cfg.path }}" data-max-bytes="{{ cfg.max_mb | times: 1048576 }}" data-product="{{ slug }}"
@@ -48,7 +49,7 @@
           <li>It is read in memory, and the result is sent straight back to this page.</li>
           <li>It is discarded right after that: never written to disk, never kept, never used for anything else.</li>
         </ol>
-        <p class="assure__note">No account, no cookies, no tracking. <a href="{{ page.url | append: 'privacy/' | relative_url }}#live-demo">Privacy notice</a></p>
+        <p class="assure__note">No account, no cookies, no tracking. <a href="{{ prod.url | append: 'privacy/' | relative_url }}#live-demo">Privacy notice</a></p>
       </aside>
     </div>
 

@@ -5,6 +5,9 @@
 - title: Products
   url: /products/
   collection: products
+- title: Tools
+  url: /tools/
+  collection: landing
 - title: Projects
   url: /projects/
   collection: projects

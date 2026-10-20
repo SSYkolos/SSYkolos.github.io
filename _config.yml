@@ -38,6 +38,9 @@ collections:
   product_categories:
     output: true
     permalink: /categories/:name/
+  landing:                    # keyword pages ("MT940 to CSV" ...), one file each in _landing/
+    output: true
+    permalink: /tools/:name/
 
 defaults:
   - scope: { path: "" }
@@ -50,6 +53,8 @@ defaults:
     values: { layout: project }
   - scope: { path: "", type: product_categories }
     values: { layout: category }
+  - scope: { path: "", type: landing }
+    values: { layout: tool }
 
 exclude:
   - README.md

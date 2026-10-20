@@ -2,18 +2,20 @@
   "See it work" tabs on a product page: sample runs (CSS-only, from _data/demos/<samples>.json,
   one panel per sample via _includes/demos/<samples>-sample.html) plus the optional
   "Your own file" tab (_includes/demos/live.html, configured by the page's live_demo).
-  include demo-tabs.html samples="reconciler" live="https://..." id="bank-statement-reconciler"
+  include demo-tabs.html samples="reconciler" live="https://..." id="bank-statement-reconciler" product=<document>
 {%- endcomment -%}
 {%- assign demos = "" | split: "" -%}
 {%- if include.samples -%}{%- assign demos = site.data.demos[include.samples] -%}{%- endif -%}
 {%- assign live = include.live | default: "" -%}
 {%- assign group = include.id | prepend: "demo-" -%}
+{%- assign live_first = false -%}
+{%- if include.live_first and live != "" -%}{%- assign live_first = true -%}{%- endif -%}
 <div class="demo">
   {%- for d in demos %}
-  <input class="demo__radio" type="radio" name="{{ group }}" id="{{ group }}-{{ d.id }}"{% if forloop.first %} checked{% endif %}>
+  <input class="demo__radio" type="radio" name="{{ group }}" id="{{ group }}-{{ d.id }}"{% if forloop.first and live_first == false %} checked{% endif %}>
   {%- endfor %}
   {%- if live != "" %}
-  <input class="demo__radio" type="radio" name="{{ group }}" id="{{ group }}-live"{% if demos.size == 0 %} checked{% endif %}>
+  <input class="demo__radio" type="radio" name="{{ group }}" id="{{ group }}-live"{% if demos.size == 0 or live_first %} checked{% endif %}>
   {%- endif %}
   <div class="demo__tabs" role="presentation">
     {%- for d in demos %}
@@ -28,7 +30,7 @@
     {% include demos/{{ include.samples }}-sample.html sample=d %}
     {%- endfor %}
     {%- if live != "" %}
-    {% include demos/live.html endpoint=live %}
+    {% include demos/live.html endpoint=live product=include.product %}
     {%- endif %}
   </div>
 </div>

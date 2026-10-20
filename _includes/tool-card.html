@@ -1,0 +1,12 @@
+{%- assign t = include.tool -%}
+{%- assign h = include.h | default: 3 -%}
+{%- assign tp = site.products | where: "slug", t.product | first -%}
+<article class="card card--tool">
+  <div class="card__meta">
+    <span class="kind">Free tool</span>
+    {%- if tp %}<span class="status status--plain">{{ tp.title }}</span>{% endif %}
+  </div>
+  <h{{ h }} class="card__title"><a class="stretch" href="{{ t.url | relative_url }}">{{ t.title }}</a></h{{ h }}>
+  <p class="card__text">{{ t.summary }}</p>
+  <span class="card__go" aria-hidden="true">Try it →</span>
+</article>

@@ -1,0 +1,107 @@
+---
+layout: default
+---
+{%- comment -%}
+  Keyword page ("MT940 to CSV", ...): one task, the product's live demo right away, steps, the
+  explanation (the page body), FAQ, and a way to the full product. Front matter: title, h1, product,
+  order, summary, description, lede, steps, faq. Only real, checkable statements.
+{%- endcomment -%}
+{%- assign product = site.products | where: "slug", page.product | first -%}
+{%- assign live = "" -%}
+{%- if product.live_demo -%}{%- assign live = site.demo_api[product.live_demo.api] | default: "" -%}{%- endif -%}
+{%- assign n = 0 -%}
+<article class="tool">
+  <header class="wrap tool-head">
+    <div class="page-head">
+    <p class="eyebrow"><a href="{{ '/tools/' | relative_url }}">Free tools</a> / <a href="{{ product.url | relative_url }}">{{ product.title }}</a></p>
+    <h1>{{ page.h1 | default: page.title }}</h1>
+    {%- if page.lede %}<p class="lede">{{ page.lede }}</p>{% endif %}
+    <ul class="tool-facts">
+      {%- if live != "" %}
+      <li>Free, no sign-up</li>
+      <li>Your file is never stored</li>
+      {%- endif %}
+      <li>Deterministic: no AI guesswork</li>
+    </ul>
+    </div>
+  </header>
+
+  {%- if live != "" or product.samples %}
+  {%- assign n = n | plus: 1 %}
+  <section class="wrap section section--tight" id="try" aria-labelledby="try-title">
+    {% include section-head.html num=n title="Try it now" id="try" intro=page.try_intro %}
+    {% include demo-tabs.html samples=product.samples live=live id=product.slug product=product live_first=true %}
+  </section>
+  {%- endif %}
+
+  {%- if page.steps %}
+  {%- assign n = n | plus: 1 %}
+  <section class="wrap section" aria-labelledby="steps-title">
+    {% include section-head.html num=n title="How it works" id="steps" %}
+    <ol class="steps">
+      {%- for s in page.steps %}
+      <li>{{ s | markdownify | remove: "<p>" | remove: "</p>" | strip }}</li>
+      {%- endfor %}
+    </ol>
+  </section>
+  {%- endif %}
+
+  {%- assign body = content | strip -%}
+  {%- if body != "" %}
+  {%- assign n = n | plus: 1 %}
+  {%- assign body_title = page.body_title | default: "Details" %}
+  <section class="wrap section" aria-labelledby="about-title">
+    {% include section-head.html num=n title=body_title id="about" %}
+    <div class="prose">
+{{ content }}
+    </div>
+  </section>
+  {%- endif %}
+
+  {%- if page.faq %}
+  {%- assign n = n | plus: 1 %}
+  <section class="wrap section" aria-labelledby="faq-title">
+    {% include section-head.html num=n title="Questions" id="faq" %}
+    <div class="faq">
+      {%- for f in page.faq %}
+      <details class="faq__item">
+        <summary>{{ f.q }}</summary>
+        <div class="faq__a">{{ f.a | markdownify }}</div>
+      </details>
+      {%- endfor %}
+    </div>
+  </section>
+  {%- endif %}
+
+  {%- assign n = n | plus: 1 %}
+  <section class="wrap section" aria-labelledby="api-title">
+    {% include section-head.html num=n title="Need it in your own software?" id="api" %}
+    <div class="tool-cta">
+      <p>{{ page.cta | default: "The same engine is available as an API: whole files instead of a preview, every export format, automation." }}</p>
+      <p><a class="btn btn--primary" href="{{ product.url | relative_url }}">{{ product.title }} →</a></p>
+    </div>
+  </section>
+
+  {%- assign siblings = site.landing | where: "product", page.product | where_exp: "t", "t.url != page.url" | sort: "order" %}
+  {%- if siblings.size > 0 %}
+  <section class="wrap section" aria-labelledby="more-title">
+    <header class="sec-head sec-head--quiet">
+      <p class="sec-head__num" aria-hidden="true">+</p>
+      <h2 class="sec-head__title" id="more-title">Related tools</h2>
+    </header>
+    <div class="grid grid--3">
+      {%- for t in siblings limit: 3 %}
+      {% include tool-card.html tool=t %}
+      {%- endfor %}
+    </div>
+  </section>
+  {%- endif %}
+</article>
+{% include jsonld.html type="tool" product=product %}
+{%- if live != "" and site.feedback_api != "" %}
+<script src="{{ '/assets/js/feedback.js' | relative_url }}?v={{ site.time | date: '%s' }}" defer></script>
+{%- endif %}
+{%- if live != "" %}
+<script src="{{ '/assets/js/live-demo.js' | relative_url }}?v={{ site.time | date: '%s' }}" defer></script>
+<script src="{{ '/assets/js/demos/' | append: product.slug | append: '.js' | relative_url }}?v={{ site.time | date: '%s' }}" defer></script>
+{%- endif %}

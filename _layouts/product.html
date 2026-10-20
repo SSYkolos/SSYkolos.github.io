@@ -50,7 +50,7 @@ layout: default
     {%- assign try_intro = "Pick a sample file. Everything below is the engine's real output for that file, nothing is mocked or edited. Download the samples to run them yourself once the API is live." %}
     {%- endif %}
     {% include section-head.html num=n title="See it work" id="try" intro=try_intro %}
-    {% include demo-tabs.html samples=page.samples live=live id=slug %}
+    {% include demo-tabs.html samples=page.samples live=live id=slug product=page %}
   </section>
   {%- endif %}
 
@@ -130,6 +130,21 @@ layout: default
     {%- endif %}
   </section>
 
+  {%- assign tools = site.landing | where: "product", slug | sort: "order" %}
+  {%- if tools.size > 0 %}
+  <section class="wrap section" aria-labelledby="tools-title">
+    <header class="sec-head sec-head--quiet">
+      <p class="sec-head__num" aria-hidden="true">+</p>
+      <h2 class="sec-head__title" id="tools-title">Free tools with this engine</h2>
+    </header>
+    <div class="grid grid--3">
+      {%- for t in tools %}
+      {% include tool-card.html tool=t %}
+      {%- endfor %}
+    </div>
+  </section>
+  {%- endif %}
+
   {%- assign related = site.products | where: "category", page.category | where_exp: "p", "p.url != page.url" | sort: "order" %}
   {%- if category and related.size > 0 %}
   <section class="wrap section" aria-labelledby="related-title">
@@ -145,6 +160,7 @@ layout: default
   </section>
   {%- endif %}
 </article>
+{% include jsonld.html type="product" product=page %}
 {%- if live != "" and site.feedback_api != "" %}
 <script src="{{ '/assets/js/feedback.js' | relative_url }}?v={{ site.time | date: '%s' }}" defer></script>
 {%- endif %}

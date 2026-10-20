@@ -42,6 +42,14 @@ the remaining steps. Everything about a product lives in its own files:
 The product list (`/products/`) groups products by area and has a search and area filter; the home page shows the
 products marked `featured: true` (up to six) and links to the full list. Products in the same area link to each other.
 
+## Free tools (keyword pages)
+
+Each file in `_landing/` becomes a page at `/tools/<name>/` built for one search phrase ("MT940 to CSV",
+"DXF cut length calculator"): heading, the product's live demo opened on "Your own file", the samples, steps,
+an explanation, FAQ, a link to the product, related tools, and structured data (FAQ and breadcrumbs, JSON-LD).
+Start from `_templates/tool.md`. The tools are listed at `/tools/` (menu item "Tools") and on their product's page.
+Product pages also carry SoftwareApplication structured data.
+
 ## Common changes
 
 - **Set the contact email:** fill in `email:` in `_data/profile.yml`. It appears everywhere at once

@@ -1,0 +1,31 @@
+---
+layout: default
+title: Free tools
+description: Free online tools for bank statement and DXF files, built on the same engines as the APIs. No sign-up, files are never stored.
+---
+{%- assign tools = site.landing | sort: "order" -%}
+{%- assign products = site.products | sort: "order" -%}
+<section class="wrap page">
+  <header class="page-head">
+    <p class="eyebrow">Free tools · {{ tools.size }}</p>
+    <h1>Free tools</h1>
+    <p class="lede">Single tasks you can try right away with your own file. Each one runs on the same engine as the paid API,
+      with a small daily limit. No sign-up, and your file is never stored.</p>
+  </header>
+  {%- for p in products %}
+  {%- assign mine = tools | where: "product", p.slug %}
+  {%- if mine.size > 0 %}
+  <section class="pgroup" aria-labelledby="tools-{{ p.slug }}">
+    <header class="pgroup__head">
+      <h2 id="tools-{{ p.slug }}"><a href="{{ p.url | relative_url }}">{{ p.title }}</a></h2>
+      <p>{{ p.summary }}</p>
+    </header>
+    <div class="grid grid--3">
+      {%- for t in mine %}
+      {% include tool-card.html tool=t %}
+      {%- endfor %}
+    </div>
+  </section>
+  {%- endif %}
+  {%- endfor %}
+</section>
