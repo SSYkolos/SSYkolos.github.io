@@ -62,6 +62,14 @@ the demo and the matching Content-Security-Policy entry appear. Leave a value em
 To test locally, run both images with `-e DEMO_MODE=1` on ports 8081 / 8082 and serve the site with
 `jekyll serve --config _config.yml,_config.local.yml` (the local file is git-ignored).
 
+## Messages and bug reports
+
+`feedback_api` in `_config.yml` points to the feedback collector (private repo `SSYkolos/feedback-service`).
+With it set, the home page shows a contact form (it also works without JavaScript, via `/thanks/` and
+`/thanks/problem/`), and the live demos offer "Send this to the developer" on errors and
+"Result doesn't look right?" under results. Run `python triage/triage.py` in `feedback-service` to turn new
+reports into private GitHub issues. Leave `feedback_api` empty to switch all of this off.
+
 ## Stable URLs (do not rename)
 
 - `/products/maps-lead-extractor/privacy/`: registered in the Chrome Web Store

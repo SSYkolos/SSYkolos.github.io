@@ -302,7 +302,10 @@
     var quota = panel.querySelector(".live__quota");
     var redact = panel.querySelector(".live__redact");
     var layers = panel.querySelector(".live__layers");
+    var feedbackEndpoint = panel.getAttribute("data-feedback");
+    var product = panel.getAttribute("data-product");
     var busy = false;
+    var last = null; // { file, context } of the most recent run, for reports
 
     panel.querySelector(".live__nojs").hidden = true;
     ui.hidden = false;
@@ -317,7 +320,18 @@
       if (text) status.appendChild(el("p", { class: "live__status-text", text: text }));
     }
 
-    function showProblem(title, text, extra, final) {
+    function reportOffer(kind, buttonText) {
+      if (!feedbackEndpoint || !last || !window.KHFeedback) return null;
+      return window.KHFeedback.reportButton({
+        endpoint: feedbackEndpoint, product: product, kind: kind, buttonText: buttonText,
+        context: last.context, file: last.file,
+        fileNote: panel.getAttribute("data-kind") === "reconciler"
+          ? "Bank statements contain names, IBANs and amounts."
+          : "Drawings can contain names or part numbers in their texts."
+      });
+    }
+
+    function showProblem(title, text, extra, final, reportable) {
       clear(result);
       var card = el("div", { class: "live__problem" }, [
         el("p", { class: "live__problem-title", text: title }),
@@ -326,6 +340,10 @@
       if (!final) {
         card.appendChild(el("p", { class: "live__fineprint", text: "Nothing was stored. You can try another file right away." }));
         card.appendChild(againButton());
+      }
+      if (reportable) {
+        var offer = reportOffer("bug", "Send this to the developer");
+        if (offer) card.appendChild(offer);
       }
       result.appendChild(card);
       setStatus("", "");
@@ -370,6 +388,11 @@
 
       var form = new FormData();
       form.append("file", file, file.name);
+      last = { file: file, context: {
+        source: "demo", page: location.pathname, file_name: file.name, file_size: file.size,
+        redact_pii: kind === "reconciler" ? !(redact && !redact.checked) : null,
+        exclude_layers: kind === "dxf" && layers ? layers.value.trim() : null
+      } };
       var url = endpoint;
       if (kind === "reconciler") url += "?redact_pii=" + (redact && !redact.checked ? "false" : "true");
       if (kind === "dxf" && layers && layers.value.trim()) url += "?exclude_layers=" + encodeURIComponent(layers.value.trim());
@@ -380,6 +403,13 @@
         })
         .then(function (r) {
           updateQuota(r.body && r.body.demo);
+          var b = r.body || {};
+          last.context.http_status = r.resp.status;
+          last.context.api_version = b.api_version || null;
+          last.context.detected_format = b.detected_format || null;
+          last.context.overall_verdict = b.overall_verdict || null;
+          last.context.processing_ms = b.demo && b.demo.processing_ms != null ? b.demo.processing_ms : null;
+          if (b.error) { last.context.error_code = b.error.code; last.context.error_message = b.error.message; }
           if (r.resp.ok) {
             clear(result);
             var nodes;
@@ -387,8 +417,10 @@
               nodes = kind === "reconciler" ? renderReconciler(r.body, file) : renderDxf(r.body, file);
             } catch (renderError) {
               if (window.console) console.error(renderError);
+              last.context.error_code = "UI_RENDER_ERROR";
+              last.context.error_message = String(renderError && renderError.message || renderError).slice(0, 300);
               showProblem("The result arrived, but this page could not display it",
-                "That's a bug on my side, not a problem with your file. Please reload the page and try again.");
+                "That's a bug on my side, not a problem with your file. Please reload the page and try again.", null, false, true);
               return;
             }
             setStatus("done", "Done. Your file has already been discarded on the server.");
@@ -399,6 +431,8 @@
                 : "The full API accepts drawings up to 25 MB and can return every contour with its role, length and area." }),
               againButton()
             ]));
+            var wrong = reportOffer("wrong_result", "Result doesn't look right? Tell me");
+            if (wrong) result.appendChild(wrong);
             result.focus({ preventScroll: true });
             return;
           }
@@ -413,11 +447,12 @@
           } else if (err.code === "DEMO_BUSY") {
             showProblem(help[0], help[1], null, true);
           } else if (help) {
-            showProblem(help[0], help[1] || err.message, help[1] && err.message ? [el("p", { class: "live__detail", text: "Details: " + err.message })] : null);
+            var userSide = ["PAYLOAD_TOO_LARGE", "EMPTY_INPUT"].indexOf(err.code) >= 0;
+            showProblem(help[0], help[1] || err.message, help[1] && err.message ? [el("p", { class: "live__detail", text: "Details: " + err.message })] : null, false, !userSide);
           } else if (r.resp.status >= 500) {
-            showProblem("Something went wrong on the server", "That's on me, not on your file. Please try again in a minute.");
+            showProblem("Something went wrong on the server", "That's on me, not on your file. Please try again in a minute.", null, false, true);
           } else {
-            showProblem("The file could not be processed", err.message || ("The server answered with status " + r.resp.status + "."));
+            showProblem("The file could not be processed", err.message || ("The server answered with status " + r.resp.status + "."), null, false, true);
           }
         })
         .catch(function (e) {

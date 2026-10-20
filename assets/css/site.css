@@ -513,6 +513,56 @@ button.btn { font-family: var(--mono); cursor: pointer; }
   .live__grid { grid-template-columns: minmax(0, 1fr); }
 }
 
+/* ---------- Feedback: report form and contact form ---------- */
+.fb { display: grid; gap: 10px; max-width: 640px; }
+.fb__form { display: grid; gap: 10px; }
+.fb__title { font-weight: 600; font-size: 1.05rem; }
+.fb__lead { color: var(--muted); font-size: 14.5px; }
+.fb__label { font: 500 12px var(--mono); letter-spacing: .05em; text-transform: uppercase; color: var(--faint); margin-top: 6px; }
+.fb input[type="text"], .fb input[type="email"], .fb textarea, .fb select {
+  width: 100%; font: 15px/1.5 var(--sans); color: var(--text); background: var(--bg);
+  border: 1px solid var(--line-strong); border-radius: var(--radius); padding: 10px 12px;
+}
+.fb textarea { resize: vertical; min-height: 84px; }
+.fb select { appearance: none; background-image: linear-gradient(45deg, transparent 50%, var(--muted) 50%), linear-gradient(135deg, var(--muted) 50%, transparent 50%);
+  background-position: calc(100% - 18px) 55%, calc(100% - 13px) 55%; background-size: 5px 5px; background-repeat: no-repeat; padding-right: 36px; }
+.fb input:focus, .fb textarea:focus, .fb select:focus { outline: 2px solid var(--accent); outline-offset: 1px; border-color: var(--accent); }
+.fb ::placeholder { color: var(--faint); }
+.fb__hp { position: absolute; left: -10000px; width: 1px; height: 1px; overflow: hidden; }
+.fb__consent { display: grid; gap: 6px; padding: 12px 14px; border: 1px solid var(--line); border-radius: var(--radius); background: var(--bg); }
+.fb__fine { font-size: 12.5px; color: var(--faint); }
+.fb__fine a { color: var(--accent); }
+.fb__actions { display: flex; flex-wrap: wrap; align-items: center; gap: 10px 16px; margin-top: 6px; }
+.fb__status { font-size: 14px; color: var(--muted); }
+.fb__status--error { color: var(--bad); }
+.fb__sent summary { cursor: pointer; font: 12.5px var(--mono); color: var(--muted); }
+.fb__sent-list { margin: 8px 0 6px; display: grid; gap: 2px; font: 12px var(--mono); }
+.fb__sent-list > div { display: grid; grid-template-columns: minmax(110px, 160px) minmax(0, 1fr); gap: 12px; }
+.fb__sent-list dt { color: var(--faint); }
+.fb__sent-list dd { margin: 0; color: var(--text); overflow-wrap: anywhere; }
+.fb__thanks { border: 1px solid var(--line); border-left: 2px solid var(--ok); border-radius: 0 var(--radius) var(--radius) 0; background: var(--bg); padding: 18px 20px; display: grid; gap: 6px; max-width: 640px; outline: none; }
+.fb__thanks-title { font-weight: 600; color: var(--ok); }
+.fb__thanks p { color: var(--muted); }
+.fb__ref { font: 12.5px var(--mono); color: var(--faint) !important; }
+.fb--report { margin-top: 6px; border-top: 1px solid var(--line); padding-top: 16px; }
+.fb-open { margin-top: 4px; }
+.btn--ghost { background: transparent; border-style: dashed; color: var(--muted); }
+.btn--ghost:hover { color: var(--accent); border-color: var(--accent); }
+.live__result > .fb-open { margin-top: 14px; }
+
+.contact-form { margin-top: 6px; }
+.contact-form__kinds { border: 0; margin: 0; padding: 0; display: flex; flex-wrap: wrap; gap: 8px; }
+.contact-form__kinds legend { width: 100%; margin-bottom: 8px; }
+.chip { position: relative; cursor: pointer; }
+.chip input { position: absolute; opacity: 0; width: 1px; height: 1px; }
+.chip span { display: inline-block; padding: 8px 14px; border: 1px solid var(--line-strong); border-radius: 999px; font: 500 13px var(--mono); color: var(--muted); transition: border-color .15s, color .15s, background-color .15s; }
+.chip:hover span { color: var(--text); }
+.chip input:checked + span { border-color: var(--accent); color: var(--text); background: var(--accent-soft); }
+.chip input:focus-visible + span { outline: 2px solid var(--accent); outline-offset: 2px; }
+.contact-form__praise { display: grid; gap: 10px; }
+.contact-form__praise[hidden] { display: none; }
+.contact__alt { font-size: 14px; color: var(--faint); }
+
 /* ---------- Generic pages & prose ---------- */
 .page { padding-block: clamp(44px, 7vw, 88px) clamp(56px, 8vw, 96px); }
 .page-head { margin-bottom: clamp(28px, 4vw, 48px); max-width: 760px; }

@@ -13,6 +13,9 @@ demo_api:
   reconciler: https://reconciler-demo-258730673938.europe-west1.run.app
   dxf: https://dxf-demo-258730673938.europe-west1.run.app
 
+# Feedback collector (Cloud Run). Empty = no report buttons and no contact form (the e-mail line stays).
+feedback_api: https://feedback-collector-258730673938.europe-west1.run.app
+
 markdown: kramdown
 kramdown:
   input: GFM

@@ -1,0 +1,50 @@
+{%- comment -%}
+  Contact form. Posts straight to the feedback collector, so it works without JavaScript
+  (the collector redirects to /thanks/ or /thanks/problem/); feedback.js sends it with fetch
+  and answers in place. Field names are the collector's report fields.
+{%- endcomment -%}
+{%- assign products = site.products | sort: "order" -%}
+<form class="contact-form fb" method="post" enctype="multipart/form-data"
+  action="{{ site.feedback_api }}/v1/reports" accept-charset="utf-8">
+  <fieldset class="contact-form__kinds">
+    <legend class="fb__label">What is it about?</legend>
+    <label class="chip"><input type="radio" name="kind" value="question" checked><span>Question</span></label>
+    <label class="chip"><input type="radio" name="kind" value="bug"><span>Problem</span></label>
+    <label class="chip"><input type="radio" name="kind" value="idea"><span>Idea or request</span></label>
+    <label class="chip"><input type="radio" name="kind" value="praise"><span>Praise</span></label>
+  </fieldset>
+
+  <label class="fb__label" for="cf-product">Product</label>
+  <select id="cf-product" name="product">
+    {%- for p in products %}
+    <option value="{{ p.url | split: '/' | last }}">{{ p.title }}</option>
+    {%- endfor %}
+    <option value="website">This website / something else</option>
+  </select>
+
+  <label class="fb__label" for="cf-message">Message</label>
+  <textarea id="cf-message" name="message" rows="5" maxlength="4000" required
+    placeholder="Questions, ideas, a file format you need, anything."></textarea>
+
+  <div class="contact-form__praise" hidden>
+    <label class="option" for="cf-quote">
+      <input type="checkbox" id="cf-quote" name="quote_ok" value="yes">
+      <span><b>You may quote this on the website.</b> Only with this box ticked, and you can ask me to remove it any time.</span>
+    </label>
+    <label class="fb__label" for="cf-name">Name to show with the quote (optional)</label>
+    <input type="text" id="cf-name" name="name" maxlength="100" autocomplete="name" placeholder="e.g. Anna, bookkeeper in Vienna">
+  </div>
+
+  <label class="fb__label" for="cf-email">Your e-mail (optional, only if you would like an answer)</label>
+  <input type="email" id="cf-email" name="email" maxlength="254" autocomplete="email" placeholder="you@company.com">
+
+  <div class="fb__hp" aria-hidden="true"><label>Website <input type="text" name="website" tabindex="-1" autocomplete="off"></label></div>
+  <input type="hidden" name="context" value='{"source":"contact"}'>
+
+  <div class="fb__actions">
+    <button type="submit" class="btn btn--primary">Send message</button>
+    <p class="fb__status" role="status" aria-live="polite"></p>
+  </div>
+  <p class="fb__fine">Your message is stored privately in the EU and deleted after 180 days at the latest.
+    No cookies, no tracking. <a href="{{ '/privacy/' | relative_url }}#messages">Privacy</a></p>
+</form>

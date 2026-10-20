@@ -19,7 +19,8 @@
 {%- assign uid = include.kind | prepend: "live-" -%}
 <section class="demo__panel live" aria-label="Try your own file" id="{{ uid }}"
   data-kind="{{ include.kind }}" data-endpoint="{{ include.endpoint | append: path }}"
-  data-max-bytes="{{ max_mb | times: 1048576 }}" data-privacy="{{ '/products/' | append: include.product | append: '/privacy/' | relative_url }}">
+  data-max-bytes="{{ max_mb | times: 1048576 }}" data-product="{{ include.product }}"
+  {%- if site.feedback_api != "" %} data-feedback="{{ site.feedback_api }}/v1/reports"{% endif %} data-privacy="{{ '/products/' | append: include.product | append: '/privacy/' | relative_url }}">
 
   <p class="live__nojs">The live demo needs JavaScript, which seems to be switched off. The sample tabs show the engine's real output without it.</p>
 
