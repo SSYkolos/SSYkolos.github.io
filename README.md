@@ -70,9 +70,13 @@ After changing an engine, rebuild the demo data with that project's own Python, 
 ```bash
 ../b2b-statement-reconciler/.venv/Scripts/python _tools/build_reconciler_demo.py
 ../cad-dxf-bom-api/.venv/Scripts/python _tools/build_dxf_demo.py
+../sepa-payment-api/.venv/Scripts/python _tools/build_sepa_demo.py
+../sepa-payment-api/.venv/Scripts/python _tools/build_ach_demo.py
 ```
 
-All names, IBANs and amounts in the samples are fictional.
+All names, IBANs and amounts in the samples are fictional, except the ACH samples marked "Moov": unmodified test
+files from the Moov ACH project (Apache-2.0). A tool page can set its own `samples` and `live_demo` (with `plugin`, the
+renderer in `assets/js/demos/`) instead of the product's, as the ACH tool pages do.
 
 ### Live demo ("Your own file" tab)
 

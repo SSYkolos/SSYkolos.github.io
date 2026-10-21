@@ -4,11 +4,14 @@ layout: default
 {%- comment -%}
   Keyword page ("MT940 to CSV", ...): one task, the product's live demo right away, steps, the
   explanation (the page body), FAQ, and a way to the full product. Front matter: title, h1, product,
-  order, summary, description, lede, steps, faq. Only real, checkable statements.
+  order, summary, description, lede, steps, faq; optional samples and live_demo replace the product's
+  (for a page about one part of the product, e.g. the ACH tools of the SEPA & NACHA API). Only real, checkable statements.
 {%- endcomment -%}
 {%- assign product = site.products | where: "slug", page.product | first -%}
+{%- assign cfg = page.live_demo | default: product.live_demo -%}
+{%- assign samples = page.samples | default: product.samples -%}
 {%- assign live = "" -%}
-{%- if product.live_demo -%}{%- assign live = site.demo_api[product.live_demo.api] | default: "" -%}{%- endif -%}
+{%- if cfg -%}{%- assign live = site.demo_api[cfg.api] | default: "" -%}{%- endif -%}
 {%- assign n = 0 -%}
 <article class="tool">
   <header class="wrap tool-head">
@@ -26,11 +29,11 @@ layout: default
     </div>
   </header>
 
-  {%- if live != "" or product.samples %}
+  {%- if live != "" or samples %}
   {%- assign n = n | plus: 1 %}
   <section class="wrap section section--tight" id="try" aria-labelledby="try-title">
     {% include section-head.html num=n title="Try it now" id="try" intro=page.try_intro %}
-    {% include demo-tabs.html samples=product.samples live=live id=product.slug product=product live_first=true %}
+    {% include demo-tabs.html samples=samples live=live id=product.slug product=product cfg=cfg live_first=true %}
   </section>
   {%- endif %}
 
@@ -103,5 +106,5 @@ layout: default
 {%- endif %}
 {%- if live != "" %}
 <script src="{{ '/assets/js/live-demo.js' | relative_url }}?v={{ site.time | date: '%s' }}" defer></script>
-<script src="{{ '/assets/js/demos/' | append: product.slug | append: '.js' | relative_url }}?v={{ site.time | date: '%s' }}" defer></script>
+<script src="{{ '/assets/js/demos/' | append: cfg.plugin | default: product.slug | append: '.js' | relative_url }}?v={{ site.time | date: '%s' }}" defer></script>
 {%- endif %}
