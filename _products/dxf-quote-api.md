@@ -20,6 +20,7 @@ samples: dxf
 live_demo:
   api: dxf
   path: /demo/analyze-dxf
+  runs_per_day: 3
   accept: ".dxf"
   max_mb: 5
   noun: DXF drawing

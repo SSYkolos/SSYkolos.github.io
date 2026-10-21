@@ -39,7 +39,7 @@
         {%- endif %}
         {%- endfor %}
 
-        <p class="live__quota" aria-live="polite">Free: {{ site.demo_runs_per_day }} runs a day, no sign-up. Files that cannot be read do not count.</p>
+        <p class="live__quota" aria-live="polite">Free: {{ cfg.runs_per_day | default: site.demo_runs_per_day }} runs a day, no sign-up. Files that cannot be read do not count.</p>
       </div>
 
       <aside class="assure" aria-label="What happens to your file">
