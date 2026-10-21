@@ -28,7 +28,7 @@
         {%- for o in cfg.options %}
         {%- if o.type == "checkbox" %}
         <label class="option">
-          <input type="checkbox" data-param="{{ o.param }}"{% if o.checked %} checked{% endif %}>
+          <input type="checkbox" data-param="{{ o.param }}"{% if o.value %} value="{{ o.value }}"{% endif %}{% if o.checked %} checked{% endif %}>
           <span>{{ o.label }}</span>
         </label>
         {%- elsif o.type == "text" %}

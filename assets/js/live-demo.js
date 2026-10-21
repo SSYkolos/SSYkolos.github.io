@@ -229,7 +229,9 @@
       var parts = [];
       Array.prototype.forEach.call(options, function (o) {
         var name = o.getAttribute("data-param");
-        if (o.type === "checkbox") parts.push(encodeURIComponent(name) + "=" + (o.checked ? "true" : "false"));
+        // A checkbox with a value sends name=value only when ticked; without one, name=true|false.
+        if (o.type === "checkbox" && o.hasAttribute("value")) { if (o.checked) parts.push(encodeURIComponent(name) + "=" + encodeURIComponent(o.value)); }
+        else if (o.type === "checkbox") parts.push(encodeURIComponent(name) + "=" + (o.checked ? "true" : "false"));
         else if (o.value.trim()) parts.push(encodeURIComponent(name) + "=" + encodeURIComponent(o.value.trim()));
       });
       return parts.join("&");
