@@ -31,6 +31,8 @@ live_demo:
 channels:
   - name: RapidAPI
     url: "https://rapidapi.com/SSYkolos/api/sepa-payment-file"
+  - name: MCP server
+    url: "https://github.com/SSYkolos/deterministic-finance-cad-mcp"
 
 features:
   - title: Generate from JSON or CSV
