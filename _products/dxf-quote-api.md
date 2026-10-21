@@ -5,7 +5,7 @@ category: manufacturing
 tags: [dxf, cad, laser cutting, cnc, waterjet, plasma, cut length, pierce count, bom, sheet metal]
 featured: true
 kind: REST API
-status: Launching soon
+status: Live on RapidAPI (free plan)
 tagline: "Instant laser-cutting quotes from a DXF: exact cut length, pierce count, part area and BOM in one API call. No AI guesses, no zero-length surprises from splines or blocks."
 summary: Reads any DXF and returns the numbers a cutting quote needs. Cut length, pierces, parts, holes, net area, bounding box and BOM.
 description: DXF analysis API for laser, waterjet, plasma and CNC quoting. Exact cut length, pierce count, parts, holes, net area, bounding box and BOM from any DXF.
@@ -33,7 +33,7 @@ live_demo:
       placeholder: FRAME, DIMS
 channels:
   - name: RapidAPI
-    url: ""
+    url: "https://rapidapi.com/SSYkolos/api/dxf-laser-cut-quote"
 
 features:
   - title: Exact cut length
