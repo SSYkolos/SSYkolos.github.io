@@ -5,7 +5,7 @@ category: finance
 tags: [sepa, pain.001, pain.008, pain.002, iso 20022, credit transfer, direct debit, xsd, epc, dfü, ebics, csv, validation]
 featured: false
 kind: REST API
-status: Launching soon
+status: Live on RapidAPI (free plan)
 tagline: Generate, validate and convert SEPA payment files, and read the bank's answer. Every file is checked against the ISO 20022 schema and the EPC rules, with each problem explained in plain words.
 summary: Builds pain.001 credit transfers and pain.008 direct debits from JSON or CSV, validates and converts SEPA files, and reads pain.002 status reports.
 description: SEPA payment file API. Generate pain.001.001.09 and pain.008.001.08 from JSON or CSV, validate against the ISO 20022 XSD, EPC 2025 and German bank rules, convert .03 to .09, read pain.002.
@@ -30,7 +30,7 @@ live_demo:
       label: "<b>Also check the German banks' rules</b> (DFÜ-Abkommen Anlage 3): character set with umlauts, no byte order mark, UTF-8 only."
 channels:
   - name: RapidAPI
-    url: ""
+    url: "https://rapidapi.com/SSYkolos/api/sepa-payment-file"
 
 features:
   - title: Generate from JSON or CSV
