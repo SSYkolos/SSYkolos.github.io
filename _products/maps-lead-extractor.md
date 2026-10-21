@@ -63,8 +63,8 @@ footnote: Maps Lead Extractor is an independent tool and is not affiliated with,
 |---|---|---|
 | Extract and preview results | unlimited | unlimited |
 | Full data per result (address parts, opening hours, all categories, international phone) | ✓ | ✓ |
-| CSV export, all columns, nothing masked | 20 rows per export | unlimited, plus JSON |
-| Email and social profile search on websites | 15 websites | unlimited |
+| CSV export, all columns, nothing masked | 20 rows per export, 100 rows a month | unlimited, plus JSON |
+| Email and social profile search on websites | 25 websites where a contact is found (misses are free) | unlimited |
 | Multi-search queue | – | ✓ |
 
 Pro is activated with a license key in the extension's side panel.
