@@ -32,6 +32,8 @@ live_demo:
 channels:
   - name: RapidAPI
     url: "https://rapidapi.com/SSYkolos/api/bank-statement-reconciler1"
+  - name: MCP server
+    url: "https://github.com/SSYkolos/deterministic-finance-cad-mcp"
   - name: Apify Store
     url: ""
 

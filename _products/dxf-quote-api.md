@@ -34,6 +34,8 @@ live_demo:
 channels:
   - name: RapidAPI
     url: "https://rapidapi.com/SSYkolos/api/dxf-laser-cut-quote"
+  - name: MCP server
+    url: "https://github.com/SSYkolos/deterministic-finance-cad-mcp"
 
 features:
   - title: Exact cut length
