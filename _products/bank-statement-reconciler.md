@@ -2,16 +2,16 @@
 title: Bank Statement Reconciler
 order: 1
 category: finance
-tags: [mt940, mt942, camt.053, camt.054, iso 20022, bai2, coda, sepa, reconciliation, csv, hledger, beancount]
+tags: [mt940, mt942, camt.053, camt.054, iso 20022, bai2, coda, sepa, reconciliation, csv, hledger, beancount, datev]
 featured: true
 kind: REST API
 status: Launching soon
 tagline: Turn European and US bank statements into clean, verified data in one API call. Every balance checked to the cent, every counterparty extracted, no AI guesswork.
 summary: Parses MT940, ISO 20022 camt, BAI2 and CODA files, normalizes every transaction and proves each statement adds up to the cent.
-description: Bank statement parser and reconciler API for MT940, MT942, ISO 20022 camt.052/053/054, BAI2 and CODA. Verifies balances to the cent and exports JSON, CSV, hledger, Beancount and camt.053.
+description: Bank statement parser and reconciler API for MT940, MT942, ISO 20022 camt.052/053/054, BAI2 and CODA. Verifies balances to the cent and exports JSON, CSV, hledger, Beancount, camt.053 and DATEV.
 io:
   in: MT940 · MT942 · camt.052/053/054 · BAI2 · CODA · ZIP
-  out: JSON · CSV · hledger · Beancount · camt.053
+  out: JSON · CSV · hledger · Beancount · camt.053 · DATEV
 fact:
   value: "±0.00"
   label: every statement balance-checked to the cent
@@ -50,6 +50,8 @@ features:
     text: Every transaction carries a stable SHA-256 hash, so importing the same statement again never creates duplicates in an ERP or ledger.
   - title: MT940 to ISO 20022
     text: Export as camt.053.001.08 XML. The export is validated against the official ISO 20022 schema in the test suite, and balances are never invented.
+  - title: Bank statements into DATEV
+    text: "`output_format=datev` writes a DATEV EXTF Buchungsstapel: one booking per booked transaction, on the client's bank account against a clearing account, ready for the accountant to reassign. Non-EUR statements, several bank accounts in one upload or bookings from several fiscal years are refused, never guessed."
   - title: Exact money, correct dates
     text: Amounts are decimal strings in the currency's minor units, never floats. Booking dates across year-end and late SEPA returns are resolved against the statement window.
 
@@ -57,13 +59,15 @@ specs:
   - label: Inputs
     value: SWIFT MT940 and MT942; ISO 20022 camt.052, camt.053, camt.054 (versions .02 – .08+); BAI2 (US banks); CODA 2.6 (Belgian banks); or a ZIP of any of these
   - label: Outputs
-    value: JSON · CSV (Excel-ready) · hledger · Beancount · camt.053.001.08 XML
+    value: JSON · CSV (Excel-ready) · hledger · Beancount · camt.053.001.08 XML · DATEV Buchungsstapel (EXTF)
   - label: Verdicts
     value: "`VERIFIED` · `DISCREPANCY` (with the exact difference) · `UNVERIFIABLE`"
   - label: Encodings
     value: UTF-8, Windows-1252 / Latin-1; for Hungarian, Polish, Czech and other Central European accounts Windows-1250 / ISO-8859-2 / DOS 852, picked automatically
   - label: Endpoints
     value: "`POST /v1/reconcile` (file upload) · `POST /v1/reconcile/raw` (JSON body, text or base64)"
+  - label: DATEV parameters
+    value: "`datev_consultant` and `datev_client` (Berater- and Mandantennummer, required) · `datev_bank_account` (default `1200`) · `datev_contra_account` (default `1360`; SKR04: `1800` / `1460`) · `datev_fiscal_year_start` (MMDD, default `0101`)"
   - label: Limits
     value: 10 MB per request
   - label: Safety
@@ -87,6 +91,7 @@ limits:
   - Very old DOS-encoded (cp850) German files may still show wrong umlauts.
   - 'Free text such as “AUFTRAGGEBER: name street zip city” keeps the name inside the purpose field, because name and address cannot be separated reliably.'
   - "A camt.053 export needs a balance, so MT942 and camt.054 files (which have none) cannot be converted to it."
+  - "The DATEV export takes EUR statements of one bank account and one fiscal year per upload; anything else gets `EXPORT_NOT_POSSIBLE`. Per-counterparty contra-account rules and tax keys (BU-Schlüssel) are not included."
 privacy_summary: Statements are processed in memory and never written to disk. With redaction switched on, IBANs, counterparty names and emails are masked in the response.
 ---
 
@@ -130,5 +135,11 @@ The response, shortened to one statement and one transaction:
 }
 ```
 
-Non-JSON outputs (CSV, hledger, Beancount, camt.053) carry the audit result in the response headers
+Non-JSON outputs (CSV, hledger, Beancount, camt.053, DATEV) carry the audit result in the response headers
 `X-Overall-Verdict`, `X-Statement-Count` and `X-Transaction-Count`.
+
+For DATEV, add the consultant and client numbers; the response is the Buchungsstapel file:
+
+```bash
+curl -X POST "https://<host>/v1/reconcile?output_format=datev&datev_consultant=1001&datev_client=1" -F "file=@statement.sta"
+```
