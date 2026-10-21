@@ -22,6 +22,7 @@ LIVE_BLOCK = """live_demo:                    # the "Your own file" tab; needs a
   path: /demo/...             # the service's demo endpoint
   accept: ".ext"
   max_mb: 2
+  runs_per_day: 5             # free runs per visitor per day; must match the service (DEMO_PER_CLIENT_PER_DAY)
   noun: file
   formats: "Format A · Format B"
   options: []                 # e.g. - type: checkbox | text, param: ..., label: ..."""
