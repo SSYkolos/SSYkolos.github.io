@@ -47,6 +47,8 @@ features:
     text: Layers that are off or frozen, invisible entities, text, dimensions and hatches are skipped. Include or exclude layers by name, for example a title-block frame.
   - title: Warnings you can act on
     text: Open contours (gaps in the drawing) are flagged, and every skipped entity is listed with the reason.
+  - title: Instant quote with your own rates
+    text: "`POST /v1/quote-dxf` applies the shop's own prices to the drawing: material per m² (bounding box or net area), cutting per metre, per pierce, setup, quantity and a minimum price. The answer is an itemised quote; the API never invents a price."
 
 specs:
   - label: Input
@@ -58,7 +60,9 @@ specs:
   - label: Units
     value: Any drawing unit; every value is also given in millimetres
   - label: Endpoints
-    value: "`POST /v1/analyze-dxf` (file upload) · `POST /v1/analyze-dxf-raw` (JSON body, text or base64)"
+    value: "`POST /v1/analyze-dxf` (file upload) · `POST /v1/analyze-dxf-raw` (JSON body, text or base64) · `POST /v1/quote-dxf` (file upload) · `POST /v1/quote-dxf-raw` (JSON body)"
+  - label: Quote parameters
+    value: "`material_price_per_m2`, `material_area` (`bounding_box` default, or `net`), `cut_price_per_m`, `pierce_price`, `setup_price`, `quantity` (default 1), `minimum_price`, `currency` (label, default `EUR`). All optional, default 0."
   - label: Limits
     value: 25 MB per request
   - label: Engine
@@ -95,3 +99,18 @@ curl -X POST "https://<host>/v1/analyze-dxf?exclude_layers=FRAME,DIMS" -F "file=
 | `ignored_entities`, `warnings`, `file_info` | What was skipped and why; repaired or binary file info |
 | `svg_preview` | Small vector preview of the cut geometry |
 | `contours` (optional) | Each contour's role, length, area, pierces and bounding box |
+
+### Instant quote
+
+```bash
+curl -X POST "https://<host>/v1/quote-dxf?material_price_per_m2=40&cut_price_per_m=1.2&pierce_price=0.05&setup_price=15&quantity=20&minimum_price=50" -F "file=@part.dxf"
+```
+
+```
+unit price = material (rate × area) + cutting (rate × cut metres) + piercing (rate × pierces)
+total      = max(minimum price, unit price × quantity + setup price)
+```
+
+The response has `quote`, with each line's basis, rate and amount rounded to cents so the lines add up, and the
+full `analysis` from above. Notes warn about open contours (the cut length may be wrong) and drawings with
+several parts.
