@@ -15,7 +15,7 @@ io:
 fact:
   value: "1.7 s"
   label: to validate a 6 MB file with 20,000 transfers
-samples:
+samples: sepa
 live_demo:
   api: sepa
   path: /demo/validate

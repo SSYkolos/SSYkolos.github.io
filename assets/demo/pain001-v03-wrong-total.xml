@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Document xmlns="urn:iso:std:iso:20022:tech:xsd:pain.001.001.03">
+  <CstmrCdtTrfInitn>
+    <GrpHdr>
+      <MsgId>OLD-2026-10-20-1</MsgId>
+      <CreDtTm>2026-10-20T10:00:00</CreDtTm>
+      <NbOfTxs>2</NbOfTxs>
+      <CtrlSum>1248.06</CtrlSum>
+      <InitgPty>
+        <Nm>Acme GmbH</Nm>
+        <Id><OrgId><BICOrBEI>COBADEFFXXX</BICOrBEI></OrgId></Id>
+      </InitgPty>
+    </GrpHdr>
+    <PmtInf>
+      <PmtInfId>OLD-2026-10-20-1-P1</PmtInfId>
+      <PmtMtd>TRF</PmtMtd>
+      <BtchBookg>true</BtchBookg>
+      <NbOfTxs>2</NbOfTxs>
+      <CtrlSum>1284.06</CtrlSum>
+      <PmtTpInf><SvcLvl><Cd>SEPA</Cd></SvcLvl></PmtTpInf>
+      <ReqdExctnDt>2026-10-23</ReqdExctnDt>
+      <Dbtr>
+        <Nm>Acme GmbH</Nm>
+        <PstlAdr><Ctry>DE</Ctry><AdrLine>Hauptstr. 1</AdrLine><AdrLine>10115 Berlin</AdrLine></PstlAdr>
+      </Dbtr>
+      <DbtrAcct><Id><IBAN>DE89370400440532013000</IBAN></Id></DbtrAcct>
+      <DbtrAgt><FinInstnId><BIC>COBADEFFXXX</BIC></FinInstnId></DbtrAgt>
+      <ChrgBr>SLEV</ChrgBr>
+      <CdtTrfTxInf>
+        <PmtId><EndToEndId>INV-2026-17</EndToEndId></PmtId>
+        <Amt><InstdAmt Ccy="EUR">1234.56</InstdAmt></Amt>
+        <CdtrAgt><FinInstnId><BIC>INGBNL2A</BIC></FinInstnId></CdtrAgt>
+        <Cdtr><Nm>Supplier BV</Nm></Cdtr>
+        <CdtrAcct><Id><IBAN>NL91ABNA0417164300</IBAN></Id></CdtrAcct>
+        <RmtInf><Ustrd>Invoice 2026-17</Ustrd></RmtInf>
+      </CdtTrfTxInf>
+      <CdtTrfTxInf>
+        <PmtId><EndToEndId>NOTPROVIDED</EndToEndId></PmtId>
+        <Amt><InstdAmt Ccy="EUR">49.50</InstdAmt></Amt>
+        <Cdtr><Nm>Office Supplies KG</Nm></Cdtr>
+        <CdtrAcct><Id><IBAN>DE02120300000000202051</IBAN></Id></CdtrAcct>
+        <RmtInf><Ustrd>Order 5521</Ustrd></RmtInf>
+      </CdtTrfTxInf>
+    </PmtInf>
+  </CstmrCdtTrfInitn>
+</Document>
