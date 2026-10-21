@@ -3,7 +3,7 @@ title: Privacy
 permalink: /privacy/
 eyebrow: Privacy
 lede: This website does not collect anything about you.
-updated: 2026-10-20
+updated: 2026-10-21
 ---
 
 {% assign has_live = false %}{% for api in site.demo_api %}{% if api[1] != "" %}{% assign has_live = true %}{% endif %}{% endfor -%}
@@ -20,6 +20,11 @@ updated: 2026-10-20
 {% if has_live -%}
 - **Live demos.** A file you try in a live demo is sent to that product's demo service, processed in memory and
   discarded. Details are in each product's privacy notice below.
+- **Where visits come from.** If you open the site through a link that ends in `?ref=` and a short word (for
+  example from a forum post), your browser tab remembers that word until you close the tab (sessionStorage, not a
+  cookie) and sends it with your demo runs. Each demo service writes one log line per run with the product, that
+  word, the file format and whether it worked. It contains no IP address, file name or file content, so it tells me
+  which community found the demo, not who you are.
 {% endif -%}
 {% if site.feedback_api != "" -%}
 - **Messages and reports.** What you send with the contact form or the "Send this to the developer" button is
