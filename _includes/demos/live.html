@@ -2,14 +2,15 @@
   "Your own file" tab, configured by the product's live_demo front matter (see _templates/product.md).
   Enhanced by /assets/js/live-demo.js (shared) and /assets/js/demos/<product>.js (rendering, product checks);
   without JavaScript it explains that and points to the samples.
-  include demos/live.html endpoint="https://<demo service>" product=<product document, default: this page>
+  include demos/live.html endpoint="https://<demo service>" product=<product document, default: this page> cfg=<live_demo, default: the product's>
+  cfg.plugin names the renderer in /assets/js/demos/ (default: the product slug).
 {%- endcomment -%}
 {%- assign prod = include.product | default: page -%}
-{%- assign cfg = prod.live_demo -%}
+{%- assign cfg = include.cfg | default: prod.live_demo -%}
 {%- assign slug = prod.url | split: "/" | last -%}
 {%- assign uid = slug | prepend: "live-" -%}
 <section class="demo__panel live" aria-label="Try your own file" id="{{ uid }}"
-  data-endpoint="{{ include.endpoint | append: cfg.path }}" data-max-bytes="{{ cfg.max_mb | times: 1048576 }}" data-product="{{ slug }}"
+  data-endpoint="{{ include.endpoint | append: cfg.path }}" data-max-bytes="{{ cfg.max_mb | times: 1048576 }}" data-product="{{ cfg.plugin | default: slug }}"
   {%- if site.feedback_api != "" %} data-feedback="{{ site.feedback_api }}/v1/reports"{% endif %}>
 
   <p class="live__nojs">The live demo needs JavaScript, which seems to be switched off. The sample tabs show the engine's real output without it.</p>

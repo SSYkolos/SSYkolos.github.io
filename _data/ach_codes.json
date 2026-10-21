@@ -1,0 +1,598 @@
+{
+ "returns": [
+  {
+   "code": "R01",
+   "title": "Insufficient funds",
+   "explanation": "The account did not have enough money for the debit.",
+   "action": "You may try again up to two more times within 180 days of the original effective date.",
+   "retry": true
+  },
+  {
+   "code": "R02",
+   "title": "Account closed",
+   "explanation": "The account was closed before the entry arrived.",
+   "action": "Ask the receiver for a new account; do not send again to this one.",
+   "retry": false
+  },
+  {
+   "code": "R03",
+   "title": "No account / unable to locate account",
+   "explanation": "The account number does not exist at this bank, or does not match the name.",
+   "action": "Check the account number and routing number with the receiver.",
+   "retry": false
+  },
+  {
+   "code": "R04",
+   "title": "Invalid account number structure",
+   "explanation": "The account number has the wrong format for this bank.",
+   "action": "Check the account number with the receiver.",
+   "retry": false
+  },
+  {
+   "code": "R05",
+   "title": "Unauthorized debit to consumer account using corporate SEC code",
+   "explanation": "A CCD or CTX debit went to a consumer account without the consumer's authorization.",
+   "action": "Use PPD/WEB/TEL with a consumer authorization, or stop debiting.",
+   "retry": false
+  },
+  {
+   "code": "R06",
+   "title": "Returned per ODFI's request",
+   "explanation": "Your own bank asked for this entry back.",
+   "action": "Ask your bank why.",
+   "retry": false
+  },
+  {
+   "code": "R07",
+   "title": "Authorization revoked by customer",
+   "explanation": "The consumer withdrew the authorization for these debits.",
+   "action": "Stop debiting until you have a new authorization.",
+   "retry": false
+  },
+  {
+   "code": "R08",
+   "title": "Payment stopped",
+   "explanation": "The receiver asked their bank to stop this payment.",
+   "action": "Contact the receiver; do not resend without agreement.",
+   "retry": false
+  },
+  {
+   "code": "R09",
+   "title": "Uncollected funds",
+   "explanation": "There was money in the account, but not yet available.",
+   "action": "You may try again up to two more times within 180 days of the original effective date.",
+   "retry": true
+  },
+  {
+   "code": "R10",
+   "title": "Customer advises originator is not known or not authorized",
+   "explanation": "The account holder says they do not know you or did not authorize this debit.",
+   "action": "Stop debiting; get a valid authorization first. Unauthorized returns count toward the network's return-rate limits.",
+   "retry": false
+  },
+  {
+   "code": "R11",
+   "title": "Customer advises entry not in accordance with the terms of the authorization",
+   "explanation": "The debit differs from what was authorized (amount, date, or other terms).",
+   "action": "Fix the error; a corrected entry may be sent within 60 days of the settlement date of the return.",
+   "retry": false
+  },
+  {
+   "code": "R12",
+   "title": "Account sold to another DFI",
+   "explanation": "The account moved to a different bank.",
+   "action": "Ask the receiver for the new routing and account number.",
+   "retry": false
+  },
+  {
+   "code": "R13",
+   "title": "Invalid ACH routing number",
+   "explanation": "The routing number is not a valid ACH participant.",
+   "action": "Check the routing number.",
+   "retry": false
+  },
+  {
+   "code": "R14",
+   "title": "Representative payee deceased or unable to continue",
+   "explanation": "The representative payee died or can no longer act.",
+   "action": "Stop the payments and contact the beneficiary's representative.",
+   "retry": false
+  },
+  {
+   "code": "R15",
+   "title": "Beneficiary or account holder deceased",
+   "explanation": "The account holder has died.",
+   "action": "Stop the payments. The date of death may be in the return addenda.",
+   "retry": false
+  },
+  {
+   "code": "R16",
+   "title": "Account frozen / entry returned per OFAC instruction",
+   "explanation": "The account is frozen, or the entry was returned under a sanctions instruction.",
+   "action": "Do not resend; contact the receiver.",
+   "retry": false
+  },
+  {
+   "code": "R17",
+   "title": "File record edit criteria / questionable entry",
+   "explanation": "A field could not be processed, or the bank considered the entry suspicious.",
+   "action": "Check the entry fields; if fraud is suspected, investigate.",
+   "retry": false
+  },
+  {
+   "code": "R18",
+   "title": "Improper effective entry date",
+   "explanation": "The effective date was not acceptable.",
+   "action": "Fix the date and resend.",
+   "retry": false
+  },
+  {
+   "code": "R19",
+   "title": "Amount field error",
+   "explanation": "The amount is invalid (for example zero, or not zero for a prenote).",
+   "action": "Fix the amount and resend.",
+   "retry": false
+  },
+  {
+   "code": "R20",
+   "title": "Non-transaction account",
+   "explanation": "The account does not allow this kind of transaction.",
+   "action": "Ask the receiver for a different account.",
+   "retry": false
+  },
+  {
+   "code": "R21",
+   "title": "Invalid company identification",
+   "explanation": "The receiver's bank did not accept the company identification.",
+   "action": "Check the company identification in the batch header.",
+   "retry": false
+  },
+  {
+   "code": "R22",
+   "title": "Invalid individual ID number",
+   "explanation": "The receiver's bank did not accept the individual ID number.",
+   "action": "Check the identification number of the entry.",
+   "retry": false
+  },
+  {
+   "code": "R23",
+   "title": "Credit entry refused by receiver",
+   "explanation": "The receiver refused the credit.",
+   "action": "Contact the receiver.",
+   "retry": false
+  },
+  {
+   "code": "R24",
+   "title": "Duplicate entry",
+   "explanation": "The receiver's bank believes this entry was already sent.",
+   "action": "Check whether you sent it twice before resending.",
+   "retry": false
+  },
+  {
+   "code": "R25",
+   "title": "Addenda error",
+   "explanation": "The addenda record was wrong or missing.",
+   "action": "Fix the addenda and resend.",
+   "retry": false
+  },
+  {
+   "code": "R26",
+   "title": "Mandatory field error",
+   "explanation": "A required field was missing or wrong.",
+   "action": "Fix the entry and resend.",
+   "retry": false
+  },
+  {
+   "code": "R27",
+   "title": "Trace number error",
+   "explanation": "The trace number of the original entry was wrong.",
+   "action": "Check the trace numbers.",
+   "retry": false
+  },
+  {
+   "code": "R28",
+   "title": "Routing number check digit error",
+   "explanation": "The check digit of the routing number is wrong.",
+   "action": "Fix the routing number.",
+   "retry": false
+  },
+  {
+   "code": "R29",
+   "title": "Corporate customer advises not authorized",
+   "explanation": "The business account holder says this debit was not authorized.",
+   "action": "Stop debiting; get a valid authorization first.",
+   "retry": false
+  },
+  {
+   "code": "R30",
+   "title": "RDFI not participant in check truncation program",
+   "explanation": "",
+   "action": "Contact your bank.",
+   "retry": false
+  },
+  {
+   "code": "R31",
+   "title": "Permissible return entry (CCD and CTX only)",
+   "explanation": "The receiver's bank returned the entry late, with your agreement.",
+   "action": "None, if you agreed.",
+   "retry": false
+  },
+  {
+   "code": "R32",
+   "title": "RDFI non-settlement",
+   "explanation": "The receiver's bank could not settle the entry.",
+   "action": "Contact your bank.",
+   "retry": false
+  },
+  {
+   "code": "R33",
+   "title": "Return of XCK entry",
+   "explanation": "",
+   "action": "Contact your bank.",
+   "retry": false
+  },
+  {
+   "code": "R34",
+   "title": "Limited participation DFI",
+   "explanation": "The receiver's bank may not receive this kind of entry.",
+   "action": "Use a different account or payment method.",
+   "retry": false
+  },
+  {
+   "code": "R35",
+   "title": "Return of improper debit entry",
+   "explanation": "Debits are not allowed for this SEC code or account.",
+   "action": "Use the right SEC code.",
+   "retry": false
+  },
+  {
+   "code": "R36",
+   "title": "Return of improper credit entry",
+   "explanation": "Credits are not allowed for this SEC code.",
+   "action": "Use the right SEC code.",
+   "retry": false
+  },
+  {
+   "code": "R37",
+   "title": "Source document presented for payment",
+   "explanation": "The check was also presented as a paper item.",
+   "action": "Do not collect twice.",
+   "retry": false
+  },
+  {
+   "code": "R38",
+   "title": "Stop payment on source document",
+   "explanation": "",
+   "action": "Contact the receiver.",
+   "retry": false
+  },
+  {
+   "code": "R39",
+   "title": "Improper source document / source document presented for payment",
+   "explanation": "",
+   "action": "Contact your bank.",
+   "retry": false
+  },
+  {
+   "code": "R40",
+   "title": "Return of ENR entry by federal government agency",
+   "explanation": "",
+   "action": "Fix the enrollment.",
+   "retry": false
+  },
+  {
+   "code": "R41",
+   "title": "Invalid transaction code (ENR)",
+   "explanation": "",
+   "action": "Fix the enrollment.",
+   "retry": false
+  },
+  {
+   "code": "R42",
+   "title": "Routing number / check digit error (ENR)",
+   "explanation": "",
+   "action": "Fix the enrollment.",
+   "retry": false
+  },
+  {
+   "code": "R43",
+   "title": "Invalid DFI account number (ENR)",
+   "explanation": "",
+   "action": "Fix the enrollment.",
+   "retry": false
+  },
+  {
+   "code": "R44",
+   "title": "Invalid individual ID number / identification number (ENR)",
+   "explanation": "",
+   "action": "Fix the enrollment.",
+   "retry": false
+  },
+  {
+   "code": "R45",
+   "title": "Invalid individual name / company name (ENR)",
+   "explanation": "",
+   "action": "Fix the enrollment.",
+   "retry": false
+  },
+  {
+   "code": "R46",
+   "title": "Invalid representative payee indicator (ENR)",
+   "explanation": "",
+   "action": "Fix the enrollment.",
+   "retry": false
+  },
+  {
+   "code": "R47",
+   "title": "Duplicate enrollment",
+   "explanation": "",
+   "action": "None.",
+   "retry": false
+  },
+  {
+   "code": "R50",
+   "title": "State law affecting RCK acceptance",
+   "explanation": "",
+   "action": "Contact your bank.",
+   "retry": false
+  },
+  {
+   "code": "R51",
+   "title": "Item related to RCK entry is ineligible or RCK entry is improper",
+   "explanation": "",
+   "action": "Contact your bank.",
+   "retry": false
+  },
+  {
+   "code": "R52",
+   "title": "Stop payment on item related to RCK entry",
+   "explanation": "",
+   "action": "Contact the receiver.",
+   "retry": false
+  },
+  {
+   "code": "R53",
+   "title": "Item and RCK entry presented for payment",
+   "explanation": "",
+   "action": "Do not collect twice.",
+   "retry": false
+  },
+  {
+   "code": "R61",
+   "title": "Misrouted return",
+   "explanation": "A return was sent to the wrong bank.",
+   "action": "Contact your bank.",
+   "retry": false
+  },
+  {
+   "code": "R62",
+   "title": "Return of erroneous or reversing debit",
+   "explanation": "",
+   "action": "Contact your bank.",
+   "retry": false
+  },
+  {
+   "code": "R67",
+   "title": "Duplicate return",
+   "explanation": "The return was sent twice.",
+   "action": "Contact your bank.",
+   "retry": false
+  },
+  {
+   "code": "R68",
+   "title": "Untimely return",
+   "explanation": "The return was sent after the deadline.",
+   "action": "Contact your bank.",
+   "retry": false
+  },
+  {
+   "code": "R69",
+   "title": "Field error(s)",
+   "explanation": "The return had wrong fields.",
+   "action": "Contact your bank.",
+   "retry": false
+  },
+  {
+   "code": "R70",
+   "title": "Permissible return entry not accepted / return not requested by ODFI",
+   "explanation": "",
+   "action": "Contact your bank.",
+   "retry": false
+  },
+  {
+   "code": "R71",
+   "title": "Misrouted dishonored return",
+   "explanation": "",
+   "action": "Contact your bank.",
+   "retry": false
+  },
+  {
+   "code": "R72",
+   "title": "Untimely dishonored return",
+   "explanation": "",
+   "action": "Contact your bank.",
+   "retry": false
+  },
+  {
+   "code": "R73",
+   "title": "Timely original return",
+   "explanation": "",
+   "action": "Contact your bank.",
+   "retry": false
+  },
+  {
+   "code": "R74",
+   "title": "Corrected return",
+   "explanation": "",
+   "action": "Contact your bank.",
+   "retry": false
+  },
+  {
+   "code": "R75",
+   "title": "Return not a duplicate",
+   "explanation": "",
+   "action": "Contact your bank.",
+   "retry": false
+  },
+  {
+   "code": "R76",
+   "title": "No errors found",
+   "explanation": "",
+   "action": "Contact your bank.",
+   "retry": false
+  },
+  {
+   "code": "R77",
+   "title": "Non-acceptance of R62 dishonored return",
+   "explanation": "",
+   "action": "Contact your bank.",
+   "retry": false
+  },
+  {
+   "code": "R80",
+   "title": "IAT entry coding error",
+   "explanation": "",
+   "action": "Fix the IAT entry.",
+   "retry": false
+  },
+  {
+   "code": "R81",
+   "title": "Non-participant in IAT program",
+   "explanation": "",
+   "action": "Use a different payment method.",
+   "retry": false
+  },
+  {
+   "code": "R82",
+   "title": "Invalid foreign receiving DFI identification",
+   "explanation": "",
+   "action": "Fix the foreign bank identification.",
+   "retry": false
+  },
+  {
+   "code": "R83",
+   "title": "Foreign receiving DFI unable to settle",
+   "explanation": "",
+   "action": "Contact your bank.",
+   "retry": false
+  },
+  {
+   "code": "R84",
+   "title": "Entry not processed by gateway",
+   "explanation": "",
+   "action": "Contact your bank.",
+   "retry": false
+  },
+  {
+   "code": "R85",
+   "title": "Incorrectly coded outbound international payment",
+   "explanation": "The payment should have been sent as IAT.",
+   "action": "Resend as IAT.",
+   "retry": false
+  }
+ ],
+ "changes": [
+  {
+   "code": "C01",
+   "title": "Incorrect account number",
+   "fields": [
+    "account number"
+   ]
+  },
+  {
+   "code": "C02",
+   "title": "Incorrect routing number",
+   "fields": [
+    "routing number"
+   ]
+  },
+  {
+   "code": "C03",
+   "title": "Incorrect routing number and account number",
+   "fields": [
+    "routing number",
+    "account number"
+   ]
+  },
+  {
+   "code": "C04",
+   "title": "Incorrect individual name / receiving company name",
+   "fields": [
+    "name"
+   ]
+  },
+  {
+   "code": "C05",
+   "title": "Incorrect transaction code",
+   "fields": [
+    "transaction code"
+   ]
+  },
+  {
+   "code": "C06",
+   "title": "Incorrect account number and transaction code",
+   "fields": [
+    "account number",
+    "transaction code"
+   ]
+  },
+  {
+   "code": "C07",
+   "title": "Incorrect routing number, account number and transaction code",
+   "fields": [
+    "routing number",
+    "account number",
+    "transaction code"
+   ]
+  },
+  {
+   "code": "C08",
+   "title": "Incorrect receiving DFI identification (IAT only)",
+   "fields": [
+    "rdfi identification"
+   ]
+  },
+  {
+   "code": "C09",
+   "title": "Incorrect individual identification number",
+   "fields": [
+    "identification number"
+   ]
+  },
+  {
+   "code": "C10",
+   "title": "Incorrect company name",
+   "fields": [
+    "company name"
+   ]
+  },
+  {
+   "code": "C11",
+   "title": "Incorrect company identification",
+   "fields": [
+    "company identification"
+   ]
+  },
+  {
+   "code": "C12",
+   "title": "Incorrect company name and company identification",
+   "fields": [
+    "company name",
+    "company identification"
+   ]
+  },
+  {
+   "code": "C13",
+   "title": "Addenda format error",
+   "fields": []
+  },
+  {
+   "code": "C14",
+   "title": "Incorrect SEC code for outbound international payment",
+   "fields": [
+    "sec code"
+   ]
+  }
+ ],
+ "noc_action": "Update your records with the corrected data before the next entry to this account (the rules give at least six banking days). The entry itself was posted."
+}

@@ -1,7 +1,7 @@
 ---
-title: SEPA Payment File API – Privacy Notice
+title: SEPA & NACHA Payment File API – Privacy Notice
 updated: 2026-10-21
-description: How the SEPA Payment File API handles the payment data and files you send.
+description: How the SEPA & NACHA Payment File API handles the payment data and files you send.
 ---
 
 ## Summary
@@ -12,14 +12,15 @@ in memory and never written to disk. No AI or third-party analysis service is in
 ## What is processed
 
 - The payment order you send (JSON or CSV with names, IBANs, BICs, addresses, amounts and references), or the
-  payment file (pain.001, pain.008) or bank status report (pain.002), and the request options.
+  payment file (pain.001, pain.008, NACHA/ACH with routing and account numbers) or bank status report (pain.002, ACH
+  returns), and the request options.
 - The response (the generated or converted file, the validation report or the status summary) is returned to you
   and is not kept by the service.
 
 {% if site.demo_api.sepa != "" %}
 ## Live demo on this website {#live-demo}
 
-When you try your own file on the product page:
+When you try your own file on the product page or on a tool page (SEPA or NACHA):
 
 - The file is sent over an encrypted connection to a separate demo service on Google Cloud Run in the EU
   (Belgium). It is validated in memory, the report is sent back to your browser, and the file is discarded.
@@ -44,4 +45,4 @@ When you try your own file on the product page:
 
 ## Contact
 
-Questions about privacy: {% include email.html subject="SEPA Payment File API privacy" %}
+Questions about privacy: {% include email.html subject="SEPA & NACHA Payment File API privacy" %}

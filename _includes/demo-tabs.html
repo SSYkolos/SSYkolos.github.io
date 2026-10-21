@@ -2,7 +2,7 @@
   "See it work" tabs on a product page: sample runs (CSS-only, from _data/demos/<samples>.json,
   one panel per sample via _includes/demos/<samples>-sample.html) plus the optional
   "Your own file" tab (_includes/demos/live.html, configured by the page's live_demo).
-  include demo-tabs.html samples="reconciler" live="https://..." id="bank-statement-reconciler" product=<document>
+  include demo-tabs.html samples="reconciler" live="https://..." id="bank-statement-reconciler" product=<document> cfg=<live_demo, default: the product's>
   With live_first=true the live tab comes first and is open. The CSS (assets/css/demo.css) pairs
   radios, labels and panels by position, for up to 8 tabs.
 {%- endcomment -%}
@@ -41,13 +41,13 @@
   </div>
   <div class="demo__panels">
     {%- if live_first %}
-    {% include demos/live.html endpoint=live product=include.product %}
+    {% include demos/live.html endpoint=live product=include.product cfg=include.cfg %}
     {%- endif %}
     {%- for d in demos %}
     {% include demos/{{ include.samples }}-sample.html sample=d %}
     {%- endfor %}
     {%- if live != "" and live_first == false %}
-    {% include demos/live.html endpoint=live product=include.product %}
+    {% include demos/live.html endpoint=live product=include.product cfg=include.cfg %}
     {%- endif %}
   </div>
 </div>
