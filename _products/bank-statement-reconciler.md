@@ -5,7 +5,7 @@ category: finance
 tags: [mt940, mt942, camt.053, camt.054, iso 20022, bai2, coda, sepa, reconciliation, csv, hledger, beancount, datev]
 featured: true
 kind: REST API
-status: Launching soon
+status: Live on RapidAPI (free plan)
 tagline: Turn European and US bank statements into clean, verified data in one API call. Every balance checked to the cent, every counterparty extracted, no AI guesswork.
 summary: Parses MT940, ISO 20022 camt, BAI2 and CODA files, normalizes every transaction and proves each statement adds up to the cent.
 description: Bank statement parser and reconciler API for MT940, MT942, ISO 20022 camt.052/053/054, BAI2 and CODA. Verifies balances to the cent and exports JSON, CSV, hledger, Beancount, camt.053 and DATEV.
@@ -31,7 +31,7 @@ live_demo:
       label: "<b>Mask names, IBANs and emails</b> in the result. Recommended for real statements; switch it off to see every field the API extracts."
 channels:
   - name: RapidAPI
-    url: ""
+    url: "https://rapidapi.com/SSYkolos/api/bank-statement-reconciler1"
   - name: Apify Store
     url: ""
 
