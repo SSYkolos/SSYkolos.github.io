@@ -34,6 +34,8 @@ channels:
     url: "https://rapidapi.com/SSYkolos/api/bank-statement-reconciler1"
   - name: MCP server
     url: "https://github.com/SSYkolos/deterministic-finance-cad-mcp"
+  - name: n8n workflow
+    url: "https://github.com/SSYkolos/deterministic-finance-cad-mcp/tree/main/examples/n8n"
   - name: Apify Store
     url: ""
 
