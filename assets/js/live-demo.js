@@ -16,7 +16,9 @@
       render:    function (body, file, u) { return [nodes]; }
     });
 
-  No cookies, no storage, no third parties. Server data is only ever inserted as text (never as HTML).
+  No cookies, no third parties. Server data is only ever inserted as text (never as HTML).
+  The one thing kept: a ?ref=<channel> from a shared link, in sessionStorage for this tab only, sent as
+  X-Client-Ref with demo runs so the demo service can count which community a run came from.
 */
 (function () {
   "use strict";
@@ -25,6 +27,13 @@
   var SLOW_MS = 2500;
   var TIMEOUT_MS = 60000;
   var plugins = {};
+  var REF = (function () {
+    try {
+      var m = /[?&]ref=([a-z0-9_-]{1,40})(?:&|$)/i.exec(location.search);
+      if (m) sessionStorage.setItem("kh_ref", m[1].toLowerCase());
+      return sessionStorage.getItem("kh_ref");
+    } catch (e) { return null; } // storage blocked: just no ref
+  })();
 
   // ---------------------------------------------------------------- helpers shared with the product files
   function el(tag, attrs, children) {
@@ -278,7 +287,8 @@
       last = { file: file, context: { source: "demo", page: location.pathname, file_name: file.name, file_size: file.size, options: query || null } };
       var url = endpoint + (query ? "?" + query : "");
 
-      fetch(url, { method: "POST", body: form, signal: controller ? controller.signal : undefined, credentials: "omit", cache: "no-store" })
+      // Only send the header when there is a ref: it makes the browser send a CORS preflight first.
+      fetch(url, { method: "POST", body: form, headers: REF ? { "X-Client-Ref": REF } : {}, signal: controller ? controller.signal : undefined, credentials: "omit", cache: "no-store" })
         .then(function (resp) {
           return resp.json().catch(function () { return {}; }).then(function (body) { return { resp: resp, body: body }; });
         })

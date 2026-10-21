@@ -67,3 +67,4 @@ exclude:
   - Gemfile.lock
   - vendor/
   - _config.local.yml
+  - docs/
