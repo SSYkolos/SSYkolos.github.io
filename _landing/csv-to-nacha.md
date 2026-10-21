@@ -43,7 +43,7 @@ Sam O'Brien,022000062,77-1290,2310.45,savings,October salary
 Lee Chen,061000159,9100022,1675.20,checking,
 ```
 
-The request (the ACH endpoints are coming soon on RapidAPI):
+The request (live [on RapidAPI](https://rapidapi.com/SSYkolos/api/sepa-payment-file)):
 
 ```bash
 curl -X POST "https://<host>/v1/ach/generate" -H "Content-Type: application/json" -d '{

@@ -64,6 +64,6 @@ The API's answer for one return, from the sample file:
 }
 ```
 
-The same codes are available as JSON from `GET /v1/ach/codes` (the ACH endpoints are coming soon on RapidAPI).
+The same codes are available as JSON from `GET /v1/ach/codes` (live [on RapidAPI](https://rapidapi.com/SSYkolos/api/sepa-payment-file)).
 Sample files marked "Moov" are unmodified test files from the open-source [Moov ACH](https://github.com/moov-io/ach)
 project ([Apache License 2.0](/assets/demo/LICENSE-moov-ach.txt)). Not affiliated with Nacha.
