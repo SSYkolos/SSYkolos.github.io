@@ -5,7 +5,7 @@ category: finance
 tags: [sepa, pain.001, pain.008, pain.002, iso 20022, credit transfer, direct debit, xsd, epc, dfü, ebics, csv, validation, nacha, ach, ppd, ccd, return codes]
 featured: false
 kind: REST API
-status: SEPA live on RapidAPI (free plan) · ACH coming soon
+status: SEPA and ACH live on RapidAPI (free plan)
 tagline: Generate, validate and convert SEPA payment files and US NACHA (ACH) files, and read the bank's answer. Every file is checked against the format's rules, with each problem explained in plain words.
 summary: Builds pain.001, pain.008 and NACHA files from JSON or CSV, validates and converts SEPA files, checks NACHA files and reads pain.002 status reports and ACH returns.
 description: SEPA and NACHA payment file API. Generate pain.001, pain.008 and NACHA ACH files from JSON or CSV, validate against ISO 20022, EPC and NACHA file rules, read pain.002 and ACH return codes.
@@ -70,7 +70,7 @@ specs:
   - label: ACH checks
     value: "94-character records, printable ASCII, record order, blocks of 10 · file header (routing check digit) · service class 200 / 220 / 225 · transaction codes, prenotes · routing check digit · addenda count and sequence · trace numbers unique and ascending · entry hash, debit and credit totals, block count · effective date (weekends, Federal Reserve holidays) · Same Day ACH limit · 2026 descriptions PAYROLL / PURCHASE · possible duplicates (warnings) · optional: balanced batches"
   - label: ACH endpoints
-    value: "`POST /v1/ach/generate` · `POST /v1/ach/validate` · `POST /v1/ach/parse` (JSON or CSV) · `POST /v1/ach/returns` · `GET /v1/ach/codes` (coming soon on RapidAPI)"
+    value: "`POST /v1/ach/generate` · `POST /v1/ach/validate` · `POST /v1/ach/parse` (JSON or CSV) · `POST /v1/ach/returns` · `GET /v1/ach/codes`"
   - label: Input
     value: "Raw body (`application/xml`, ACH: `text/plain`), base64, or a multipart field `file`"
   - label: Limits
@@ -93,7 +93,6 @@ limits:
   - "Bank-specific profiles other than German (Dutch, Austrian, Swiss SPS) are not included yet."
   - "The duplicate checks are warnings; a bank's own duplicate detection may be stricter."
   - "The live demo on this page validates only; generating, converting and reading pain.002 are API calls."
-  - "The ACH endpoints are not on RapidAPI yet (coming soon). The NACHA validator can be tried on its [tool page](/tools/nacha-file-validator/)."
   - "ACH: no IAT generation or IAT-specific rules, no CTX generation, no live routing directory lookup (a routing number with a valid check digit may still not exist)."
   - "Not affiliated with Nacha. The ACH code explanations are our own summaries, not the text of the Nacha Operating Rules."
 privacy_summary: Payment files are processed in memory and never stored. The response goes back to you and is not kept by the service.
@@ -147,7 +146,7 @@ Errors have one shape, `{"error": {"code", "message", "issues"?}}`, for example 
 
 ### ACH (NACHA)
 
-The ACH endpoints are coming soon on RapidAPI. Validate a NACHA file:
+The ACH endpoints are live [on RapidAPI](https://rapidapi.com/SSYkolos/api/sepa-payment-file), on the same plan as SEPA. Validate a NACHA file:
 
 ```bash
 curl -X POST "https://<host>/v1/ach/validate" -H "Content-Type: text/plain" --data-binary @payroll.ach
