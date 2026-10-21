@@ -42,5 +42,8 @@ format to see the codes). Cloud Logging keeps these lines for 30 days by default
 | community.n8n.io | `n8n_forum` |
 | DEV.to | `devto` |
 | Show HN | `show_hn` |
+| n8n example README on GitHub | `github_n8n` |
+
+`verify_test`, `verify_e2e` and `n8n_selftest` are from the 2026-10-21 setup test; ignore them.
 
 Add new ones freely: any lowercase word works, nothing needs to be configured.
