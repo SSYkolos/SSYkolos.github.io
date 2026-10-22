@@ -4,6 +4,8 @@
   without JavaScript it explains that and points to the samples.
   include demos/live.html endpoint="https://<demo service>" product=<product document, default: this page> cfg=<live_demo, default: the product's>
   cfg.plugin names the renderer in /assets/js/demos/ (default: the product slug).
+  cfg.input: "text" shows a text box instead of the drop zone (e.g. one postal address); the text is sent as the
+  same multipart `file` field, so the demo service needs nothing special.
 {%- endcomment -%}
 {%- assign prod = include.product | default: page -%}
 {%- assign cfg = include.cfg | default: prod.live_demo -%}
@@ -18,6 +20,12 @@
   <div class="live__ui" hidden>
     <div class="live__grid">
       <div class="live__main">
+        {%- if cfg.input == "text" %}
+        <label class="option option--text" for="{{ uid }}-text">
+          <span><b>{{ cfg.noun | capitalize }}</b> <span class="option__hint">{{ cfg.formats }}</span></span>
+          <textarea class="live__text" id="{{ uid }}-text" rows="3" maxlength="500" placeholder="{{ cfg.placeholder }}" autocomplete="off" spellcheck="false"></textarea>
+        </label>
+        {%- else %}
         <label class="drop" for="{{ uid }}-file">
           <input class="drop__input" type="file" id="{{ uid }}-file" accept="{{ cfg.accept }}">
           <span class="drop__icon" aria-hidden="true"></span>
@@ -25,6 +33,7 @@
           <span class="drop__or">or <span class="drop__pick">choose a file</span></span>
           <span class="drop__meta">{{ cfg.formats }} · up to {{ cfg.max_mb }} MB</span>
         </label>
+        {%- endif %}
 
         {%- for o in cfg.options %}
         {%- if o.type == "checkbox" %}
@@ -40,11 +49,16 @@
         {%- endif %}
         {%- endfor %}
 
+        {%- if cfg.input == "text" %}
+        <p><button type="button" class="btn live__go">{{ cfg.button | default: "Run" }}</button></p>
+        {%- endif %}
+
         <p class="live__quota" aria-live="polite">Free: {{ cfg.runs_per_day | default: site.demo_runs_per_day }} runs a day, no sign-up. Files that cannot be read do not count.</p>
       </div>
 
-      <aside class="assure" aria-label="What happens to your file">
-        <p class="assure__title">What happens to your file</p>
+      {%- assign what = "file" -%}{%- if cfg.input == "text" -%}{%- assign what = "text" -%}{%- endif %}
+      <aside class="assure" aria-label="What happens to your {{ what }}">
+        <p class="assure__title">What happens to your {{ what }}</p>
         <ol class="assure__steps">
           <li>It is sent over an encrypted connection to the demo server in the EU.</li>
           <li>It is read in memory, and the result is sent straight back to this page.</li>

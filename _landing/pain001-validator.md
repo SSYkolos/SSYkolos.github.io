@@ -35,6 +35,6 @@ faq:
 | Remittance | one unstructured *or* one structured remittance (≤ 140 incl. tags), creditor reference type SCOR |
 | Codes | service level SEPA, charge bearer SLEV, payment method TRF / DD |
 | Direct debits | CORE or B2B (not mixed), sequence type, mandate signed not in the future |
-| Addresses (2019) | town and country when a structured or hybrid address is used; unstructured addresses are reported |
+| Addresses (2019) | town and country when a structured or hybrid address is used; town ≤ 35 characters; town or postal code not repeated in an address line; unstructured addresses are reported, with a pointer to the [address fix](/tools/structured-address-converter/) |
 | Warnings | dates in the past, duplicate end-to-end IDs, possible duplicate payments |
 | German profile | no byte order mark, UTF-8 only |

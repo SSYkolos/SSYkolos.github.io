@@ -167,6 +167,8 @@
     var maxBytes = Number(panel.getAttribute("data-max-bytes")) || 2 * MB;
     var ui = panel.querySelector(".live__ui");
     var input = panel.querySelector(".drop__input");
+    var textBox = panel.querySelector(".live__text"); // text mode (cfg.input: text): no drop zone
+    var go = panel.querySelector(".live__go");
     var drop = panel.querySelector(".drop");
     var status = panel.querySelector(".live__status");
     var result = panel.querySelector(".live__result");
@@ -221,8 +223,11 @@
     }
 
     function againButton() {
-      var b = el("button", { type: "button", class: "btn", text: "Try another file" });
-      b.addEventListener("click", function () { input.value = ""; input.click(); });
+      var b = el("button", { type: "button", class: "btn", text: textBox ? "Try another" : "Try another file" });
+      b.addEventListener("click", function () {
+        if (textBox) { textBox.focus(); textBox.select(); return; }
+        input.value = ""; input.click();
+      });
       return b;
     }
 
@@ -273,7 +278,7 @@
       busy = true;
       panel.classList.add("is-busy");
       clear(result);
-      setStatus("working", "Sending " + file.name + " (" + fmtBytes(file.size) + ")…", plugin.working || "Processing the file.");
+      setStatus("working", textBox ? "Sending…" : "Sending " + file.name + " (" + fmtBytes(file.size) + ")…", plugin.working || "Processing the file.");
       var slow = setTimeout(function () {
         setStatus("working", "Still working…",
           "The demo server sleeps when nobody uses it, so the first run can take a few extra seconds while it wakes up. Thanks for waiting.");
@@ -314,7 +319,7 @@
                 "That's a bug on my side, not a problem with your file. Please reload the page and try again.", null, false, true);
               return;
             }
-            setStatus("done", "Done. Your file has already been discarded on the server.");
+            setStatus("done", "Done. Your " + (textBox ? "text" : "file") + " has already been discarded on the server.");
             nodes.forEach(function (n) { result.appendChild(n); });
             result.appendChild(el("div", { class: "live__next" }, [el("p", { text: plugin.next || "" }), againButton()]));
             var wrong = reportOffer("wrong_result", "Result doesn't look right? Tell me");
@@ -357,6 +362,16 @@
         });
     }
 
+    if (textBox) {
+      var submit = function () {
+        var t = textBox.value.trim();
+        if (!t) { textBox.focus(); return; }
+        run(new File([t], "address.txt", { type: "text/plain" }));
+      };
+      go.addEventListener("click", submit);
+      textBox.addEventListener("keydown", function (e) { if (e.key === "Enter" && (e.ctrlKey || e.metaKey)) submit(); });
+      return;
+    }
     input.addEventListener("change", function () { run(input.files && input.files[0]); });
     ["dragenter", "dragover"].forEach(function (t) {
       drop.addEventListener(t, function (e) { e.preventDefault(); drop.classList.add("is-over"); });
