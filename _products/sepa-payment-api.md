@@ -2,12 +2,12 @@
 title: SEPA & NACHA Payment File API
 order: 4
 category: finance
-tags: [sepa, pain.001, pain.008, pain.002, iso 20022, credit transfer, direct debit, xsd, epc, dfü, ebics, csv, validation, nacha, ach, ppd, ccd, return codes]
+tags: [sepa, pain.001, pain.008, pain.002, iso 20022, credit transfer, direct debit, xsd, epc, dfü, ebics, csv, validation, nacha, ach, ppd, ccd, return codes, structured address, hybrid address, postal address, vendor master]
 featured: false
 kind: REST API
 status: SEPA and ACH live on RapidAPI (free plan)
 tagline: Generate, validate and convert SEPA payment files and US NACHA (ACH) files, and read the bank's answer. Every file is checked against the format's rules, with each problem explained in plain words.
-summary: Builds pain.001, pain.008 and NACHA files from JSON or CSV, validates and converts SEPA files, checks NACHA files and reads pain.002 status reports and ACH returns.
+summary: Builds pain.001, pain.008 and NACHA files from JSON or CSV, validates and converts SEPA files, splits free-text addresses into ISO 20022 structured fields, checks NACHA files and reads pain.002 status reports and ACH returns.
 description: SEPA and NACHA payment file API. Generate pain.001, pain.008 and NACHA ACH files from JSON or CSV, validate against ISO 20022, EPC and NACHA file rules, read pain.002 and ACH return codes.
 io:
   in: JSON · CSV · pain.001 · pain.008 · pain.002 · NACHA
@@ -43,6 +43,8 @@ features:
     text: "With `profile=de`, the German banks' rules (DFÜ-Abkommen Anlage 3 v3.7) are checked too: the wider character set (ÄÖÜäöüß & *), no byte order mark, UTF-8 only."
   - title: Convert 2009 files to 2019
     text: "`pain.001.001.03` → `.09` and `pain.008.001.02` → `.08`. Nothing is guessed: the result must pass the 2019 schema and the SEPA rules."
+  - title: Structured addresses
+    text: "Free-text addresses become ISO 20022 structured fields (`StrtNm`, `BldgNb`, `PstCd`, `TwnNm`, `Ctry` …) or a hybrid address, with postal-code formats and street order for 26 countries. Fix every payer and payee address of a pain.001 / pain.008 in place, or clean a vendor list as CSV. Unclear addresses are flagged for review, never guessed. [Try one address](/tools/structured-address-converter/)."
   - title: Read the bank's answer
     text: "A `pain.002` status report (any version) becomes a list of accepted and rejected payments, with the reason codes in plain language."
   - title: Totals recomputed exactly
@@ -67,6 +69,8 @@ specs:
     value: "SEPA character set · IBAN and creditor identifier check digits · `NbOfTxs` / `CtrlSum` · EUR only, 0.01–999,999,999.99, at most 2 decimals · names ≤ 70 · one unstructured or one structured remittance · service level, charge bearer, payment method · CORE or B2B, sequence type, mandate date · 2019 addresses · duplicate end-to-end IDs and possible duplicate payments (warnings)"
   - label: Endpoints
     value: "`POST /v1/generate` · `POST /v1/validate` · `POST /v1/convert` · `POST /v1/status` · `GET /v1/formats`"
+  - label: Addresses
+    value: "`POST /v1/addresses/parse` (one address) · `POST /v1/addresses/parse-csv` (vendor list, up to 10,000 rows) · `POST /v1/addresses/fix-file` (pain.001 / pain.008, payer and payee) · AT BE CH CZ DE DK ES FI FR GB HR HU IE IT LI LU MC NL NO PL PT RO SE SI SK US"
   - label: ACH (NACHA)
     value: "PPD · CCD · WEB · TEL generated; any NACHA file validated (full rules for PPD, CCD, WEB, TEL, CTX, COR)"
   - label: ACH checks
@@ -89,12 +93,14 @@ tested:
   - "Fuzzing: 36,000 mutated files, no crash."
   - "Speed: a 6 MB file with 20,000 transfers is validated in about 1.7 s."
   - "ACH: every rule has a test that breaks a valid file in exactly that way; 13 sample files from the independent Moov ACH project are valid for it too, and 5 broken ones are caught with the right rule; 30,000 mutated files, no crash; a 9.5 MB file (100,000 records) is validated in about 1 s."
+  - "Addresses: a fictional example for every country, uncertain cases that must go to review, pain.001 / pain.008 round trips through the validator (a fix never adds an error), and 2,000 random texts without a crash."
   - The container build runs the full test suite and fails if a single test fails.
 limits:
   - "No sending to banks (EBICS, bank APIs): out of scope."
   - "Bank-specific profiles other than German (Dutch, Austrian, Swiss SPS) are not included yet."
   - "The duplicate checks are warnings; a bank's own duplicate detection may be stricter."
   - "The live demo on this page validates only; generating, converting and reading pain.002 are API calls."
+  - "Addresses: format and order rules, no postal database, so a postal code that does not belong to the town is not noticed. Countries outside the list always go to review."
   - "ACH: no IAT generation or IAT-specific rules, no CTX generation, no live routing directory lookup (a routing number with a valid check digit may still not exist)."
   - "Not affiliated with Nacha. The ACH code explanations are our own summaries, not the text of the Nacha Operating Rules."
 privacy_summary: Payment files are processed in memory and never stored. The response goes back to you and is not kept by the service.
@@ -145,6 +151,38 @@ recommend (ü → ue, ß → ss, & → +, other accents removed), and reported i
 
 Errors have one shape, `{"error": {"code", "message", "issues"?}}`, for example `MALFORMED_XML`, `UNSAFE_XML`,
 `UNSUPPORTED_FORMAT`, `INVALID_PAYMENT` (with the issues) and `CONVERSION_NOT_POSSIBLE`.
+
+### Structured addresses
+
+The EPC and Swift both postponed the end of unstructured addresses in 2026 (EPC on 9 September, Swift on 27 August;
+no new date yet). Until then the work is cleaning the vendor master data. Split one address:
+
+```bash
+curl -X POST "https://<host>/v1/addresses/parse" -H "Content-Type: application/json" \
+  -d '{"text": "Kerkstraat 7 bus 3, 2000 Antwerpen", "country": "BE"}'
+```
+
+```json
+{
+  "address": {
+    "country": "BE",
+    "postal_code": "2000",
+    "town": "Antwerpen",
+    "street": "Kerkstraat",
+    "building_number": "7",
+    "lines": ["bus 3"]
+  },
+  "form": "hybrid",
+  "confidence": "medium",
+  "needs_review": false,
+  "notes": ["Kept as address line(s), not split into fields: bus 3"]
+}
+```
+
+`POST /v1/addresses/fix-file` does the same for every payer and payee address of a pain.001 / pain.008 (ultimate
+parties are left alone) and returns the fixed file with a change report; `POST /v1/addresses/parse-csv` adds the
+structured columns and a status (`ok`, `hybrid`, `review`) to every row of a CSV. The validator points each
+unstructured address to the fix. See the free tool: [structured address converter](/tools/structured-address-converter/).
 
 ### ACH (NACHA)
 
