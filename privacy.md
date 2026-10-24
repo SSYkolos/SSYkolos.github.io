@@ -3,7 +3,7 @@ title: Privacy
 permalink: /privacy/
 eyebrow: Privacy
 lede: This website does not collect anything about you.
-updated: 2026-10-21
+updated: 2026-10-24
 ---
 
 {% assign has_live = false %}{% for api in site.demo_api %}{% if api[1] != "" %}{% assign has_live = true %}{% endif %}{% endfor -%}
@@ -23,14 +23,14 @@ updated: 2026-10-21
 - **Where visits come from.** If you open the site through a link that ends in `?ref=` and a short word (for
   example from a forum post), your browser tab remembers that word until you close the tab (sessionStorage, not a
   cookie) and sends it with your demo runs. Each demo service writes one log line per run with the product, that
-  word, the file format and whether it worked. It contains no IP address, file name or file content, so it tells me
+  word, the file format and whether it worked. It contains no IP address, file name or file content, so it tells us
   which community found the demo, not who you are.
 {% endif -%}
 {% if site.feedback_api != "" -%}
 - **Messages and reports.** What you send with the contact form or the "Send this to the developer" button is
   stored privately. Details are in the next section.
 {% endif -%}
-- **Email.** If you write to me, I use your message and address only to reply.
+- **Email.** If you write to us, we use your message and address only to reply.
 
 {% if site.feedback_api != "" %}
 ## Messages and reports {#messages}
@@ -42,14 +42,14 @@ When you use the contact form, or send a report from a live demo:
   format and the file's name and size); the page shows exactly which before you send.
 - **Files:** a file is sent only if you tick the box for it. Files are deleted automatically after 30 days.
 - **Where:** in a private Google Cloud Storage bucket in the EU (Belgium). The service that receives messages can
-  only add new ones; only I can open them. Messages are deleted automatically after 180 days at the latest.
-- **How I process them:** I group reports by problem and keep track of them in my private issue tracker on
+  only add new ones; only we can open them. Messages are deleted automatically after 180 days at the latest.
+- **How we process them:** we group reports by problem and keep track of them in our private issue tracker on
   GitHub. A file that shows a bug may become a test case; before that, names, account numbers, e-mail addresses
-  and similar details are replaced with made-up values. To reproduce a problem, the file is downloaded to my own
+  and similar details are replaced with made-up values. To reproduce a problem, the file is downloaded to our own
   computer for the run and deleted right after; the original is never put into the issue tracker or the code.
 - **What it is used for:** answering you, and fixing and improving the products. Nothing is sold or shared,
   and nothing is used for marketing.
-- **Quotes:** praise is shown on this website only if you ticked "You may quote this", and I remove it whenever
+- **Quotes:** praise is shown on this website only if you ticked "You may quote this", and we remove it whenever
   you ask.
 - **Limits:** to stop spam, the service counts messages per visitor per day under a salted hash of the IP address,
   in memory only, reset daily at 00:00 UTC.
@@ -67,6 +67,11 @@ To have a message or file deleted earlier, send a message with its reference num
 - [{{ doc.title }}]({{ doc.url | relative_url }})
 {%- endif -%}
 {%- endfor %}
+
+## Who runs this site {#operator}
+
+{{ site.data.profile.name }} is the trade name of {{ site.data.profile.founder.name }}, a private individual in Hungary, EU,
+who runs this website and the products on it and is responsible for the processing described here.
 
 ## Contact
 

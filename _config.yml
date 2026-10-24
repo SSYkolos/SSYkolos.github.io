@@ -1,6 +1,6 @@
 # Site settings. Personal details (name, email, links) live in _data/profile.yml.
-title: Kolos Hetyéssy
-description: Software developer from Hungary building precise, deterministic tools for finance and manufacturing data.
+title: SSY Dynamics
+description: SSY Dynamics builds precise, deterministic engineering tools, from APIs for finance and manufacturing data to mechatronics and research.
 lang: en
 
 # Custom domain: also in the CNAME file and GitHub Pages settings (see README.md).
@@ -36,9 +36,12 @@ collections:
   privacy:
     output: true
     permalink: /products/:name/privacy/
-  projects:
+  projects:                   # mechatronics builds and other engineering projects
     output: true
     permalink: /projects/:name/
+  research:                   # papers, experiments, measurements
+    output: true
+    permalink: /research/:name/
   product_categories:
     output: true
     permalink: /categories/:name/
@@ -54,6 +57,8 @@ defaults:
   - scope: { path: "", type: privacy }
     values: { layout: legal }
   - scope: { path: "", type: projects }
+    values: { layout: project }
+  - scope: { path: "", type: research }
     values: { layout: project }
   - scope: { path: "", type: product_categories }
     values: { layout: category }

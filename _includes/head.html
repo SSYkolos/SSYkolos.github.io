@@ -2,7 +2,7 @@
 {%- if page.title and page.url != "/" -%}
   {%- assign doc_title = page.title | append: " — " | append: profile.name -%}
 {%- else -%}
-  {%- assign doc_title = profile.name | append: " — " | append: profile.role -%}
+  {%- assign doc_title = profile.name | append: " — " | append: profile.tagline -%}
 {%- endif -%}
 {%- assign doc_desc = page.description | default: page.summary | default: site.description | strip_html | strip_newlines -%}
 <meta charset="utf-8">

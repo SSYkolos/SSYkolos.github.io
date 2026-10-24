@@ -31,7 +31,7 @@ When you try your own file on the product page or on a tool page (SEPA or NACHA)
   every day at 00:00 UTC.
 - The hosting logs described below apply to the demo service too. There are no cookies and no account.
 {%- if site.feedback_api != "" %}
-- If a run fails or the result looks wrong, you can send a report to me. The file is included only if you tick the
+- If a run fails or the result looks wrong, you can send a report to us. The file is included only if you tick the
   box for it; see [Messages and reports]({{ '/privacy/' | relative_url }}#messages).
 {%- endif %}
 {% endif %}

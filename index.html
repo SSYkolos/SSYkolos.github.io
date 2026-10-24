@@ -5,14 +5,18 @@ body_class: home
 {%- assign profile = site.data.profile -%}
 {%- assign products = site.products | sort: "order" -%}
 {%- assign projects = site.projects | sort: "order" -%}
+{%- assign research = site.research | sort: "order" -%}
+{%- assign divisions = 1 -%}
+{%- if projects.size > 0 %}{% assign divisions = divisions | plus: 1 %}{% endif -%}
+{%- if research.size > 0 %}{% assign divisions = divisions | plus: 1 %}{% endif -%}
 {%- assign n = 0 -%}
 
 <section class="wrap hero">
   <div class="hero__text">
-    <p class="eyebrow">{{ profile.name }} · {{ profile.role }} · {{ profile.location }}</p>
+    <p class="eyebrow">{{ profile.name }} · {{ profile.location }}</p>
     <h1>Precise tools for messy business files.</h1>
-    <p class="lede">Bank statements, payment files, CAD drawings, map listings. I build small, deterministic software that turns
-      them into clean, structured data, and tells you exactly where it could not.</p>
+    <p class="lede">Bank statements, payment files, CAD drawings, map listings. We build small, deterministic software that
+      turns them into clean, structured data, and tells you exactly where it could not.</p>
     <div class="actions">
       <a class="btn btn--primary" href="{{ '/products/' | relative_url }}">See the products</a>
       <a class="btn" href="#contact">Contact</a>
@@ -24,6 +28,37 @@ body_class: home
 </section>
 {%- if site.feedback_api != "" %}
 <script src="{{ '/assets/js/feedback.js' | relative_url }}?v={{ site.time | date: '%s' }}" defer></script>
+{%- endif %}
+
+{%- if divisions > 1 %}
+{%- assign n = n | plus: 1 %}
+<section class="wrap section" aria-labelledby="divisions-title">
+  {% include section-head.html num=n title="What we do" id="divisions" %}
+  <div class="grid grid--3">
+    <article class="card">
+      <div class="card__meta"><span class="kind">Software</span><span class="status status--plain">{{ products.size }} products</span></div>
+      <h3 class="card__title"><a class="stretch" href="{{ '/products/' | relative_url }}">APIs and tools</a></h3>
+      <p class="card__text">Deterministic software for finance, manufacturing and sales data, with live demos.</p>
+      <span class="card__go" aria-hidden="true">Open →</span>
+    </article>
+    {%- if projects.size > 0 %}
+    <article class="card">
+      <div class="card__meta"><span class="kind">Projects</span><span class="status status--plain">{{ projects.size }} {% if projects.size == 1 %}project{% else %}projects{% endif %}</span></div>
+      <h3 class="card__title"><a class="stretch" href="{{ '/projects/' | relative_url }}">Mechatronics and builds</a></h3>
+      <p class="card__text">Engineering builds, prototypes and side projects, documented as they are finished.</p>
+      <span class="card__go" aria-hidden="true">Open →</span>
+    </article>
+    {%- endif %}
+    {%- if research.size > 0 %}
+    <article class="card">
+      <div class="card__meta"><span class="kind">Research</span><span class="status status--plain">{{ research.size }} {% if research.size == 1 %}write-up{% else %}write-ups{% endif %}</span></div>
+      <h3 class="card__title"><a class="stretch" href="{{ '/research/' | relative_url }}">Research</a></h3>
+      <p class="card__text">Experiments, measurements and papers, with the data and the limits stated.</p>
+      <span class="card__go" aria-hidden="true">Open →</span>
+    </article>
+    {%- endif %}
+  </div>
+</section>
 {%- endif %}
 
 {%- assign featured = products | where: "featured", true -%}
@@ -45,7 +80,7 @@ body_class: home
 
 {%- assign n = n | plus: 1 %}
 <section class="wrap section" aria-labelledby="principles-title">
-  {% include section-head.html num=n title="How I build" id="principles" %}
+  {% include section-head.html num=n title="How we build" id="principles" %}
   <ol class="principles">
     <li>
       <h3>Deterministic</h3>
@@ -77,6 +112,21 @@ body_class: home
   </div>
   {%- if projects.size > 3 %}
   <p><a class="link-arrow" href="{{ '/projects/' | relative_url }}">All projects →</a></p>
+  {%- endif %}
+</section>
+{%- endif %}
+
+{%- if research.size > 0 %}
+{%- assign n = n | plus: 1 %}
+<section class="wrap section" aria-labelledby="research-title">
+  {% include section-head.html num=n title="Research" id="research" %}
+  <div class="grid grid--3">
+    {%- for p in research limit: 3 %}
+    {% include project-card.html project=p %}
+    {%- endfor %}
+  </div>
+  {%- if research.size > 3 %}
+  <p><a class="link-arrow" href="{{ '/research/' | relative_url }}">All research →</a></p>
   {%- endif %}
 </section>
 {%- endif %}

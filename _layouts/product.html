@@ -29,8 +29,8 @@ layout: default
       <p class="try-cta"><a href="#try-your-file" data-open-live class="link-arrow">Try it free with your own file →</a> <span>No sign-up. Your file is never stored.</span></p>
       {%- endif %}
       <p class="notify"><span class="status">{{ page.status }}</span>
-        {%- if site.feedback_api != "" %} Questions or a format you need? <a href="{{ '/' | relative_url }}?product={{ slug }}#contact">Write to me</a>
-        {%- elsif site.data.profile.email != "" %} Want to know when it launches? {% capture subject %}{{ page.title }}: launch{% endcapture %}{% include email.html subject=subject label="Write to me" %}{% endif %}</p>
+        {%- if site.feedback_api != "" %} Questions or a format you need? <a href="{{ '/' | relative_url }}?product={{ slug }}#contact">Write to us</a>
+        {%- elsif site.data.profile.email != "" %} Want to know when it launches? {% capture subject %}{{ page.title }}: launch{% endcapture %}{% include email.html subject=subject label="Write to us" %}{% endif %}</p>
     </div>
     {%- if page.visual %}
     <div class="product-hero__visual">
