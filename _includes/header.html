@@ -2,10 +2,10 @@
 <header class="site-head">
   <div class="wrap site-head__inner">
     <a class="brand" href="{{ '/' | relative_url }}">
-      <span class="mark" aria-hidden="true">KH</span>
+      <span class="mark" aria-hidden="true">{{ profile.mark }}</span>
       <span class="brand__text">
         <span class="brand__name">{{ profile.name }}</span>
-        <span class="brand__role">{{ profile.role }}</span>
+        <span class="brand__role">{{ profile.tagline }}</span>
       </span>
     </a>
     <nav class="site-nav" aria-label="Main">

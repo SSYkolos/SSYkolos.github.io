@@ -1,29 +1,45 @@
 ---
-# Hidden until you are ready: change to "published: true" and the About menu item appears.
-published: false
-title: About
+title: Founder
 permalink: /about/
-eyebrow: About
-lede: One or two sentences about who you are and what you build.
+eyebrow: Founder
+lede: SSY Dynamics is founded and run by Kolos Hetyéssy, a mechatronics engineering student from Hungary.
 ---
 
-<!-- TODO: write your introduction. Plain Markdown works: paragraphs, **bold**, [links](https://example.com), lists. -->
+<!-- Written in "I": this is the one page about the person behind the brand. Edit freely. -->
 
-A short introduction: what you study, what kind of problems you like to solve, and why you built these tools.
+I study mechatronics engineering in Hungary. SSY Dynamics is where I put everything I build: software that other
+people can use and pay for, mechatronics projects, and research.
+
+It started with software for messy business files. Banks, payment systems and CAD programs all export data in
+formats that look standard but differ in small, costly ways. The APIs on this site read those files exactly, check
+them against the rules, and say plainly where something does not add up.
+
+The same approach carries over to hardware and research: measure, test against real cases, and be honest about
+the limits.
+
+## What I work on
+
+- **Software:** APIs and browser tools for finance, manufacturing and sales data ([see the products]({{ '/products/' | relative_url }})).
+- **Mechatronics:** engineering builds and prototypes, published here as they are finished.
+- **Research:** experiments and write-ups, published here as they are finished.
+
+<!--
+## Education
+
+**Mechatronics engineering** · University name · 20XX – present
 
 ## Experience
 
-<!-- One block per role or project. Delete what you do not need. -->
-
-**Role or project** · Organisation · 2025 – present
+**Role or project** · Organisation · 20XX – present
 What you did and what came out of it, in one or two lines.
-
-## Education
-
-**Programme** · University · 2023 – present
 
 ## Skills
 
-Python · FastAPI · JavaScript · ...
+Python · FastAPI · ...
 
-<!-- Optional: put a PDF at /assets/cv.pdf and link it: [Download CV (PDF)](/assets/cv.pdf) -->
+Optional CV: put a PDF at /assets/cv.pdf and link it: [Download CV (PDF)](/assets/cv.pdf)
+-->
+
+## Contact
+
+{% include email.html %}

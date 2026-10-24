@@ -1,11 +1,17 @@
 # Who the site belongs to. Everything here is used on every page.
-name: Kolos Hetyéssy
-role: Software developer
+name: SSY Dynamics
+mark: SSY                     # letters in the corner-bracket monogram (header, footer)
+tagline: Software · Mechatronics · Research
 location: Hungary, EU
 
-# TODO: set your support/contact email here (e.g. hello@your-domain once the domain is ready).
-# While it is empty, the site shows "contact email coming soon" instead of a link.
-email: ""
+# Shown on the site and used for the contact links.
+email: contact@ssydynamics.dev
+
+# The person behind the brand. Named on the Founder page and, because the law asks who runs a commercial site,
+# in the privacy notice. Nowhere else.
+founder:
+  name: Kolos Hetyéssy
+  role: Founder · Mechatronics engineer
 
 # Optional profile links. Uncomment the ones you want to show in the footer and contact section.
 links: []

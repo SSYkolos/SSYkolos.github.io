@@ -1,7 +1,7 @@
 ---
 layout: default
 title: Products
-description: APIs and browser tools by Kolos Hetyéssy for finance, manufacturing and sales data.
+description: APIs and browser tools by SSY Dynamics for finance, manufacturing and sales data.
 ---
 {%- assign products = site.products -%}
 {%- assign cats = site.product_categories | sort: "order" -%}
@@ -40,6 +40,6 @@ description: APIs and browser tools by Kolos Hetyéssy for finance, manufacturin
     {%- endfor %}
   </div>
   {%- endif %}
-  <p class="filter__empty" hidden>No product matches that yet. <a href="{{ '/' | relative_url }}#contact">Tell me what you need</a>: requests decide what gets built next.</p>
+  <p class="filter__empty" hidden>No product matches that yet. <a href="{{ '/' | relative_url }}#contact">Tell us what you need</a>: requests decide what gets built next.</p>
 </section>
 <script src="{{ '/assets/js/products-filter.js' | relative_url }}?v={{ site.time | date: '%s' }}" defer></script>

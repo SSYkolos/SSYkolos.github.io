@@ -1,6 +1,7 @@
-# ssykolos.github.io
+# ssydynamics.dev
 
-Personal website of Kolos Hetyéssy: products, privacy policies, contact, and later projects and CV.
+Website of SSY Dynamics (founder: Kolos Hetyéssy): products, projects, research, privacy policies and contact.
+Served at https://ssydynamics.dev (old ssykolos.github.io links redirect there).
 Built by GitHub Pages' built-in Jekyll. No local build step, no JavaScript, no external requests.
 This repository contains only the website, no product source code.
 
@@ -8,12 +9,13 @@ This repository contains only the website, no product source code.
 
 | Path | What it is |
 |---|---|
-| `_data/profile.yml` | Name, role, location, **contact email**, profile links: used on every page |
+| `_data/profile.yml` | Brand name, monogram, tagline, location, **contact email**, founder, profile links: used on every page |
 | `_data/navigation.yml` | Main menu. An item only shows when its page or collection exists |
 | `_products/*.md` | One file per product → `/products/<file-name>/` |
 | `_privacy/*.md` | Privacy notice per product → `/products/<file-name>/privacy/` |
-| `_projects/*.md` | Projects / case studies → `/projects/<file-name>/` (none yet: the menu item stays hidden) |
-| `about.md` | About / CV page, hidden until `published: true` |
+| `_projects/*.md` | Mechatronics builds and other projects → `/projects/<file-name>/` (none yet: the menu item stays hidden) |
+| `_research/*.md` | Research write-ups, optional PDF → `/research/<file-name>/` (none yet: the menu item stays hidden) |
+| `about.md` | Founder page (the only page written in "I"; the rest of the site says "we") |
 | `privacy.md` | Privacy of this website itself |
 | `_templates/` | Copy-ready starting files for a new product or project (not published) |
 | `_tools/` | Scripts that build the product demos (not published) |
@@ -57,7 +59,8 @@ Product pages also carry SoftwareApplication structured data.
 - **Add a store link:** in the product's file under `channels:`, set `url:`. The "coming soon" button becomes a real link.
 - **Add a product:** see "Adding a product" above.
 - **Add a project:** copy `_templates/project.md` to `_projects/<name>.md`. The Projects menu item and home section appear by themselves.
-- **Publish the About/CV page:** edit `about.md`, set `published: true`.
+- **Add research:** copy `_templates/research.md` to `_research/<name>.md` (PDFs go in `assets/research/`). The Research menu item and home section appear by themselves. With projects or research live, the home page also shows a "What we do" row.
+- **Founder page:** edit `about.md`; the education/experience blocks are commented out until you fill them in.
 - **Add a page:** create `<name>.md` with `title:` and `permalink: /<name>/`, then add it to `_data/navigation.yml`.
 
 Every push to `main` rebuilds the site in about a minute.

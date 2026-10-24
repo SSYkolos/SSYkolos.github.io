@@ -28,7 +28,7 @@
       "url": {{ prod.url | absolute_url | jsonify }},
       "applicationCategory": "BusinessApplication",
       "operatingSystem": {% if prod.kind contains "Chrome" %}"Chrome"{% else %}"Web"{% endif %},
-      "author": {"@type": "Person", "name": {{ site.data.profile.name | jsonify }}, "url": {{ '/' | absolute_url | jsonify }}}
+      "author": {"@type": "Organization", "name": {{ site.data.profile.name | jsonify }}, "url": {{ '/' | absolute_url | jsonify }}}
     }
     {%- endif %}
     {%- if include.type == "tool" and page.faq %},

@@ -11,7 +11,10 @@
 - title: Projects
   url: /projects/
   collection: projects
-- title: About
+- title: Research
+  url: /research/
+  collection: research
+- title: Founder
   url: /about/
 - title: Contact
   url: /#contact
