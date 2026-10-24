@@ -4,8 +4,8 @@ title: Research
 description: Research, experiments and measurements by SSY Dynamics.
 ---
 {%- comment -%}
-  Lists every file in _research/. The menu item and the home page section appear
-  automatically once the first write-up exists (copy _templates/research.md).
+  Lists every file in _research/. While it is empty the page says "under construction";
+  add the first write-up by copying _templates/research.md to _research/.
 {%- endcomment -%}
 {%- assign projects = site.research | sort: "order" -%}
 <section class="wrap page">
@@ -20,6 +20,7 @@ description: Research, experiments and measurements by SSY Dynamics.
     {%- endfor %}
   </div>
   {%- else %}
-  <p class="lede">Research write-ups are on the way.</p>
+  <p class="lede"><span class="status">Under construction</span> Our first experiments and write-ups are in the
+    works. They will appear here with their data and limits.</p>
   {%- endif %}
 </section>

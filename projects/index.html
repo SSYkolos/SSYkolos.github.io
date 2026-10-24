@@ -4,8 +4,8 @@ title: Projects
 description: Mechatronics builds, engineering projects and write-ups by SSY Dynamics.
 ---
 {%- comment -%}
-  Lists every file in _projects/. The menu item and the home page section appear
-  automatically once the first project exists (copy _templates/project.md).
+  Lists every file in _projects/. While it is empty the page says "under construction";
+  add the first project by copying _templates/project.md to _projects/.
 {%- endcomment -%}
 {%- assign projects = site.projects | sort: "order" -%}
 <section class="wrap page">
@@ -20,6 +20,7 @@ description: Mechatronics builds, engineering projects and write-ups by SSY Dyna
     {%- endfor %}
   </div>
   {%- else %}
-  <p class="lede">Write-ups are on the way.</p>
+  <p class="lede"><span class="status">Under construction</span> Our first mechatronics builds and engineering
+    projects are being documented. They will appear here, finished or in progress.</p>
   {%- endif %}
 </section>

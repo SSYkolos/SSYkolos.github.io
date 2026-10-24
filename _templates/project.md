@@ -6,6 +6,7 @@ title: Project name
 order: 1
 kind: Mechatronics           # or "Drone", "Software", "University project", "Open source", ...
 year: 2026
+status: In progress           # optional: unfinished work is fine to publish; delete this line when it is done
 summary: "One or two sentences: the problem and the result."
 stack: [Python, FastAPI]
 ---
