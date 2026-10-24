@@ -30,6 +30,11 @@ updated: 2026-10-24
 - **Messages and reports.** What you send with the contact form or the "Send this to the developer" button is
   stored privately. Details are in the next section.
 {% endif -%}
+- **Buying a plan.** The [pricing page]({{ '/pricing/' | relative_url }}) loads Paddle's checkout only when you click a
+  Buy button. Paddle.com, our reseller and merchant of record, then processes your name, e-mail, address and payment
+  details under its own [privacy policy](https://www.paddle.com/legal/privacy). We look up your e-mail address once, to
+  send the API key, and do not store it. We keep the key only as a hash, together with the plan, the Paddle customer
+  and subscription IDs and the usage count per month that applies your quota.
 - **Email.** If you write to us, we use your message and address only to reply.
 
 {% if site.feedback_api != "" %}

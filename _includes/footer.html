@@ -10,8 +10,11 @@
       {%- for link in profile.links %}
       <li><a href="{{ link.url }}" rel="me">{{ link.name }}</a></li>
       {%- endfor %}
+      <li><a href="{{ '/pricing/' | relative_url }}">Pricing</a></li>
+      <li><a href="{{ '/terms/' | relative_url }}">Terms</a></li>
+      <li><a href="{{ '/refunds/' | relative_url }}">Refunds</a></li>
       <li><a href="{{ '/privacy/' | relative_url }}">Privacy</a></li>
     </ul>
-    <p class="site-foot__note">No cookies · no trackers · no third-party requests</p>
+    <p class="site-foot__note">No cookies · no trackers · no third-party requests (except Paddle's checkout, once you click Buy)</p>
   </div>
 </footer>

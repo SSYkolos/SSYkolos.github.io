@@ -17,6 +17,12 @@ demo_api:
 # Free runs per visitor per day in the live demos (must match DEMO_PER_CLIENT_PER_DAY on the demo services).
 demo_runs_per_day: 5
 
+# Paddle checkout on /pricing/. Sandbox until the live account is verified: then set environment: production,
+# the live_ token, and the live price ids in _data/pricing.yml. Paddle.js loads only when a Buy button is clicked.
+paddle:
+  environment: sandbox
+  client_token: test_9d567618223e908df428a25295c
+
 # Feedback collector (Cloud Run). Empty = no report buttons and no contact form (the e-mail line stays).
 feedback_api: https://feedback-collector-258730673938.europe-west1.run.app
 

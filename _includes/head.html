@@ -22,7 +22,18 @@
   {%- assign connect = connect | append: " " | append: site.feedback_api -%}
   {%- assign form_action = form_action | append: " " | append: site.feedback_api -%}
 {%- endif %}
-<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'inline-speculation-rules'; style-src 'self'; img-src 'self' data:; font-src 'self'; connect-src {{ connect }}; object-src 'none'; base-uri 'self'; form-action {{ form_action }}">
+{%- assign script_src = "'self' 'inline-speculation-rules'" -%}
+{%- assign style_src = "'self'" -%}
+{%- assign frame_src = "'none'" -%}
+{%- assign img_src = "'self' data:" -%}
+{%- if page.paddle_checkout -%}{%- comment -%} Paddle checkout overlay: only on pages that sell {%- endcomment -%}
+  {%- assign script_src = script_src | append: " https://cdn.paddle.com https://sandbox-cdn.paddle.com" -%}
+  {%- assign style_src = style_src | append: " 'unsafe-inline' https://cdn.paddle.com https://sandbox-cdn.paddle.com" -%}
+  {%- assign frame_src = "https://buy.paddle.com https://sandbox-buy.paddle.com" -%}
+  {%- assign img_src = img_src | append: " https://cdn.paddle.com https://sandbox-cdn.paddle.com" -%}
+  {%- assign connect = connect | append: " https://*.paddle.com" -%}
+{%- endif %}
+<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src {{ script_src }}; style-src {{ style_src }}; img-src {{ img_src }}; font-src 'self'; connect-src {{ connect }}; frame-src {{ frame_src }}; object-src 'none'; base-uri 'self'; form-action {{ form_action }}">
 <meta name="referrer" content="strict-origin-when-cross-origin">
 <script type="speculationrules">{"prerender":[{"where":{"and":[{"href_matches":"/*"},{"not":{"href_matches":"/assets/*"}},{"not":{"selector_matches":"[download], [data-open-live], [rel~=nofollow]"}}]},"eagerness":"moderate"}]}</script>
 <meta name="color-scheme" content="light dark">
