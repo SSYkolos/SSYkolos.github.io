@@ -1,0 +1,60 @@
+# Plans sold on /pricing/ through Paddle. price_id must match api-key-service/plans.json (sandbox ids for now).
+# Prices in USD per month, before VAT/sales tax (Paddle adds it at checkout for the buyer's country).
+- product: bank-statement-reconciler
+  title: Bank Statement Reconciler API
+  api: https://reconciler-api-258730673938.europe-west1.run.app
+  unit: statement
+  plans:
+    - name: Starter
+      price_id: pri_01m5g3h5fdv0rjh81r9vj38wkv
+      price: 19
+      quota: 300 statements / month
+      overage: then $0.08 per statement
+    - name: Pro
+      price_id: pri_01m5g3h5v49sb78m57r465kqhk
+      price: 49
+      quota: 3,000 statements / month
+      overage: then $0.02 per statement
+      featured: true
+    - name: Business
+      price_id: pri_01m5g3h67dr2jzapnvyncnn4rk
+      price: 149
+      quota: 15,000 statements / month
+      overage: then $1.20 per 100 statements
+- product: dxf-quote-api
+  title: CAD DXF Quote API
+  api: https://dxf-api-258730673938.europe-west1.run.app
+  unit: drawing
+  plans:
+    - name: Pro
+      price_id: pri_01m5g3h751sx09zyyv8325ns55
+      price: 39
+      quota: 500 drawings / month
+      overage: then $0.10 per drawing
+    - name: Shop
+      price_id: pri_01m5g3h7h6vd2dcsmh7hmgw524
+      price: 99
+      quota: 2,500 drawings / month
+      overage: then $0.06 per drawing
+      featured: true
+    - name: Platform
+      price_id: pri_01m5g3h7wzjns35n14v0rstq4e
+      price: 249
+      quota: 12,000 drawings / month
+      overage: then $0.25 per 10 drawings
+- product: sepa-payment-api
+  title: SEPA & NACHA Payment File API
+  api: https://sepa-api-258730673938.europe-west1.run.app
+  unit: file
+  plans:
+    - name: Pro
+      price_id: pri_01m5g3h8fthdwqy502gxnymrps
+      price: 39
+      quota: 50 generated files, 2,000 validations, 2,000 addresses / month
+      overage: then $1.00 per extra file; validations and addresses pause at the limit
+    - name: Business
+      price_id: pri_01m5g3h8wjmtsc1vzynb9ewk08
+      price: 99
+      quota: 250 generated files, 10,000 validations, 10,000 addresses / month
+      overage: then $0.50 per extra file; validations and addresses pause at the limit
+      featured: true

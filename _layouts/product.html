@@ -17,6 +17,10 @@ layout: default
       <p class="lede">{{ page.tagline }}</p>
       <p class="io io--large"><span class="io__in">{{ page.io.in }}</span> <span class="io__out"><span class="io__arrow" aria-label="to">→</span> {{ page.io.out }}</span></p>
       <div class="actions">
+        {%- assign sold = site.data.pricing | where: "product", page.slug | first %}
+        {%- if sold %}
+        <a class="btn btn--primary" href="{{ '/pricing/' | relative_url }}#price-{{ page.slug }}">Buy an API key</a>
+        {%- endif %}
         {%- for ch in page.channels %}
           {%- if ch.url and ch.url != "" %}
         <a class="btn btn--primary" href="{{ ch.url }}">{{ ch.name }}</a>

@@ -1,0 +1,51 @@
+---
+layout: default
+title: Pricing
+description: Monthly plans for the SSY Dynamics APIs, bought directly with an API key. Prices in USD, tax added at checkout.
+paddle_checkout: true
+---
+{%- comment -%}
+  Plans come from _data/pricing.yml; checkout settings from `paddle:` in _config.yml.
+  Paddle.js is not loaded until a Buy button is clicked (assets/js/checkout.js).
+{%- endcomment -%}
+<section class="wrap page">
+  <header class="page-head">
+    <p class="eyebrow">Pricing</p>
+    <h1>Pricing</h1>
+    <p class="lede">Monthly plans with an API key, billed by our reseller Paddle. Cancel any time; the plan runs to the
+      end of the month you paid for. Prefer RapidAPI? Every API also has a free plan there.</p>
+  </header>
+
+  {%- for product in site.data.pricing %}
+  {%- assign page_url = '/products/' | append: product.product | append: '/' %}
+  <section class="section" aria-labelledby="price-{{ product.product }}">
+    <h2 id="price-{{ product.product }}"><a href="{{ page_url | relative_url }}">{{ product.title }}</a></h2>
+    <div class="grid grid--3">
+      {%- for plan in product.plans %}
+      <article class="card plan{% if plan.featured %} plan--featured{% endif %}">
+        <div class="card__meta"><span class="kind">{{ plan.name }}</span>{% if plan.featured %}<span class="status">Recommended</span>{% endif %}</div>
+        <p class="plan__price"><span class="plan__amount">${{ plan.price }}</span> <span class="plan__per">/ month</span></p>
+        <p class="card__text">{{ plan.quota }}</p>
+        <p class="plan__over">{{ plan.overage }}</p>
+        <button class="btn{% if plan.featured %} btn--primary{% endif %}" type="button" data-price-id="{{ plan.price_id }}">Buy {{ plan.name }}</button>
+      </article>
+      {%- endfor %}
+    </div>
+  </section>
+  {%- endfor %}
+
+  <section class="section prose">
+    <h2>How it works</h2>
+    <ol>
+      <li>Click <b>Buy</b>. Paddle's secure checkout opens; it shows the final price with the VAT or sales tax for your country.</li>
+      <li>After payment, your API key arrives by e-mail from <code>support@ssydynamics.dev</code> within a minute.</li>
+      <li>Send it in the <code>X-API-Key</code> header. The product pages show every endpoint and an example.</li>
+    </ol>
+    <p>Paddle.com is the merchant of record for all orders: it handles payment, invoices, VAT and refunds. Usage above
+      the monthly quota is charged at the start of the next month. See the <a href="{{ '/terms/' | relative_url }}">terms</a>
+      and the <a href="{{ '/refunds/' | relative_url }}">refund policy</a>. Questions before you buy?
+      {% include email.html %}.</p>
+    <p class="meta" data-checkout-error hidden>The checkout could not open. Please try again, or write to {% include email.html %}.</p>
+  </section>
+</section>
+<script src="{{ '/assets/js/checkout.js' | relative_url }}?v={{ site.time | date: '%s' }}" data-environment="{{ site.paddle.environment }}" data-token="{{ site.paddle.client_token }}" data-success-url="{{ '/purchase-complete/' | absolute_url }}" defer></script>

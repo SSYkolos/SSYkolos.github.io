@@ -533,3 +533,12 @@ b, strong { font-weight: 600; }
   body { background: #fff; color: #000; }
 }
 .specs code { font-size: .88em; color: var(--text); }
+
+/* ---------- Pricing ---------- */
+.plan { display: flex; flex-direction: column; gap: 10px; }
+.plan--featured { border-color: var(--accent); }
+.plan__price { margin: 4px 0 0; }
+.plan__amount { font-size: 34px; font-weight: 600; letter-spacing: -.02em; }
+.plan__per, .plan__over { color: var(--faint); font-size: 14px; }
+.plan__over { margin: 0; }
+.plan .btn { margin-top: auto; align-self: flex-start; }
