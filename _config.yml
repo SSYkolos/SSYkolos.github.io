@@ -3,8 +3,8 @@ title: Kolos Hetyéssy
 description: Software developer from Hungary building precise, deterministic tools for finance and manufacturing data.
 lang: en
 
-# When a custom domain is added, change this to https://your-domain (see README.md).
-url: https://ssykolos.github.io
+# Custom domain: also in the CNAME file and GitHub Pages settings (see README.md).
+url: https://ssydynamics.dev
 baseurl: ""
 
 # Live demo services (Cloud Run, DEMO_MODE=1). Empty = no "Your file" tab and no JavaScript on the page.
