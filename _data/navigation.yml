@@ -10,10 +10,8 @@
   collection: landing
 - title: Projects
   url: /projects/
-  collection: projects
 - title: Research
   url: /research/
-  collection: research
 - title: Founder
   url: /about/
 - title: Contact

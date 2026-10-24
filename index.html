@@ -6,9 +6,7 @@ body_class: home
 {%- assign products = site.products | sort: "order" -%}
 {%- assign projects = site.projects | sort: "order" -%}
 {%- assign research = site.research | sort: "order" -%}
-{%- assign divisions = 1 -%}
-{%- if projects.size > 0 %}{% assign divisions = divisions | plus: 1 %}{% endif -%}
-{%- if research.size > 0 %}{% assign divisions = divisions | plus: 1 %}{% endif -%}
+
 {%- assign n = 0 -%}
 
 <section class="wrap hero">
@@ -30,7 +28,6 @@ body_class: home
 <script src="{{ '/assets/js/feedback.js' | relative_url }}?v={{ site.time | date: '%s' }}" defer></script>
 {%- endif %}
 
-{%- if divisions > 1 %}
 {%- assign n = n | plus: 1 %}
 <section class="wrap section" aria-labelledby="divisions-title">
   {% include section-head.html num=n title="What we do" id="divisions" %}
@@ -41,25 +38,20 @@ body_class: home
       <p class="card__text">Deterministic software for finance, manufacturing and sales data, with live demos.</p>
       <span class="card__go" aria-hidden="true">Open →</span>
     </article>
-    {%- if projects.size > 0 %}
     <article class="card">
-      <div class="card__meta"><span class="kind">Projects</span><span class="status status--plain">{{ projects.size }} {% if projects.size == 1 %}project{% else %}projects{% endif %}</span></div>
+      <div class="card__meta"><span class="kind">Projects</span>{% if projects.size > 0 %}<span class="status status--plain">{{ projects.size }} {% if projects.size == 1 %}project{% else %}projects{% endif %}</span>{% else %}<span class="status status--plain">Under construction</span>{% endif %}</div>
       <h3 class="card__title"><a class="stretch" href="{{ '/projects/' | relative_url }}">Mechatronics and builds</a></h3>
       <p class="card__text">Engineering builds, prototypes and side projects, documented as they are finished.</p>
       <span class="card__go" aria-hidden="true">Open →</span>
     </article>
-    {%- endif %}
-    {%- if research.size > 0 %}
     <article class="card">
-      <div class="card__meta"><span class="kind">Research</span><span class="status status--plain">{{ research.size }} {% if research.size == 1 %}write-up{% else %}write-ups{% endif %}</span></div>
+      <div class="card__meta"><span class="kind">Research</span>{% if research.size > 0 %}<span class="status status--plain">{{ research.size }} {% if research.size == 1 %}write-up{% else %}write-ups{% endif %}</span>{% else %}<span class="status status--plain">Under construction</span>{% endif %}</div>
       <h3 class="card__title"><a class="stretch" href="{{ '/research/' | relative_url }}">Research</a></h3>
       <p class="card__text">Experiments, measurements and papers, with the data and the limits stated.</p>
       <span class="card__go" aria-hidden="true">Open →</span>
     </article>
-    {%- endif %}
   </div>
 </section>
-{%- endif %}
 
 {%- assign featured = products | where: "featured", true -%}
 {%- if featured.size == 0 %}{% assign featured = products %}{% endif -%}

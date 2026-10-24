@@ -5,6 +5,7 @@ title: Research title
 order: 1
 kind: Paper                   # or "Experiment", "Measurement", "Thesis", "Notes", ...
 year: 2026
+status: In progress           # optional: unfinished work is fine to publish; delete this line when it is done
 summary: "One or two sentences: the question and what we found."
 stack: [MATLAB, Python]       # tools or methods; delete the line if not useful
 pdf: /assets/research/file-name.pdf   # optional: put the PDF there; the page gets a download button
