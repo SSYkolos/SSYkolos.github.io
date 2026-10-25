@@ -64,7 +64,7 @@
   function thanks(id, extra) {
     return el("div", { class: "fb__thanks", role: "status" }, [
       el("p", { class: "fb__thanks-title", text: "Thank you, it arrived." }),
-      el("p", { text: "I read every report myself" + (extra || "") + "." }),
+      el("p", { text: "We read every report ourselves" + (extra || "") + "." }),
       el("p", { class: "fb__ref", text: "Reference: " + id })
     ]);
   }
@@ -82,10 +82,10 @@
 
     form.appendChild(el("p", { class: "fb__title", text: opts.title || "Send this to the developer" }));
     form.appendChild(el("p", { class: "fb__lead", text: opts.kind === "wrong_result"
-      ? "Tell me what looks wrong. The result details are attached automatically, so a few words are enough."
+      ? "Tell us what looks wrong. The result details are attached automatically, so a few words are enough."
       : "The error details are attached automatically. Reports like this are how new file variants get supported." }));
 
-    form.appendChild(el("label", { class: "fb__label", for: msgId, text: "Anything I should know? (optional)" }));
+    form.appendChild(el("label", { class: "fb__label", for: msgId, text: "Anything we should know? (optional)" }));
     form.appendChild(el("textarea", { id: msgId, name: "message", rows: "3", maxlength: "4000",
       placeholder: opts.kind === "wrong_result" ? "e.g. the closing balance should be 1,240.50" : "e.g. which bank or CAD program produced the file" }));
 
@@ -97,8 +97,8 @@
           el("b", { text: "Also send the file itself" }), " (" + opts.file.name + ", " + fmtBytes(opts.file.size) + "). ",
           opts.fileNote || ""
         ])]),
-        el("p", { class: "fb__fine", text: "It is stored privately in the EU, only I can open it, and it is deleted automatically after 30 days. " +
-          "If it becomes a test case, it is anonymised first. Without the file I can still see the error, but usually cannot fix it." })
+        el("p", { class: "fb__fine", text: "It is stored privately in the EU, only we can open it, and it is deleted automatically after 30 days. " +
+          "If it becomes a test case, it is anonymised first. Without the file we can still see the error, but usually cannot fix it." })
       ]));
     }
 
@@ -142,7 +142,7 @@
       status.className = "fb__status";
       status.textContent = "Sending…";
       post(opts.endpoint, data).then(function (body) {
-        box.replaceChild(thanks(body.id, form.elements.email.value.trim() ? " and answer when I can" : ""), form);
+        box.replaceChild(thanks(body.id, form.elements.email.value.trim() ? " and answer when we can" : ""), form);
       }, function (err) {
         submit.disabled = false;
         status.className = "fb__status fb__status--error";
@@ -197,7 +197,7 @@
       status.className = "fb__status";
       status.textContent = "Sending…";
       post(form.getAttribute("action"), data).then(function (body) {
-        var box = thanks(body.id, (form.elements.email.value.trim() ? " and answer when I can" : ""));
+        var box = thanks(body.id, (form.elements.email.value.trim() ? " and answer when we can" : ""));
         form.parentNode.replaceChild(box, form);
         box.setAttribute("tabindex", "-1");
         box.focus();
