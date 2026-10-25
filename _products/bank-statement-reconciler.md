@@ -7,10 +7,10 @@ featured: true
 kind: REST API
 status: Live on RapidAPI (free plan)
 tagline: Turn European and US bank statements into clean, verified data in one API call. Every balance checked to the cent, every counterparty extracted, no AI guesswork.
-summary: Parses MT940, ISO 20022 camt, BAI2 and CODA files, normalizes every transaction and proves each statement adds up to the cent.
-description: Bank statement parser and reconciler API for MT940, MT942, ISO 20022 camt.052/053/054, BAI2 and CODA. Verifies balances to the cent and exports JSON, CSV, hledger, Beancount, camt.053 and DATEV.
+summary: Parses MT940, ISO 20022 camt, BAI2, CODA and bank CSV exports, normalizes every transaction and proves each statement adds up to the cent.
+description: Bank statement parser and reconciler API for MT940, MT942, ISO 20022 camt.052/053/054, BAI2, CODA and bank CSV exports. Verifies balances to the cent and exports JSON, CSV, hledger, Beancount, camt.053 and DATEV.
 io:
-  in: MT940 · MT942 · camt.052/053/054 · BAI2 · CODA · ZIP
+  in: MT940 · MT942 · camt.052/053/054 · BAI2 · CODA · CSV · ZIP
   out: JSON · CSV · hledger · Beancount · camt.053 · DATEV
 fact:
   value: "±0.00"
@@ -20,10 +20,10 @@ samples: reconciler
 live_demo:
   api: reconciler
   path: /demo/reconcile
-  accept: ".sta,.mt940,.mt942,.940,.942,.txt,.xml,.053,.052,.054,.bai,.bai2,.cod,.coda,.zip"
+  accept: ".sta,.mt940,.mt942,.940,.942,.txt,.xml,.053,.052,.054,.bai,.bai2,.cod,.coda,.csv,.zip"
   max_mb: 2
   noun: bank statement
-  formats: "MT940 · MT942 · camt.052 / 053 / 054 · BAI2 · CODA · or a ZIP of them"
+  formats: "MT940 · MT942 · camt.052 / 053 / 054 · BAI2 · CODA · bank CSV · or a ZIP of them"
   options:
     - type: checkbox
       param: redact_pii
@@ -48,6 +48,8 @@ features:
     text: German ?20 subfields, Dutch /EREF/ tags, Polish ~20 subfields, SEPA keywords, SWIFT envelopes, multi-statement files, camt batch bookings, reversals and pending entries. BAI2 continuation records and funds types, CODA globalised batches and Belgian structured communications (+++…+++, check digits validated).
   - title: Counterparty extraction
     text: Name, IBAN, BIC, end-to-end ID, mandate ID, creditor ID, purpose, return reason, booking text and GVC, as separate fields.
+  - title: Bank CSV exports
+    text: "The CSV download most online banks offer works too. Columns are recognised by their headers in English, German, French, Spanish and Hungarian, `1.234,56` and `1,234.56` are both read, and with a running balance column every row is checked against the balance."
   - title: Whole archives in one call
     text: Send a ZIP of statements. A damaged or unrelated file inside it is reported as a warning; the rest is still processed.
   - title: Idempotent imports
@@ -61,7 +63,7 @@ features:
 
 specs:
   - label: Inputs
-    value: SWIFT MT940 and MT942; ISO 20022 camt.052, camt.053, camt.054 (versions .02 – .08+); BAI2 (US banks); CODA 2.6 (Belgian banks); or a ZIP of any of these
+    value: SWIFT MT940 and MT942; ISO 20022 camt.052, camt.053, camt.054 (versions .02 – .08+); BAI2 (US banks); CODA 2.6 (Belgian banks); bank CSV exports (headers in EN / DE / FR / ES / HU); or a ZIP of any of these
   - label: Outputs
     value: JSON · CSV (Excel-ready) · hledger · Beancount · camt.053.001.08 XML · DATEV Buchungsstapel (EXTF)
   - label: Verdicts
@@ -81,7 +83,7 @@ specs:
 
 details_title: A request and its answer
 tested:
-  - 196 automated tests, realistic bank sample files and fuzz tests.
+  - 234 automated tests, realistic bank sample files and fuzz tests.
   - The BAI2 parser reproduces every control total of the sample in the BAI2 specification's Appendix D.
   - On public BAI2 and CODA sample files of two independent open-source parsers, account numbers, balances, amounts, references and texts match exactly.
   - Run against about 65 public sample files from real European banks, including camt.052/053/054 versions 1 to 8. Every complete file is read.
@@ -90,6 +92,7 @@ tested:
   - The container build runs the full test suite and fails if a single test fails.
 limits:
   - "Not supported yet: OFX/QFX, BAI versions other than 2, CODA versions other than 2, and pain.001 (a payment order, not a statement). These get a clear `UNSUPPORTED_FORMAT` message."
+  - "Bank CSV exports have no standard. A CSV without a running balance column cannot be checked, so it is `UNVERIFIABLE` (and has no camt.053 export). Dates like 03/04/2026 are read day-first unless the file proves otherwise, with a `DATE_ORDER_ASSUMED` warning. UTF-16 (\"Unicode text\") exports and Excel files are not read: save them as CSV."
   - "In BAI2, banks may send detail for only some items. When the account record carries the bank's totals (type codes 100 / 400), the balances are checked against them and the gap is reported as a `DETAIL_INCOMPLETE` warning."
   - "CODA separate applications (zeroed balances) are `UNVERIFIABLE`. Booking texts name the transaction family, not every transaction code."
   - Very old DOS-encoded (cp850) German files may still show wrong umlauts.

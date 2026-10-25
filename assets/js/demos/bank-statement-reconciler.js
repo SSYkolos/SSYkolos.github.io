@@ -15,13 +15,13 @@
       if (u.startsWith(head, "%PDF")) {
         return u.problem("This is a PDF statement",
           "The tool reads the electronic statement files banks provide for accounting software, not PDFs. " +
-          "In your online bank, look for an export or download option named MT940, STA, SWIFT, camt.053 (XML), BAI2 or CODA. " +
+          "In your online bank, look for an export or download option named CSV, MT940, STA, SWIFT, camt.053 (XML), BAI2 or CODA. " +
           "Business accounts almost always have it, sometimes under 'Accounting export' or 'Statement files'.");
       }
-      if (["csv", "xlsx", "xls", "ods"].indexOf(e) >= 0) {
-        return u.problem("This looks like a spreadsheet export",
-          "Every bank lays out its CSV or Excel export differently, so the tool reads the standard bank formats instead: " +
-          "MT940 / MT942 (often .sta or .txt), camt.052 / 053 / 054 (XML), BAI2 and CODA. Look for those in your bank's export options.");
+      if (["xlsx", "xls", "ods"].indexOf(e) >= 0) {
+        return u.problem("This is an Excel file",
+          "Open it in Excel and use File → Save As → CSV, then try the CSV. Or export the statement from your bank as " +
+          "CSV, MT940 (often .sta or .txt), camt.053 (XML), BAI2 or CODA.");
       }
       return null;
     },
@@ -29,18 +29,21 @@
     help: {
       UNSUPPORTED_FORMAT: ["This doesn't look like a bank statement file",
         "The tool reads MT940 and MT942 (often .sta, .mt940 or .txt), ISO 20022 camt.052 / 053 / 054 (XML), BAI2 (US banks) " +
-        "and CODA 2.6 (Belgian banks), or a ZIP of these. OFX and CSV exports are not supported yet."],
+        "CODA 2.6 (Belgian banks) and bank CSV exports with a date and an amount column, or a ZIP of these. OFX is not supported yet."],
       MALFORMED_MT940: ["Part of this MT940 file could not be read",
         "The file is recognised as MT940, but one line does not follow the format. If your bank produced it unchanged, " +
-        "I'd really like to see an anonymised copy: it is exactly how new bank dialects get supported."],
+        "we would really like to see an anonymised copy: it is exactly how new bank dialects get supported."],
       MALFORMED_BAI2: ["Part of this BAI2 file could not be read",
         "The file is recognised as BAI2, but one record does not follow the format. If your bank produced it unchanged, " +
-        "an anonymised copy would help me support it."],
+        "an anonymised copy would help us support it."],
       MALFORMED_CODA: ["Part of this CODA file could not be read",
         "The file is recognised as CODA, but one record does not follow the 2.6 layout. If your bank produced it unchanged, " +
-        "an anonymised copy would help me support it."],
+        "an anonymised copy would help us support it."],
+      MALFORMED_CSV: ["One row of this CSV could not be read",
+        "The message above names the row and the column. Check that row in the file; if your bank produced it unchanged, " +
+        "an anonymised copy would help us support its layout."],
       MALFORMED_XML: ["This XML file could not be read",
-        "It is not well-formed XML, or not a camt statement. If your bank produced it unchanged, an anonymised copy would help me support it."],
+        "It is not well-formed XML, or not a camt statement. If your bank produced it unchanged, an anonymised copy would help us support it."],
       UNSAFE_XML: ["This XML file was rejected for safety",
         "It contains constructs (such as entity definitions) that are used in attacks against XML parsers, so it was not processed."],
       NO_STATEMENTS: ["No statements found", "The file was read, but it contains no statements."]

@@ -31,7 +31,7 @@
       UNSUPPORTED_FORMAT: ["This is not a DXF drawing",
         "The API reads DXF (ASCII or binary). DWG files need to be exported as DXF first: in most CAD programs that is 'Save As' or 'Export'."],
       MALFORMED_DXF: ["This drawing could not be read",
-        "The file is damaged or not a complete DXF. If your CAD program produced it unchanged, I'd like to see it: " +
+        "The file is damaged or not a complete DXF. If your CAD program produced it unchanged, we'd like to see it: " +
         "every file like this makes the parser better."],
       TOO_COMPLEX: ["This drawing is too complex for one request",
         "It has more geometry than the API processes in a single call. Try a single part or a smaller sheet."]

@@ -316,13 +316,13 @@
               last.context.error_code = "UI_RENDER_ERROR";
               last.context.error_message = String(renderError && renderError.message || renderError).slice(0, 300);
               showProblem("The result arrived, but this page could not display it",
-                "That's a bug on my side, not a problem with your file. Please reload the page and try again.", null, false, true);
+                "That's a bug on our side, not a problem with your file. Please reload the page and try again.", null, false, true);
               return;
             }
             setStatus("done", "Done. Your " + (textBox ? "text" : "file") + " has already been discarded on the server.");
             nodes.forEach(function (n) { result.appendChild(n); });
             result.appendChild(el("div", { class: "live__next" }, [el("p", { text: plugin.next || "" }), againButton()]));
-            var wrong = reportOffer("wrong_result", "Result doesn't look right? Tell me");
+            var wrong = reportOffer("wrong_result", "Result doesn't look right? Tell us");
             if (wrong) result.appendChild(wrong);
             result.focus({ preventScroll: true });
             return;
@@ -341,7 +341,7 @@
             showProblem(h[0], h[1] || err.message, h[1] && err.message ? [el("p", { class: "live__detail", text: "Details: " + err.message })] : null,
               false, USER_SIDE.indexOf(err.code) < 0);
           } else if (r.resp.status >= 500) {
-            showProblem("Something went wrong on the server", "That's on me, not on your file. Please try again in a minute.", null, false, true);
+            showProblem("Something went wrong on the server", "That's on us, not on your file. Please try again in a minute.", null, false, true);
           } else {
             showProblem("The file could not be processed", err.message || ("The server answered with status " + r.resp.status + "."), null, false, true);
           }
