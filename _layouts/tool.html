@@ -106,5 +106,6 @@ layout: default
 {%- endif %}
 {%- if live != "" %}
 <script src="{{ '/assets/js/live-demo.js' | relative_url }}?v={{ site.time | date: '%s' }}" defer></script>
-<script src="{{ '/assets/js/demos/' | append: cfg.plugin | default: product.slug | append: '.js' | relative_url }}?v={{ site.time | date: '%s' }}" defer></script>
+{%- assign plugin = cfg.plugin | default: product.slug %}
+<script src="{{ '/assets/js/demos/' | append: plugin | append: '.js' | relative_url }}?v={{ site.time | date: '%s' }}" defer></script>
 {%- endif %}
