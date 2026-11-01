@@ -26,6 +26,7 @@
 {%- assign style_src = "'self'" -%}
 {%- assign frame_src = "'none'" -%}
 {%- assign img_src = "'self' data:" -%}
+{%- if page.laser_page -%}{%- assign frame_src = "https://quote.ssydynamics.dev" -%}{%- endif -%}
 {%- if page.paddle_checkout -%}{%- comment -%} Paddle checkout overlay: only on pages that sell {%- endcomment -%}
   {%- assign script_src = script_src | append: " https://cdn.paddle.com https://sandbox-cdn.paddle.com" -%}
   {%- assign style_src = style_src | append: " 'unsafe-inline' https://cdn.paddle.com https://sandbox-cdn.paddle.com" -%}

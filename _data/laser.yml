@@ -6,8 +6,13 @@ hu:
   kind: Honlapba épülő kalkulátor
   title_html: Azonnali ár a honlapján.<br><em>A végső szó az Öné.</em>
   lede: "Árkalkulátor lézervágó műhelyeknek. A vevő feltölti a DXF- vagy DWG-rajzát, és azonnal tájékoztató árat lát, az Önök áraival számolva. Önök megkapják a rajzot és a kalkulációt, majd jóváhagyják vagy átírják az árat."
-  cta: Kérek bemutatót
-  cta_subject: Lézervágási árkalkulátor bemutató
+  cta: Kérek próbaoldalt
+  cta_try: Kipróbálom
+  demo_kicker: Próbálja ki
+  demo_title: Ezt látja a vevő
+  demo_note: "Élő bemutató, kitalált műhellyel és kitalált árakkal. Töltsön fel saját DXF- vagy DWG-rajzot, vagy válasszon egy mintát. Nem megy ki e-mail, és a rajzot nem tároljuk."
+  demo_bar: PÉLDA Lézervágó Kft. · élő bemutató
+  cta_subject: Lézervágási árkalkulátor próbaoldal
   cta_how: Így működik
   note: "Új termék, az első műhelyekkel közösen állítjuk be. Az éles próba 30 napig ingyenes, kötelezettség nélkül."
   sample: Minta, kitalált árakkal
@@ -16,9 +21,9 @@ hu:
   cut: 0,719 m
   pierce_label: Beszúrás
   gross_label: Bruttó, 25 db
-  how_kicker: Három lépés
-  how_title: A rajztól a végleges árig
-  how_note: "A képek a valódi rendszer minta-eredményét mutatják, kitalált árakkal és kitalált vevővel."
+  how_kicker: Az ajánlatkérés után
+  how_title: A kéréstől a végleges árig
+  how_note: "Ha a vevő elküldi a kérést, ez történik. A nézetek a valódi rendszer minta-eredményét mutatják, kitalált árakkal és kitalált vevővel."
   steps:
     - title: A vevő feltölt, és azonnal árat lát
       text: "Nem kell regisztrálnia, és nem kell válaszra várnia. Látja a rajz előnézetét, a vágáshosszt, a beszúrásokat és a tételes számítást. Egyszerre 20 rajzot is feltölthet."
@@ -143,8 +148,8 @@ hu:
       a: "A geometriát 14 referenciarajzon ellenőriztük, az ár viszont csak akkor megbízható, ha az Önök munkáira hangoltuk. Ezért tájékoztató ár, amelyet Önök hagynak jóvá."
     - q: Mi van, ha a vevőnek nincs DXF-e?
       a: "Elküldheti a PDF-et, a STEP-et vagy a fotót is. Ehhez nem kap azonnali árat, Önök pedig ugyanúgy megkapják a kérést a fájllal együtt."
-  close_title: Megnézné egy saját rajzával?
-  close_text: "Írjon nekünk, és elküldjük a kipróbálható bemutatót. Ha tetszik, beállítjuk egy próbaoldalra a műhelye anyagaival."
+  close_title: Megnézné a saját áraival?
+  close_text: "Írjon nekünk, és beállítunk egy próbaoldalt a műhelye anyagaival és áraival."
   privacy: Adatkezelés
   foot_note: Ez az oldal nem használ sütit és követést.
 en:
@@ -153,8 +158,13 @@ en:
   kind: Website calculator
   title_html: An instant price on your website.<br><em>The final word stays yours.</em>
   lede: "A quote calculator for laser cutting shops. Your customer uploads a DXF or DWG drawing and instantly sees an indicative price, calculated from your rates. You receive the drawing and the calculation, then approve or change the price."
-  cta: Ask for a demo
-  cta_subject: Laser quote calculator demo
+  cta: Ask for a trial page
+  cta_try: Try it
+  demo_kicker: Try it
+  demo_title: This is what your customer sees
+  demo_note: "A live demo with a made-up shop and made-up prices. Upload your own DXF or DWG, or pick a sample. No e-mail goes out and the drawing is not stored."
+  demo_bar: SAMPLE shop · live demo
+  cta_subject: Laser quote calculator trial page
   cta_how: How it works
   note: "A new product, set up together with our first shops. The live trial is free for 30 days, with no obligation."
   sample: Sample with made-up prices
@@ -163,9 +173,9 @@ en:
   cut: 0.719 m
   pierce_label: Pierces
   gross_label: Gross, 25 pcs
-  how_kicker: Three steps
-  how_title: From drawing to final price
-  how_note: "These views show the real system's sample result, with made-up prices and a made-up customer."
+  how_kicker: After the request
+  how_title: From request to final price
+  how_note: "When the customer sends the request, this happens. These views show the real system's sample result, with made-up prices and a made-up customer."
   steps:
     - title: The customer uploads and sees a price at once
       text: "No sign-up and no waiting for a reply. They see a preview of the drawing, the cut length, the pierces and an itemised calculation. Up to 20 drawings at a time."
@@ -290,7 +300,7 @@ en:
       a: "We checked the geometry on 14 reference drawings, but the price is only reliable once tuned to your jobs. That is why it is an indicative price that you approve."
     - q: What if the customer has no DXF?
       a: "They can send a PDF, STEP or photo instead. They get no instant price, and you receive the request with the file as usual."
-  close_title: Want to see it with your own drawing?
-  close_text: "Write to us and we will send you the demo. If you like it, we will set up a trial page with your shop's materials."
+  close_title: Want to see it with your own rates?
+  close_text: "Write to us and we will set up a trial page with your shop's materials and rates."
   privacy: Privacy
   foot_note: This page uses no cookies and no tracking.

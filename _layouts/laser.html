@@ -12,7 +12,7 @@ layout: default
         <h1>{{ t.title_html }}</h1>
         <p class="lq-lede">{{ t.lede }}</p>
         <div class="lq-actions">
-          <a class="lq-btn" href="mailto:{{ email }}?subject={{ mail_subject | uri_escape }}">{{ t.cta }}</a>
+          <a class="lq-btn" href="#demo">{{ t.cta_try }}</a>
           <a class="lq-btn lq-btn--ghost" href="#how">{{ t.cta_how }}</a>
         </div>
         <p class="lq-note">{{ t.note }}</p>
@@ -40,37 +40,22 @@ layout: default
     </div>
   </header>
 
-  <section class="wrap lq-section" id="how" aria-labelledby="how-title">
+  <section class="wrap lq-section" id="demo" aria-labelledby="demo-title">
+    <p class="lq-kicker">{{ t.demo_kicker }}</p>
+    <h2 id="demo-title">{{ t.demo_title }}</h2>
+    <p class="lq-section__note">{{ t.demo_note }}</p>
+    <div class="lq-live">
+      <div class="lq-window__bar"><i></i><i></i><i></i><span>{{ t.demo_bar }}</span></div>
+      <iframe id="lq-demo" src="https://quote.ssydynamics.dev/w/demo#lang={{ page.lang }}" title="{{ t.demo_title }}" loading="lazy"></iframe>
+    </div>
+  </section>
+
+  <section class="wrap lq-section lq-section--tight" id="how" aria-labelledby="how-title">
     <p class="lq-kicker">{{ t.how_kicker }}</p>
     <h2 id="how-title">{{ t.how_title }}</h2>
     <p class="lq-section__note">{{ t.how_note }}</p>
     <ol class="lq-steps">
       {%- assign w = t.widget -%}{%- assign m = t.mail -%}{%- assign d = t.decide %}
-      <li class="lq-step">
-        <div class="lq-step__text"><span class="lq-step__num">01</span><h3>{{ t.steps[0].title }}</h3><p>{{ t.steps[0].text }}</p></div>
-        <div class="lq-window" aria-hidden="true">
-          <div class="lq-window__bar"><i></i><i></i><i></i><span>{{ w.shop }}</span></div>
-          <div class="lq-widget">
-            <div class="lq-widget__drawing">
-              <svg viewBox="-6 -6 172 112"><path d="M0 100H160V20A20 20 0 0 0 140 0H0Z"/><circle cx="20" cy="80" r="4.5"/><circle cx="140" cy="80" r="4.5"/><circle cx="20" cy="20" r="4.5"/><path d="M65 60H95A10 10 0 0 0 95 40H65A10 10 0 0 0 65 60Z"/></svg>
-              <span>{{ w.file }}</span>
-              <em class="lq-add">{{ w.add }}</em>
-            </div>
-            <div class="lq-widget__form">
-              <p><small>{{ w.material_label }}</small><b>{{ w.material }}</b></p>
-              <p><small>{{ w.thickness_label }}</small><b>{{ w.thickness }}</b></p>
-              <p><small>{{ w.quantity_label }}</small><b>{{ w.quantity }}</b></p>
-              <p class="lq-check"><i></i>{{ w.extra }}</p>
-            </div>
-            <div class="lq-widget__price">
-              <strong>{{ w.gross }}</strong><span>{{ w.gross_note }} · {{ w.per_piece }}</span>
-              <div class="lq-ladder"><small>{{ w.ladder_label }}</small>{% for l in w.ladder %}<span>{{ l[0] }}<b>{{ l[1] }}</b></span>{% endfor %}</div>
-              <small>{{ w.indicative }}</small>
-              <em class="lq-fake-btn">{{ w.button }}</em>
-            </div>
-          </div>
-        </div>
-      </li>
       <li class="lq-step">
         <div class="lq-step__text"><span class="lq-step__num">02</span><h3>{{ t.steps[1].title }}</h3><p>{{ t.steps[1].text }}</p></div>
         <div class="lq-window lq-window--mail" aria-hidden="true">
@@ -166,3 +151,4 @@ layout: default
     </div>
   </section>
 </article>
+<script src="{{ '/assets/js/laser-demo.js' | relative_url }}?v={{ site.time | date: '%s' }}" defer></script>
