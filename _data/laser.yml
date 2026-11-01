@@ -9,7 +9,7 @@ hu:
   cta: Kérek bemutatót
   cta_subject: Lézervágási árkalkulátor bemutató
   cta_how: Így működik
-  note: "Új termék, az első műhelyekkel közösen állítjuk be. Az éles próba 2 hónapig ingyenes, kötelezettség nélkül."
+  note: "Új termék, az első műhelyekkel közösen állítjuk be. Az éles próba 30 napig ingyenes, kötelezettség nélkül."
   sample: Minta, kitalált árakkal
   sheet: 160 × 100 mm · szénacél, 3 mm · 25 db
   cut_label: Vágáshossz
@@ -38,6 +38,14 @@ hu:
     gross: 18 898 Ft
     gross_note: áfával együtt
     per_piece: 756 Ft darabonként
+    extra: Sorjázást is kérek
+    add: + Újabb rajz
+    ladder_label: Bruttó darabár
+    ladder:
+      - [1 db, 10 160 Ft]
+      - [10 db, 1 016 Ft]
+      - [50 db, 679 Ft]
+      - [100 db, 641 Ft]
     indicative: Tájékoztató ár. A végleges árat az üzem e-mailben visszaigazolja.
     button: Megrendelést kérek
   mail:
@@ -67,6 +75,28 @@ hu:
     note_label: Megjegyzés a vevőnek
     note: A határidő 5 munkanap.
     button: Jóváhagyom és elküldöm a vevőnek
+  offer_kicker: Mit kap
+  offer_title: Mit kap a vevő, és mit kapnak Önök
+  offer_customer: A vevőnek
+  offer_shop: A műhelynek
+  offer_a:
+    - [Több rajz egyszerre, "Egy ajánlatkérésben legfeljebb 20 alkatrész, rajzonként 5 MB-ig."]
+    - [Alkatrészenként külön, "Minden rajznak saját előnézete, anyaga, vastagsága, darabszáma és ára van, és egyenként végiglapozható."]
+    - [Gravírozás, "A gravírozási rétegeket a vágástól külön méri és árazza, az elő- és a hátoldalt is megkülönbözteti."]
+    - [Sorjázás, "Ha a műhely kínálja, egy jelölőnégyzettel kérhető, és a vágáshossz alapján kerül az árba."]
+    - [Darabár mennyiség szerint, "Rögtön látja, mennyit változik a darabár nagyobb mennyiségnél."]
+    - [Tételes ár, "Anyag, vágás, beszúrás, apró részletek, nettó, áfa és bruttó, valamint a gyártási idő, ha a műhely megadja."]
+    - [Többféle rajz, "DXF és DWG azonnali árral. PDF, STEP, IGES vagy fotó esetén kézi ajánlatot kér."]
+    - [Visszaigazolás, "Azonosítóval ellátott levelet kap, majd e-mailben a végleges árat. Magyarul és angolul is használható."]
+  offer_b:
+    - [Saját árképzés, "Anyagár kilóra vagy négyzetméterre, vágás méterre vagy gépórából, beszúrás, beállítási díj, minimum, árrés, hulladékarány és kerekítés."]
+    - [Saját kezelőfelület, "Az árait a műhely később maga is módosíthatja egy külön adminisztrációs oldalon."]
+    - [Saját megjelenés, "A kalkulátor a műhely nevével, logójával és színével jelenik meg."]
+    - [Kész ajánlatkérés, "A rajz mellékletben, a vevő adataival és a teljes kalkulációval, több alkatrésznél alkatrészenként is."]
+    - [Jóváhagyás vagy átírás, "A nettó ár a levélből megnyitott oldalon módosítható, megjegyzés is írható a vevőnek."]
+    - [Kézi ellenőrzés küszöbbel, "Megadhatja, mekkora darabszám vagy végösszeg fölött kerüljön minden ár kézi ellenőrzésre."]
+    - [Rétegek kizárása, "A keret, a méretvonal és más, nem vágandó réteg kizárható az árazásból."]
+    - [Beállítást vállalunk, "Az árak felvételét és a korábbi munkákra hangolást elvégezzük, a szolgáltatást mi üzemeltetjük."]
   lanes_kicker: Bizonytalan rajzra nincs találgatás
   lanes_title: Minden rajz a három út egyikére kerül
   lanes:
@@ -77,11 +107,11 @@ hu:
     - tag: Ár és kézi ellenőrzés
       class: warn
       title: Ellenőrzést kérő rajz
-      text: "Például DWG-ből átalakított rajz. A vevő látja az árat, de jelezzük neki, hogy az üzem külön ellenőrzi."
+      text: "Például DWG-ből átalakított rajz, vagy a műhely által megadott darabszám vagy végösszeg fölötti rendelés. A vevő látja az árat, de jelezzük neki, hogy az üzem külön ellenőrzi."
     - tag: Egyedi ajánlat
       class: stop
       title: Amit nem áraz automatikusan
-      text: "Hajlítási vonal, nyitott kontúr, a táblánál nagyobb alkatrész, gravírozás, PDF vagy STEP. Ár nélkül, a rajzzal együtt érkezik Önökhöz."
+      text: "Hajlítási vonal, nyitott kontúr, a táblánál nagyobb alkatrész, PDF vagy STEP, és a gravírozás, ha a műhely nem adott meg rá díjat. Ár nélkül, a rajzzal együtt érkezik Önökhöz."
   setup_kicker: Bevezetés
   setup_title: Az Önök áraival, az Önök honlapján
   setup:
@@ -98,7 +128,7 @@ hu:
       label: vágáshossz-pontosság 14 referenciarajzon
     - value: "20"
       label: rajz egy ajánlatkérésben, rajzonként legfeljebb 5 MB
-    - value: "2 hónap"
+    - value: "30 nap"
       label: ingyenes éles próba, kötelezettség nélkül
   faq_kicker: Kérdések
   faq_title: Amit a műhelyek először kérdeznek
@@ -126,7 +156,7 @@ en:
   cta: Ask for a demo
   cta_subject: Laser quote calculator demo
   cta_how: How it works
-  note: "A new product, set up together with our first shops. The live trial is free for 2 months, with no obligation."
+  note: "A new product, set up together with our first shops. The live trial is free for 30 days, with no obligation."
   sample: Sample with made-up prices
   sheet: 160 × 100 mm · mild steel, 3 mm · 25 pcs
   cut_label: Cut length
@@ -155,6 +185,14 @@ en:
     gross: HUF 18,898
     gross_note: incl. VAT
     per_piece: HUF 756 per piece
+    extra: Add deburring
+    add: + Add drawing
+    ladder_label: Gross per piece
+    ladder:
+      - [1 pc, "HUF 10,160"]
+      - [10 pcs, "HUF 1,016"]
+      - [50 pcs, HUF 679]
+      - [100 pcs, HUF 641]
     indicative: Indicative price. The shop confirms the final price by e-mail.
     button: Request this order
   mail:
@@ -184,6 +222,28 @@ en:
     note_label: Note to the customer
     note: Ready in 5 working days.
     button: Approve and send to the customer
+  offer_kicker: What you get
+  offer_title: What your customer gets, and what you get
+  offer_customer: For the customer
+  offer_shop: For the shop
+  offer_a:
+    - [Several drawings at once, "Up to 20 parts per request, up to 5 MB per drawing."]
+    - [Each part on its own, "Every drawing has its own preview, material, thickness, quantity and price, and can be reviewed one by one."]
+    - [Engraving, "Engraving layers are measured and priced apart from cutting, with front and back told apart."]
+    - [Deburring, "If the shop offers it, one tick adds it, priced from the cut length."]
+    - [Price by quantity, "They see at once how the price per piece changes at higher quantities."]
+    - [Itemised price, "Material, cutting, piercing, small details, net, VAT and gross, plus lead time if the shop sets one."]
+    - [Many kinds of drawing, "DXF and DWG with an instant price. PDF, STEP, IGES or a photo go in as a manual quote request."]
+    - [Confirmation, "An e-mail with a reference number, then the final price by e-mail. Available in Hungarian and English."]
+  offer_b:
+    - [Your own pricing, "Material per kilo or square metre, cutting per metre or from machine time, piercing, setup fee, minimum, margin, scrap and rounding."]
+    - [Your own admin page, "You can change your rates yourself later on a separate admin page."]
+    - [Your own look, "The calculator shows your shop's name, logo and colour."]
+    - [A complete quote request, "The drawing attached, the customer's details and the full calculation, part by part for several parts."]
+    - [Approve or change, "Change the net price on the page opened from the e-mail, and add a note for the customer."]
+    - [Manual check by threshold, "Set the quantity or total above which every price goes to a manual check."]
+    - [Exclude layers, "Frames, dimensions and other layers that are not cut can be left out of the price."]
+    - [Setup done for you, "We enter your rates, tune them on past jobs and run the service."]
   lanes_kicker: No guessing on uncertain drawings
   lanes_title: Every drawing takes one of three routes
   lanes:
@@ -194,11 +254,11 @@ en:
     - tag: Price and manual check
       class: warn
       title: Drawings that need a check
-      text: "For example, a drawing converted from DWG. The customer sees the price and is told the shop will check it."
+      text: "For example, a drawing converted from DWG, or an order above the quantity or total the shop has set. The customer sees the price and is told the shop will check it."
     - tag: Custom quote
       class: stop
       title: What it does not price automatically
-      text: "Bend lines, open contours, parts larger than the sheet, engraving, PDF or STEP. It reaches you with the drawing and no price."
+      text: "Bend lines, open contours, parts larger than the sheet, PDF or STEP, and engraving if the shop has set no rate for it. It reaches you with the drawing and no price."
   setup_kicker: Getting started
   setup_title: Your rates, on your website
   setup:
@@ -215,7 +275,7 @@ en:
       label: cut-length agreement on 14 reference drawings
     - value: "20"
       label: drawings per request, up to 5 MB each
-    - value: "2 months"
+    - value: "30 days"
       label: free live trial, no obligation
   faq_kicker: Questions
   faq_title: What shops ask first

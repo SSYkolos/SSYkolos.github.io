@@ -107,6 +107,21 @@
   .lq-tag--warn { color: #facc15; }
 }
 
+/* What each side gets */
+.lq-section--tight { padding-top: 0; }
+.lq-offer { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: clamp(28px, 5vw, 64px); margin-top: 36px; }
+.lq-offer h3 { font: 500 .85rem var(--mono); letter-spacing: .06em; text-transform: uppercase; color: var(--accent); padding-bottom: 12px; border-bottom: 2px solid var(--text); }
+.lq-offer dl { margin: 0; }
+.lq-offer dl div { padding: 14px 0; border-bottom: 1px solid var(--line); }
+.lq-offer dt { font-weight: 600; }
+.lq-offer dd { margin: 3px 0 0; color: var(--muted); font-size: .95rem; line-height: 1.5; }
+.lq-add { font-style: normal; font-size: .78rem; font-weight: 600; color: var(--accent); }
+.lq-check { display: flex; align-items: center; gap: 7px; font-size: .84rem; }
+.lq-check i { width: 13px; height: 13px; border: 1px solid var(--line-strong); border-radius: 2px; }
+.lq-ladder { width: 100%; display: grid; gap: 2px; margin-top: 6px; }
+.lq-ladder span { display: flex; justify-content: space-between; font-size: .76rem; }
+.lq-ladder b { font: 500 .76rem var(--mono); }
+
 /* Three routes */
 .lq-band { background: var(--panel-2); border-block: 1px solid var(--line); }
 .lq-lanes { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); margin-top: 36px; border: 1px solid var(--line-strong); background: var(--panel); }
@@ -172,7 +187,7 @@
 @media (max-width: 860px) {
   .lq-hero__inner, .lq-step, .lq-faq { grid-template-columns: minmax(0, 1fr); }
   .lq-step:nth-child(even) .lq-step__text { order: 0; }
-  .lq-lanes, .lq-setup { grid-template-columns: minmax(0, 1fr); }
+  .lq-lanes, .lq-setup, .lq-offer { grid-template-columns: minmax(0, 1fr); }
   .lq-lane + .lq-lane { border-left: 0; border-top: 1px solid var(--line-strong); }
   .lq-figures { grid-template-columns: repeat(2, minmax(0, 1fr)); }
 }
