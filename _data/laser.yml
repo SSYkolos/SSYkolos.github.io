@@ -1,0 +1,236 @@
+# Texts of the laser quote calculator page, one block per language. A new language = a new block + a one-line page.
+hu:
+  tagline: Szoftver · Mechatronika · Kutatás
+  skip: Ugrás a tartalomra
+  crumb: Termékek
+  kind: Honlapba épülő kalkulátor
+  title_html: Azonnali ár a honlapján.<br><em>A végső szó az Öné.</em>
+  lede: "Árkalkulátor lézervágó műhelyeknek. A vevő feltölti a DXF- vagy DWG-rajzát, és azonnal tájékoztató árat lát, az Önök áraival számolva. Önök megkapják a rajzot és a kalkulációt, majd jóváhagyják vagy átírják az árat."
+  cta: Kérek bemutatót
+  cta_subject: Lézervágási árkalkulátor bemutató
+  cta_how: Így működik
+  note: "Új termék, az első műhelyekkel közösen állítjuk be. Az éles próba 2 hónapig ingyenes, kötelezettség nélkül."
+  sample: Minta, kitalált árakkal
+  sheet: 160 × 100 mm · szénacél, 3 mm · 25 db
+  cut_label: Vágáshossz
+  cut: 0,719 m
+  pierce_label: Beszúrás
+  gross_label: Bruttó, 25 db
+  how_kicker: Három lépés
+  how_title: A rajztól a végleges árig
+  how_note: "A képek a valódi rendszer minta-eredményét mutatják, kitalált árakkal és kitalált vevővel."
+  steps:
+    - title: A vevő feltölt, és azonnal árat lát
+      text: "Nem kell regisztrálnia, és nem kell válaszra várnia. Látja a rajz előnézetét, a vágáshosszt, a beszúrásokat és a tételes számítást. Egyszerre 20 rajzot is feltölthet."
+    - title: Önökhöz rendezett ajánlatkérés érkezik
+      text: "Egy levélben megkapják a rajzot, a vevő adatait, az anyagot, a vastagságot, a darabszámot és a kalkulációt. Az alapadatokat nem kell visszakérdezniük."
+    - title: Önök döntenek az árról
+      text: "A levél gombja megnyitja a jóváhagyó oldalt, rajta a kiszámolt nettó árral. Jóváhagyják vagy átírják, és a vevő e-mailben megkapja a végleges árat. Addig az ár senkit nem köt."
+  widget:
+    shop: PÉLDA Lézervágó Kft.
+    file: konzol.dxf
+    material_label: Anyag
+    material: Szénacél (S235)
+    thickness_label: Vastagság
+    thickness: 3 mm
+    quantity_label: Darabszám
+    quantity: 25 db
+    gross: 18 898 Ft
+    gross_note: áfával együtt
+    per_piece: 756 Ft darabonként
+    indicative: Tájékoztató ár. A végleges árat az üzem e-mailben visszaigazolja.
+    button: Megrendelést kérek
+  mail:
+    from: PÉLDA Lézervágó Kft. · Ajánlatkérés
+    title: Új ajánlatkérés érkezett
+    badge: Automatikus ár
+    gross: 18 898 Ft
+    gross_label: bruttó
+    net: nettó 14 880 Ft
+    button: Ár jóváhagyása vagy módosítása
+    customer_label: Vevő
+    customer: Minta Kft.
+    order_label: Rendelés
+    order: Szénacél, 3 mm, 25 db
+    drawing_label: Rajz
+    drawing: konzol.dxf (melléklet)
+    calc_label: Kalkuláció, darabonként
+    lines:
+      - [Anyag, 282 Ft]
+      - [Vágás, 62 Ft]
+      - [Beszúrás, 125 Ft]
+      - [Apró részletek, 6 Ft]
+  decide:
+    title: Ajánlat visszaigazolása
+    net_label: Nettó ár
+    net: "14880"
+    note_label: Megjegyzés a vevőnek
+    note: A határidő 5 munkanap.
+    button: Jóváhagyom és elküldöm a vevőnek
+  lanes_kicker: Bizonytalan rajzra nincs találgatás
+  lanes_title: Minden rajz a három út egyikére kerül
+  lanes:
+    - tag: Automatikus ár
+      class: ok
+      title: Tiszta 2D vágás
+      text: "Zárt kontúrok, ismert anyag és vastagság. A vevő azonnal látja a tájékoztató árat."
+    - tag: Ár és kézi ellenőrzés
+      class: warn
+      title: Ellenőrzést kérő rajz
+      text: "Például DWG-ből átalakított rajz. A vevő látja az árat, de jelezzük neki, hogy az üzem külön ellenőrzi."
+    - tag: Egyedi ajánlat
+      class: stop
+      title: Amit nem áraz automatikusan
+      text: "Hajlítási vonal, nyitott kontúr, a táblánál nagyobb alkatrész, gravírozás, PDF vagy STEP. Ár nélkül, a rajzzal együtt érkezik Önökhöz."
+  setup_kicker: Bevezetés
+  setup_title: Az Önök áraival, az Önök honlapján
+  setup:
+    - title: Felvesszük az árait
+      text: "Anyagok, vastagságok, táblaméret, beállítási díj és minimum rendelési érték. Kilós anyagárral és gépórából számolt vágási díjjal is működik."
+    - title: Hangoljuk a korábbi munkáin
+      text: "10–15 korábbi munka rajzát és árát összevetjük a számítással. Addig a kapott ár csak becslés, ezért élesítés előtt ezt együtt ellenőrizzük."
+    - title: Kikerül a honlapra
+      text: "Egy sor kód. Ha a honlapjára nem tehető ilyen kód, a kalkulátor saját címén, egy gombról is elérhető."
+  figures:
+    - value: "0,24 s"
+      label: "egy minta konzol teljes árazása az élő rendszeren, 2026. novemberi mérés"
+    - value: "0,02 mm"
+      label: vágáshossz-pontosság 14 referenciarajzon
+    - value: "20"
+      label: rajz egy ajánlatkérésben, rajzonként legfeljebb 5 MB
+    - value: "2 hónap"
+      label: ingyenes éles próba, kötelezettség nélkül
+  faq_kicker: Kérdések
+  faq_title: Amit a műhelyek először kérdeznek
+  faq:
+    - q: A versenytársaink is láthatják az áraimat?
+      a: "Igen, ahogy ma is megtudhatják, ha rajzot küldenek ajánlatkérésre. A kalkulátorral ez gyorsabb, cserébe az a vevő is azonnal árat kap Önöktől, aki estig nem várna. A végleges árról továbbra is Önök döntenek."
+    - q: Mi történik a hajlított alkatrészekkel?
+      a: "A hajlítást a kalkulátor nem árazza. Ha a hajlítási vonal külön rétegen van vagy nyitott vonalként látszik, a rajz egyedi ajánlatkérésként érkezik. Más módon rajzolt hajlítást nem ismer fel, ezért fontos, hogy a vevőt semmi nem köti az Önök jóváhagyásáig."
+    - q: Hová kerülnek a rajzok?
+      a: "A rendszer csak az ár kiszámításához használja a rajzot, és nem tárolja. Ajánlatkéréskor e-mailben, mellékletként továbbítja Önöknek."
+    - q: Mennyire pontos az ár?
+      a: "A geometriát 14 referenciarajzon ellenőriztük, az ár viszont csak akkor megbízható, ha az Önök munkáira hangoltuk. Ezért tájékoztató ár, amelyet Önök hagynak jóvá."
+    - q: Mi van, ha a vevőnek nincs DXF-e?
+      a: "Elküldheti a PDF-et, a STEP-et vagy a fotót is. Ehhez nem kap azonnali árat, Önök pedig ugyanúgy megkapják a kérést a fájllal együtt."
+  close_title: Megnézné egy saját rajzával?
+  close_text: "Írjon nekünk, és elküldjük a kipróbálható bemutatót. Ha tetszik, beállítjuk egy próbaoldalra a műhelye anyagaival."
+  privacy: Adatkezelés
+  foot_note: Ez az oldal nem használ sütit és követést.
+en:
+  skip: Skip to content
+  crumb: Products
+  kind: Website calculator
+  title_html: An instant price on your website.<br><em>The final word stays yours.</em>
+  lede: "A quote calculator for laser cutting shops. Your customer uploads a DXF or DWG drawing and instantly sees an indicative price, calculated from your rates. You receive the drawing and the calculation, then approve or change the price."
+  cta: Ask for a demo
+  cta_subject: Laser quote calculator demo
+  cta_how: How it works
+  note: "A new product, set up together with our first shops. The live trial is free for 2 months, with no obligation."
+  sample: Sample with made-up prices
+  sheet: 160 × 100 mm · mild steel, 3 mm · 25 pcs
+  cut_label: Cut length
+  cut: 0.719 m
+  pierce_label: Pierces
+  gross_label: Gross, 25 pcs
+  how_kicker: Three steps
+  how_title: From drawing to final price
+  how_note: "These views show the real system's sample result, with made-up prices and a made-up customer."
+  steps:
+    - title: The customer uploads and sees a price at once
+      text: "No sign-up and no waiting for a reply. They see a preview of the drawing, the cut length, the pierces and an itemised calculation. Up to 20 drawings at a time."
+    - title: You get a complete quote request
+      text: "One e-mail holds the drawing, the customer's details, the material, thickness, quantity and calculation. You don't have to ask for the basics."
+    - title: You decide the price
+      text: "The button in the e-mail opens the approval page with the calculated net price. Approve it or change it, and the customer receives the final price by e-mail. Until then, the price binds no one."
+  widget:
+    shop: SAMPLE Laser Cutting Ltd.
+    file: bracket.dxf
+    material_label: Material
+    material: Mild steel (S235)
+    thickness_label: Thickness
+    thickness: 3 mm
+    quantity_label: Quantity
+    quantity: 25 pcs
+    gross: HUF 18,898
+    gross_note: incl. VAT
+    per_piece: HUF 756 per piece
+    indicative: Indicative price. The shop confirms the final price by e-mail.
+    button: Request this order
+  mail:
+    from: SAMPLE Laser Cutting Ltd. · Quote request
+    title: New quote request
+    badge: Automatic price
+    gross: HUF 18,898
+    gross_label: gross
+    net: net HUF 14,880
+    button: Approve or change the price
+    customer_label: Customer
+    customer: Sample Ltd.
+    order_label: Order
+    order: Mild steel, 3 mm, 25 pcs
+    drawing_label: Drawing
+    drawing: bracket.dxf (attached)
+    calc_label: Calculation, per piece
+    lines:
+      - [Material, HUF 282]
+      - [Cutting, HUF 62]
+      - [Piercing, HUF 125]
+      - [Small details, HUF 6]
+  decide:
+    title: Confirm the quote
+    net_label: Net price
+    net: "14880"
+    note_label: Note to the customer
+    note: Ready in 5 working days.
+    button: Approve and send to the customer
+  lanes_kicker: No guessing on uncertain drawings
+  lanes_title: Every drawing takes one of three routes
+  lanes:
+    - tag: Automatic price
+      class: ok
+      title: Clean 2D cutting
+      text: "Closed contours, a known material and thickness. The customer sees the indicative price at once."
+    - tag: Price and manual check
+      class: warn
+      title: Drawings that need a check
+      text: "For example, a drawing converted from DWG. The customer sees the price and is told the shop will check it."
+    - tag: Custom quote
+      class: stop
+      title: What it does not price automatically
+      text: "Bend lines, open contours, parts larger than the sheet, engraving, PDF or STEP. It reaches you with the drawing and no price."
+  setup_kicker: Getting started
+  setup_title: Your rates, on your website
+  setup:
+    - title: We enter your rates
+      text: "Materials, thicknesses, sheet size, setup fee and minimum order value. Prices per kilo and cutting rates based on machine time both work."
+    - title: We tune it on your past jobs
+      text: "We compare the calculation with the drawings and prices of 10–15 past jobs. Until then the price is only an estimate, so we check this together before going live."
+    - title: It goes on your website
+      text: "One line of code. If your site cannot take it, the calculator also works at its own address, behind a button."
+  figures:
+    - value: "0.24 s"
+      label: "to fully price a sample bracket on the live system, measured November 2026"
+    - value: "0.02 mm"
+      label: cut-length agreement on 14 reference drawings
+    - value: "20"
+      label: drawings per request, up to 5 MB each
+    - value: "2 months"
+      label: free live trial, no obligation
+  faq_kicker: Questions
+  faq_title: What shops ask first
+  faq:
+    - q: Can our competitors see our prices?
+      a: "Yes, just as they can today by sending a drawing for a quote. The calculator makes that quicker, and in return customers who would not wait until evening get a price from you at once. You still decide the final price."
+    - q: What happens with bent parts?
+      a: "The calculator does not price bending. If a bend line is on its own layer or shows up as an open line, the drawing reaches you as a custom quote request. It cannot detect bends drawn any other way, which is why nothing binds the customer until you approve."
+    - q: Where do the drawings go?
+      a: "The system uses a drawing only to calculate the price and does not store it. With a quote request, it forwards the drawing to you as an e-mail attachment."
+    - q: How accurate is the price?
+      a: "We checked the geometry on 14 reference drawings, but the price is only reliable once tuned to your jobs. That is why it is an indicative price that you approve."
+    - q: What if the customer has no DXF?
+      a: "They can send a PDF, STEP or photo instead. They get no instant price, and you receive the request with the file as usual."
+  close_title: Want to see it with your own drawing?
+  close_text: "Write to us and we will send you the demo. If you like it, we will set up a trial page with your shop's materials."
+  privacy: Privacy
+  foot_note: This page uses no cookies and no tracking.

@@ -5,9 +5,10 @@
       <span class="mark" aria-hidden="true">{{ profile.mark }}</span>
       <span class="brand__text">
         <span class="brand__name">{{ profile.name }}</span>
-        <span class="brand__role">{{ profile.tagline }}</span>
+        <span class="brand__role">{% if page.lang == "hu" %}{{ site.data.laser.hu.tagline }}{% else %}{{ profile.tagline }}{% endif %}</span>
       </span>
     </a>
+    {%- unless page.lang == "hu" %}
     <nav class="site-nav" aria-label="Main">
       <ul>
       {%- for item in site.data.navigation -%}
@@ -31,5 +32,15 @@
       {%- endfor %}
       </ul>
     </nav>
+    {%- endunless %}
+    {%- if page.alt_url %}
+    <ul class="lang-switch" aria-label="Language">
+      {%- if page.lang == "hu" %}
+      <li><span aria-current="true" lang="hu">HU</span></li><li><a href="{{ page.alt_url | relative_url }}" hreflang="en" lang="en">EN</a></li>
+      {%- else %}
+      <li><a href="{{ page.alt_url | relative_url }}" hreflang="hu" lang="hu">HU</a></li><li><span aria-current="true" lang="en">EN</span></li>
+      {%- endif %}
+    </ul>
+    {%- endif %}
   </div>
 </header>

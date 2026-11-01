@@ -46,4 +46,9 @@
 {%- if page.samples or page.live_demo or page.product %}
 <link rel="stylesheet" href="{{ '/assets/css/demo.css' | relative_url }}?v={{ site.time | date: '%s' }}">
 {%- endif %}
+{%- if page.laser_page %}
+<link rel="stylesheet" href="{{ '/assets/css/laser.css' | relative_url }}?v={{ site.time | date: '%s' }}">
+<link rel="alternate" hreflang="{{ page.lang }}" href="{{ page.url | absolute_url }}">
+<link rel="alternate" hreflang="{{ page.alt_lang | downcase }}" href="{{ page.alt_url | absolute_url }}">
+{%- endif %}
 <noscript><link rel="stylesheet" href="{{ '/assets/css/nojs.css' | relative_url }}"></noscript>

@@ -1,0 +1,156 @@
+---
+layout: default
+---
+{%- assign t = site.data.laser[page.lang] -%}
+{%- capture mail_subject -%}{{ t.cta_subject }}{%- endcapture -%}
+{%- assign email = site.data.profile.email -%}
+<article class="lq">
+  <header class="lq-hero">
+    <div class="wrap lq-hero__inner">
+      <div class="lq-hero__text">
+        <p class="eyebrow"><a href="{{ '/products/' | relative_url }}">{{ t.crumb }}</a> / {{ t.kind }}</p>
+        <h1>{{ t.title_html }}</h1>
+        <p class="lq-lede">{{ t.lede }}</p>
+        <div class="lq-actions">
+          <a class="lq-btn" href="mailto:{{ email }}?subject={{ mail_subject | uri_escape }}">{{ t.cta }}</a>
+          <a class="lq-btn lq-btn--ghost" href="#how">{{ t.cta_how }}</a>
+        </div>
+        <p class="lq-note">{{ t.note }}</p>
+      </div>
+      <figure class="lq-cut" aria-label="{{ t.sample }}: {{ t.sheet }}">
+        <figcaption><span>{{ t.sample }}</span><span>{{ t.sheet }}</span></figcaption>
+        <svg viewBox="-12 -12 184 124" aria-hidden="true">
+          <g class="lq-cut__dims">
+            <line x1="0" y1="-7" x2="160" y2="-7"/><line x1="0" y1="-10" x2="0" y2="-4"/><line x1="160" y1="-10" x2="160" y2="-4"/>
+            <text x="80" y="-8.6" text-anchor="middle">160</text>
+          </g>
+          <path class="lq-trace lq-trace--outline" pathLength="1" d="M0 100H160V20A20 20 0 0 0 140 0H0Z"/>
+          <circle class="lq-trace lq-trace--h1" pathLength="1" cx="20" cy="80" r="4.5"/>
+          <circle class="lq-trace lq-trace--h2" pathLength="1" cx="140" cy="80" r="4.5"/>
+          <circle class="lq-trace lq-trace--h3" pathLength="1" cx="20" cy="20" r="4.5"/>
+          <path class="lq-trace lq-trace--slot" pathLength="1" d="M65 60H95A10 10 0 0 0 95 40H65A10 10 0 0 0 65 60Z"/>
+          <circle class="lq-beam" r="1.5"/>
+        </svg>
+        <dl class="lq-readout">
+          <div><dt>{{ t.cut_label }}</dt><dd>{{ t.cut }}</dd></div>
+          <div><dt>{{ t.pierce_label }}</dt><dd>5</dd></div>
+          <div class="lq-readout__price"><dt>{{ t.gross_label }}</dt><dd>{{ t.widget.gross }}</dd></div>
+        </dl>
+      </figure>
+    </div>
+  </header>
+
+  <section class="wrap lq-section" id="how" aria-labelledby="how-title">
+    <p class="lq-kicker">{{ t.how_kicker }}</p>
+    <h2 id="how-title">{{ t.how_title }}</h2>
+    <p class="lq-section__note">{{ t.how_note }}</p>
+    <ol class="lq-steps">
+      {%- assign w = t.widget -%}{%- assign m = t.mail -%}{%- assign d = t.decide %}
+      <li class="lq-step">
+        <div class="lq-step__text"><span class="lq-step__num">01</span><h3>{{ t.steps[0].title }}</h3><p>{{ t.steps[0].text }}</p></div>
+        <div class="lq-window" aria-hidden="true">
+          <div class="lq-window__bar"><i></i><i></i><i></i><span>{{ w.shop }}</span></div>
+          <div class="lq-widget">
+            <div class="lq-widget__drawing">
+              <svg viewBox="-6 -6 172 112"><path d="M0 100H160V20A20 20 0 0 0 140 0H0Z"/><circle cx="20" cy="80" r="4.5"/><circle cx="140" cy="80" r="4.5"/><circle cx="20" cy="20" r="4.5"/><path d="M65 60H95A10 10 0 0 0 95 40H65A10 10 0 0 0 65 60Z"/></svg>
+              <span>{{ w.file }}</span>
+            </div>
+            <div class="lq-widget__form">
+              <p><small>{{ w.material_label }}</small><b>{{ w.material }}</b></p>
+              <p><small>{{ w.thickness_label }}</small><b>{{ w.thickness }}</b></p>
+              <p><small>{{ w.quantity_label }}</small><b>{{ w.quantity }}</b></p>
+            </div>
+            <div class="lq-widget__price">
+              <strong>{{ w.gross }}</strong><span>{{ w.gross_note }} · {{ w.per_piece }}</span>
+              <small>{{ w.indicative }}</small>
+              <em class="lq-fake-btn">{{ w.button }}</em>
+            </div>
+          </div>
+        </div>
+      </li>
+      <li class="lq-step">
+        <div class="lq-step__text"><span class="lq-step__num">02</span><h3>{{ t.steps[1].title }}</h3><p>{{ t.steps[1].text }}</p></div>
+        <div class="lq-window lq-window--mail" aria-hidden="true">
+          <div class="lq-mail">
+            <small>{{ m.from }}</small>
+            <h4>{{ m.title }}</h4>
+            <span class="lq-tag lq-tag--ok">{{ m.badge }}</span>
+            <p class="lq-mail__price"><strong>{{ m.gross }}</strong> {{ m.gross_label }} · {{ m.net }}</p>
+            <em class="lq-fake-btn">{{ m.button }}</em>
+            <dl>
+              <div><dt>{{ m.customer_label }}</dt><dd>{{ m.customer }}</dd></div>
+              <div><dt>{{ m.order_label }}</dt><dd>{{ m.order }}</dd></div>
+              <div><dt>{{ m.drawing_label }}</dt><dd>{{ m.drawing }}</dd></div>
+            </dl>
+            <small class="lq-mail__head">{{ m.calc_label }}</small>
+            <table>{% for l in m.lines %}<tr><td>{{ l[0] }}</td><td>{{ l[1] }}</td></tr>{% endfor %}</table>
+          </div>
+        </div>
+      </li>
+      <li class="lq-step">
+        <div class="lq-step__text"><span class="lq-step__num">03</span><h3>{{ t.steps[2].title }}</h3><p>{{ t.steps[2].text }}</p></div>
+        <div class="lq-window" aria-hidden="true">
+          <div class="lq-decide">
+            <h4>{{ d.title }}</h4>
+            <small>{{ d.net_label }}</small><span class="lq-input">{{ d.net }}</span>
+            <small>{{ d.note_label }}</small><span class="lq-input lq-input--note">{{ d.note }}</span>
+            <em class="lq-fake-btn">{{ d.button }}</em>
+          </div>
+        </div>
+      </li>
+    </ol>
+  </section>
+
+  <section class="lq-band" aria-labelledby="lanes-title">
+    <div class="wrap lq-section">
+      <p class="lq-kicker">{{ t.lanes_kicker }}</p>
+      <h2 id="lanes-title">{{ t.lanes_title }}</h2>
+      <div class="lq-lanes">
+        {%- for l in t.lanes %}
+        <div class="lq-lane lq-lane--{{ l.class }}">
+          <span class="lq-tag lq-tag--{{ l.class }}">{{ l.tag }}</span>
+          <h3>{{ l.title }}</h3>
+          <p>{{ l.text }}</p>
+        </div>
+        {%- endfor %}
+      </div>
+    </div>
+  </section>
+
+  <section class="wrap lq-section" aria-labelledby="setup-title">
+    <p class="lq-kicker">{{ t.setup_kicker }}</p>
+    <h2 id="setup-title">{{ t.setup_title }}</h2>
+    <ol class="lq-setup">
+      {%- for s in t.setup %}
+      <li><h3>{{ s.title }}</h3><p>{{ s.text }}</p></li>
+      {%- endfor %}
+    </ol>
+    <pre class="lq-code" translate="no"><code><span>&lt;script</span> src="https://quote.ssydynamics.dev/embed.js" data-shop="<b>muhely</b>" data-lang="{{ page.lang }}" async<span>&gt;&lt;/script&gt;</span></code></pre>
+    <dl class="lq-figures">
+      {%- for f in t.figures %}
+      <div><dd>{{ f.value }}</dd><dt>{{ f.label }}</dt></div>
+      {%- endfor %}
+    </dl>
+  </section>
+
+  <section class="wrap lq-section lq-faq" aria-labelledby="faq-title">
+    <div>
+      <p class="lq-kicker">{{ t.faq_kicker }}</p>
+      <h2 id="faq-title">{{ t.faq_title }}</h2>
+    </div>
+    <div>
+      {%- for f in t.faq %}
+      <details{% if forloop.first %} open{% endif %}><summary>{{ f.q }}</summary><p>{{ f.a }}</p></details>
+      {%- endfor %}
+    </div>
+  </section>
+
+  <section class="lq-close" aria-labelledby="close-title">
+    <div class="wrap">
+      <h2 id="close-title">{{ t.close_title }}</h2>
+      <p>{{ t.close_text }}</p>
+      <a class="lq-btn" href="mailto:{{ email }}?subject={{ mail_subject | uri_escape }}">{{ t.cta }}</a>
+      <p class="lq-close__mail">{{ email }}</p>
+    </div>
+  </section>
+</article>
