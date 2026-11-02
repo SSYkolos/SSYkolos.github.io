@@ -1,0 +1,8 @@
+{%- comment -%} Hidden terminal (easter egg). Opens with the ` or ~ key. Data comes from the collections, so new products show up by themselves. {%- endcomment -%}
+<script type="application/json" id="term-data">{
+  "products": [{% for p in site.products %}{"name": {{ p.slug | jsonify }}, "title": {{ p.title | jsonify }}, "url": {{ p.url | relative_url | jsonify }}}{% unless forloop.last %},{% endunless %}{% endfor %}],
+  "tools": [{% for t in site.landing %}{"name": {{ t.slug | jsonify }}, "title": {{ t.title | jsonify }}, "url": {{ t.url | relative_url | jsonify }}}{% unless forloop.last %},{% endunless %}{% endfor %}],
+  "email": {{ site.data.profile.email | jsonify }},
+  "pages": {"pricing": {{ "/pricing/" | relative_url | jsonify }}, "about": {{ "/about/" | relative_url | jsonify }}, "home": {{ "/" | relative_url | jsonify }}, "contact": {{ "/#contact" | relative_url | jsonify }}}
+}</script>
+<script src="{{ '/assets/js/terminal.js' | relative_url }}" defer></script>
