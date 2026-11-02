@@ -23,6 +23,7 @@ demo_runs_per_day: 5
 # Paddle checkout on /pricing/ (live). For sandbox testing use environment: sandbox, the test_ token and the sandbox
 # price ids from api-key-service/plans.json. Paddle.js loads only when a Buy button is clicked.
 paddle:
+  sales_open: false # no sales before the tax number is issued; set true after registration
   environment: production
   client_token: live_361dea05614ca3bcdacd52e7a9b
 
