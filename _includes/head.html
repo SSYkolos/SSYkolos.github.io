@@ -47,6 +47,9 @@
 {%- if page.samples or page.live_demo or page.product %}
 <link rel="stylesheet" href="{{ '/assets/css/demo.css' | relative_url }}?v={{ site.time | date: '%s' }}">
 {%- endif %}
+{%- if page.hero_stepper %}
+<link rel="stylesheet" href="{{ '/assets/css/home-stepper.css' | relative_url }}?v={{ site.time | date: '%s' }}">
+{%- endif %}
 {%- if page.laser_page %}
 <link rel="stylesheet" href="{{ '/assets/css/laser.css' | relative_url }}?v={{ site.time | date: '%s' }}">
 <link rel="alternate" hreflang="{{ page.lang }}" href="{{ page.url | absolute_url }}">
