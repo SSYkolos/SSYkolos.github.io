@@ -14,6 +14,7 @@ paddle_checkout: true
     <h1>Pricing</h1>
     <p class="lede">Monthly plans with an API key, billed by our reseller Paddle. Cancel any time; the plan runs to the
       end of the month you paid for. Prefer RapidAPI? Every API also has a free plan there.</p>
+    {% unless site.paddle.sales_open %}<p class="meta">Paid plans open soon. Until then, please use the free plans on RapidAPI.</p>{% endunless %}
   </header>
 
   {%- for product in site.data.pricing %}
@@ -27,7 +28,7 @@ paddle_checkout: true
         <p class="plan__price"><span class="plan__amount">${{ plan.price }}</span> <span class="plan__per">/ month</span></p>
         <p class="card__text">{{ plan.quota }}</p>
         <p class="plan__over">{{ plan.overage }}</p>
-        <button class="btn{% if plan.featured %} btn--primary{% endif %}" type="button" data-price-id="{{ plan.price_id }}">Buy {{ plan.name }}</button>
+        <button class="btn{% if plan.featured %} btn--primary{% endif %}" type="button"{% if site.paddle.sales_open %} data-price-id="{{ plan.price_id }}"{% else %} disabled{% endif %}>Buy {{ plan.name }}</button>
       </article>
       {%- endfor %}
     </div>
