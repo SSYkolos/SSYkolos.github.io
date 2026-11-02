@@ -11,7 +11,7 @@ lede: Mit kezelünk, amikor megnézi az oldalt, kipróbálja a bemutatót, vagy 
 
 Az SSY Dynamics {{ site.data.profile.founder.name }} magánszemély kereskedelmi neve. Az adatkezelő ő, Magyarországon.
 
-- **Postacím:** [KITÖLTENDŐ]
+- **Postacím:** 2030 Érd, Szövő utca 87.
 - **E-mail:** {% include email.html subject="Adatkezelés" %}
 
 ## Az oldal megtekintése
@@ -59,4 +59,4 @@ Kérhet tájékoztatást és hozzáférést az adataihoz, kérheti a helyesbít�
 
 Panaszt tehet a Nemzeti Adatvédelmi és Információszabadság Hatóságnál (1055 Budapest, Falk Miksa utca 9–11., [naih.hu](https://www.naih.hu), ugyfelszolgalat@naih.hu), és bírósághoz is fordulhat.
 
-<p class="meta">Tervezet, utolsó módosítás: 2026. november 2.</p>
+<p class="meta">Utolsó módosítás: 2026. november 2.</p>
