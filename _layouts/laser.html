@@ -1,0 +1,250 @@
+---
+layout: default
+---
+{%- assign t = site.data.laser[page.lang] -%}
+{%- capture mail_subject -%}{{ t.cta_subject }}{%- endcapture -%}
+{%- assign email = site.data.profile.email -%}
+<article class="lq">
+  <header class="lq-hero">
+    <div class="wrap lq-hero__inner">
+      <div class="lq-hero__text">
+        <p class="eyebrow"><a href="{{ '/products/' | relative_url }}">{{ t.crumb }}</a> / {{ t.kind }}</p>
+        <h1>{{ t.title_html }}</h1>
+        <p class="lq-lede">{{ t.lede }}</p>
+        <div class="lq-actions">
+          <a class="lq-btn" href="#demo">{{ t.cta_try }}</a>
+          <a class="lq-btn lq-btn--ghost" href="#how">{{ t.cta_how }}</a>
+        </div>
+        <p class="lq-note">{{ t.note }}</p>
+      </div>
+      <figure class="lq-cut" aria-label="{{ t.sample }}: {{ t.sheet }}">
+        <figcaption><span>{{ t.sample }}</span><span>{{ t.sheet }}</span></figcaption>
+        <svg viewBox="-12 -12 184 124" aria-hidden="true">
+          <g class="lq-cut__dims">
+            <line x1="0" y1="-7" x2="160" y2="-7"/><line x1="0" y1="-10" x2="0" y2="-4"/><line x1="160" y1="-10" x2="160" y2="-4"/>
+            <text x="80" y="-8.6" text-anchor="middle">160</text>
+          </g>
+          <path class="lq-trace lq-trace--outline" pathLength="1" d="M0 100H160V20A20 20 0 0 0 140 0H0Z"/>
+          <circle class="lq-trace lq-trace--h1" pathLength="1" cx="20" cy="80" r="4.5"/>
+          <circle class="lq-trace lq-trace--h2" pathLength="1" cx="140" cy="80" r="4.5"/>
+          <circle class="lq-trace lq-trace--h3" pathLength="1" cx="20" cy="20" r="4.5"/>
+          <path class="lq-trace lq-trace--slot" pathLength="1" d="M65 60H95A10 10 0 0 0 95 40H65A10 10 0 0 0 65 60Z"/>
+          <circle class="lq-beam" r="1.5"/>
+        </svg>
+        <dl class="lq-readout">
+          <div><dt>{{ t.cut_label }}</dt><dd>{{ t.cut }}</dd></div>
+          <div><dt>{{ t.pierce_label }}</dt><dd>5</dd></div>
+          <div class="lq-readout__price"><dt>{{ t.gross_label }}</dt><dd>{{ t.widget.gross }}</dd></div>
+        </dl>
+      </figure>
+    </div>
+  </header>
+
+  <section class="lq-band" aria-labelledby="skins-title">
+    <div class="wrap lq-section">
+      <p class="lq-kicker">{{ t.skins_kicker }}</p>
+      <h2 id="skins-title">{{ t.skins_title }}</h2>
+      <p class="lq-section__note">{{ t.skins_note }}</p>
+      <div class="lq-skins">
+        {%- for sk in t.skins %}
+        <input type="radio" name="lq-skin" id="lq-{{ sk.id }}"{% if forloop.first %} checked{% endif %}>
+        {%- endfor %}
+        <div class="lq-skins__tabs">
+          {%- for sk in t.skins %}
+          <label for="lq-{{ sk.id }}">{{ sk.tab }}</label>
+          {%- endfor %}
+        </div>
+        {%- for sk in t.skins %}
+        <div class="lq-site lq-site--{{ sk.cls }}">
+          <div class="lq-site__bar"><b>{{ sk.name }}</b><span>{% for n in t.site_nav %}<i>{{ n }}</i>{% endfor %}</span></div>
+          <div class="lq-site__hero"><h3>{{ sk.headline }}</h3><p>{{ sk.sub }}</p></div>
+          <iframe class="lq-frame" src="{{ site.quote_url }}/w/{{ sk.id }}#lang={{ page.lang }}" title="{{ sk.name }}" loading="lazy" data-origin="{{ site.quote_url }}"></iframe>
+        </div>
+        {%- endfor %}
+      </div>
+    </div>
+  </section>
+
+  <section class="wrap lq-section" aria-labelledby="cap-title">
+    <p class="lq-kicker">{{ t.cap_kicker }}</p>
+    <h2 id="cap-title">{{ t.cap_title }}</h2>
+    {%- assign v = t.vis %}
+    <div class="lq-bento">
+      <article class="lq-cap lq-cap--wide">
+        <div class="lq-vis" aria-hidden="true">
+          <div class="lq-pager"><span>‹</span><b>2 / 3</b><span>›</span><em>{{ v.add }}</em></div>
+          {%- for p in v.parts %}
+          <div class="lq-partrow{% if forloop.index == 2 %} is-on{% endif %}"><svg viewBox="-4 -4 168 108"><path d="M0 100H160V20A20 20 0 0 0 140 0H0Z"/><circle cx="20" cy="80" r="6"/><circle cx="140" cy="80" r="6"/><circle cx="20" cy="20" r="6"/></svg><b>{{ p[0] }}</b><span>{{ p[1] }}</span></div>
+          {%- endfor %}
+        </div>
+        <h3>{{ t.offer_a[0][0] }}</h3><p>{{ t.offer_a[0][1] }} {{ t.offer_a[1][1] }}</p>
+      </article>
+      <article class="lq-cap">
+        <div class="lq-vis" aria-hidden="true">
+          <svg class="lq-engr" viewBox="-4 -4 168 108"><path class="c" d="M0 100H160V20A20 20 0 0 0 140 0H0Z"/><circle class="c" cx="20" cy="80" r="4.5"/><circle class="c" cx="140" cy="80" r="4.5"/><path class="e" d="M45 35h70M45 50h70M45 65h45"/></svg>
+          <div class="lq-legend"><i class="c"></i>{{ t.offer_a[2][0] }} · {{ v.front }} / {{ v.back }}</div>
+        </div>
+        <h3>{{ t.offer_a[2][0] }}</h3><p>{{ t.offer_a[2][1] }}</p>
+      </article>
+      <article class="lq-cap">
+        <div class="lq-vis lq-deburr" aria-hidden="true">
+          <div><span class="box"></span>{{ v.deburr_off }}<b>{{ v.gross_amount }}</b></div>
+          <div class="is-on"><span class="box">✓</span>{{ v.deburr_on }}<b>{{ v.gross_deburr }}</b></div>
+        </div>
+        <h3>{{ t.offer_a[3][0] }}</h3><p>{{ t.offer_a[3][1] }}</p>
+      </article>
+      <article class="lq-cap">
+        <div class="lq-vis lq-bars" aria-hidden="true">
+          {%- assign bars = "1,100,10 160|10,60,1 016|25,45,756|50,40,679|100,36,641" | split: "|" %}
+          {%- for b in bars %}{%- assign f = b | split: "," %}
+          <div><span>{{ f[0] }}</span><i class="w{{ f[1] }}"></i><b>{{ f[2] }}</b></div>
+          {%- endfor %}
+        </div>
+        <h3>{{ t.offer_a[4][0] }}</h3><p>{{ t.offer_a[4][1] }}</p>
+      </article>
+      <article class="lq-cap">
+        <div class="lq-vis lq-sum" aria-hidden="true">
+          <div><span>{{ v.net }}</span><b>{{ v.net_amount }}</b></div>
+          <div><span>{{ v.vat }}</span><b>{{ v.vat_amount }}</b></div>
+          <div class="t"><span>{{ v.gross }}</span><b>{{ v.gross_amount }}</b></div>
+          <em>{{ v.lead }}</em>
+        </div>
+        <h3>{{ t.offer_a[5][0] }}</h3><p>{{ t.offer_a[5][1] }}</p>
+      </article>
+      <article class="lq-cap">
+        <div class="lq-vis lq-types" aria-hidden="true">
+          <p><small>{{ v.instant }}</small><i class="on">DXF</i><i class="on">DWG</i></p>
+          <p><small>{{ v.manual }}</small><i>PDF</i><i>STEP</i><i>IGES</i><i>{{ v.photo }}</i></p>
+        </div>
+        <h3>{{ t.offer_a[6][0] }}</h3><p>{{ t.offer_a[6][1] }}</p>
+      </article>
+      <article class="lq-cap">
+        <div class="lq-vis lq-flow" aria-hidden="true">
+          {%- for st in v.steps %}<div><i>{{ forloop.index }}</i>{{ st }}</div>{% endfor %}
+        </div>
+        <h3>{{ t.offer_a[7][0] }}</h3><p>{{ t.offer_a[7][1] }}</p>
+      </article>
+    </div>
+  </section>
+
+  <section class="lq-price" aria-labelledby="price-title">
+    <div class="wrap lq-section lq-price__inner">
+      <div>
+        <p class="lq-kicker">{{ t.price_kicker }}</p>
+        <h2 id="price-title">{{ t.price_title }}</h2>
+        <p>{{ t.price_text }}</p>
+      </div>
+      <ul>{% for it in t.price_items %}<li>{{ it }}</li>{% endfor %}</ul>
+    </div>
+  </section>
+
+  <section class="wrap lq-section" id="demo" aria-labelledby="demo-title">
+    <p class="lq-kicker">{{ t.live_kicker }}</p>
+    <h2 id="demo-title">{{ t.live_title }}</h2>
+    <p class="lq-section__note">{{ t.live_note }}</p>
+    <iframe class="lq-frame lq-embedded" src="{{ site.quote_url }}/w/showcase#lang={{ page.lang }}" title="{{ t.live_title }}" loading="lazy" data-origin="{{ site.quote_url }}"></iframe>
+  </section>
+
+  <section class="wrap lq-section lq-section--tight" id="how" aria-labelledby="how-title">
+    <p class="lq-kicker">{{ t.how_kicker }}</p>
+    <h2 id="how-title">{{ t.how_title }}</h2>
+    <p class="lq-section__note">{{ t.how_note }}</p>
+    <ol class="lq-steps">
+      {%- assign w = t.widget -%}{%- assign m = t.mail -%}{%- assign d = t.decide %}
+      <li class="lq-step">
+        <div class="lq-step__text"><span class="lq-step__num">02</span><h3>{{ t.steps[1].title }}</h3><p>{{ t.steps[1].text }}</p></div>
+        <div class="lq-window lq-window--mail" aria-hidden="true">
+          <div class="lq-mail">
+            <small>{{ m.from }}</small>
+            <h4>{{ m.title }}</h4>
+            <span class="lq-tag lq-tag--ok">{{ m.badge }}</span>
+            <p class="lq-mail__price"><strong>{{ m.gross }}</strong> {{ m.gross_label }} · {{ m.net }}</p>
+            <em class="lq-fake-btn">{{ m.button }}</em>
+            <dl>
+              <div><dt>{{ m.customer_label }}</dt><dd>{{ m.customer }}</dd></div>
+              <div><dt>{{ m.order_label }}</dt><dd>{{ m.order }}</dd></div>
+              <div><dt>{{ m.drawing_label }}</dt><dd>{{ m.drawing }}</dd></div>
+            </dl>
+            <small class="lq-mail__head">{{ m.calc_label }}</small>
+            <table>{% for l in m.lines %}<tr><td>{{ l[0] }}</td><td>{{ l[1] }}</td></tr>{% endfor %}</table>
+          </div>
+        </div>
+      </li>
+      <li class="lq-step">
+        <div class="lq-step__text"><span class="lq-step__num">03</span><h3>{{ t.steps[2].title }}</h3><p>{{ t.steps[2].text }}</p></div>
+        <div class="lq-window" aria-hidden="true">
+          <div class="lq-decide">
+            <h4>{{ d.title }}</h4>
+            <small>{{ d.net_label }}</small><span class="lq-input">{{ d.net }}</span>
+            <small>{{ d.note_label }}</small><span class="lq-input lq-input--note">{{ d.note }}</span>
+            <em class="lq-fake-btn">{{ d.button }}</em>
+          </div>
+        </div>
+      </li>
+    </ol>
+  </section>
+
+  <section class="wrap lq-section lq-section--tight" aria-labelledby="offer-title">
+    <p class="lq-kicker">{{ t.shop_kicker }}</p>
+    <h2 id="offer-title">{{ t.shop_title }}</h2>
+    <div class="lq-shop">
+      {%- for o in t.offer_b %}
+      <div><h3>{{ o[0] }}</h3><p>{{ o[1] }}</p></div>
+      {%- endfor %}
+    </div>
+  </section>
+
+  <section class="lq-band" aria-labelledby="lanes-title">
+    <div class="wrap lq-section">
+      <p class="lq-kicker">{{ t.lanes_kicker }}</p>
+      <h2 id="lanes-title">{{ t.lanes_title }}</h2>
+      <div class="lq-lanes">
+        {%- for l in t.lanes %}
+        <div class="lq-lane lq-lane--{{ l.class }}">
+          <span class="lq-tag lq-tag--{{ l.class }}">{{ l.tag }}</span>
+          <h3>{{ l.title }}</h3>
+          <p>{{ l.text }}</p>
+        </div>
+        {%- endfor %}
+      </div>
+    </div>
+  </section>
+
+  <section class="wrap lq-section" aria-labelledby="setup-title">
+    <p class="lq-kicker">{{ t.setup_kicker }}</p>
+    <h2 id="setup-title">{{ t.setup_title }}</h2>
+    <ol class="lq-setup">
+      {%- for s in t.setup %}
+      <li><h3>{{ s.title }}</h3><p>{{ s.text }}</p></li>
+      {%- endfor %}
+    </ol>
+    <pre class="lq-code" translate="no"><code><span>&lt;script</span> src="https://quote.ssydynamics.dev/embed.js" data-shop="<b>muhely</b>" data-lang="{{ page.lang }}" async<span>&gt;&lt;/script&gt;</span></code></pre>
+    <dl class="lq-figures">
+      {%- for f in t.figures %}
+      <div><dd>{{ f.value }}</dd><dt>{{ f.label }}</dt></div>
+      {%- endfor %}
+    </dl>
+  </section>
+
+  <section class="wrap lq-section lq-faq" aria-labelledby="faq-title">
+    <div>
+      <p class="lq-kicker">{{ t.faq_kicker }}</p>
+      <h2 id="faq-title">{{ t.faq_title }}</h2>
+    </div>
+    <div>
+      {%- for f in t.faq %}
+      <details{% if forloop.first %} open{% endif %}><summary>{{ f.q }}</summary><p>{{ f.a }}</p></details>
+      {%- endfor %}
+    </div>
+  </section>
+
+  <section class="lq-close" aria-labelledby="close-title">
+    <div class="wrap">
+      <h2 id="close-title">{{ t.close_title }}</h2>
+      <p>{{ t.close_text }}</p>
+      <a class="lq-btn" href="mailto:{{ email }}?subject={{ mail_subject | uri_escape }}">{{ t.cta }}</a>
+      <p class="lq-close__mail">{{ email }}</p>
+    </div>
+  </section>
+</article>
+<script src="{{ '/assets/js/laser-demo.js' | relative_url }}?v={{ site.time | date: '%s' }}" defer></script>

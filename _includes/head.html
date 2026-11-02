@@ -26,6 +26,7 @@
 {%- assign style_src = "'self'" -%}
 {%- assign frame_src = "'none'" -%}
 {%- assign img_src = "'self' data:" -%}
+{%- if page.laser_page -%}{%- assign frame_src = site.quote_url -%}{%- endif -%}
 {%- if page.paddle_checkout -%}{%- comment -%} Paddle checkout overlay: only on pages that sell {%- endcomment -%}
   {%- assign script_src = script_src | append: " https://cdn.paddle.com https://sandbox-cdn.paddle.com" -%}
   {%- assign style_src = style_src | append: " 'unsafe-inline' https://cdn.paddle.com https://sandbox-cdn.paddle.com" -%}
@@ -45,5 +46,13 @@
 <link rel="stylesheet" href="{{ '/assets/css/site.css' | relative_url }}?v={{ site.time | date: '%s' }}">
 {%- if page.samples or page.live_demo or page.product %}
 <link rel="stylesheet" href="{{ '/assets/css/demo.css' | relative_url }}?v={{ site.time | date: '%s' }}">
+{%- endif %}
+{%- if page.hero_stepper %}
+<link rel="stylesheet" href="{{ '/assets/css/home-stepper.css' | relative_url }}?v={{ site.time | date: '%s' }}">
+{%- endif %}
+{%- if page.laser_page %}
+<link rel="stylesheet" href="{{ '/assets/css/laser.css' | relative_url }}?v={{ site.time | date: '%s' }}">
+<link rel="alternate" hreflang="{{ page.lang }}" href="{{ page.url | absolute_url }}">
+<link rel="alternate" hreflang="{{ page.alt_lang | downcase }}" href="{{ page.alt_url | absolute_url }}">
 {%- endif %}
 <noscript><link rel="stylesheet" href="{{ '/assets/css/nojs.css' | relative_url }}"></noscript>

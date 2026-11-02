@@ -4,7 +4,7 @@
 {% include head.html %}
 </head>
 <body class="{{ page.body_class }}">
-  <a class="skip" href="#main">Skip to content</a>
+  <a class="skip" href="#main">{% if page.laser_page %}{{ site.data.laser[page.lang].skip }}{% else %}Skip to content{% endif %}</a>
   {% include header.html %}
   <main id="main">
 {{ content }}

@@ -1,6 +1,7 @@
 ---
 layout: default
 body_class: home
+hero_stepper: true
 ---
 {%- assign profile = site.data.profile -%}
 {%- assign products = site.products | sort: "order" -%}
@@ -9,7 +10,10 @@ body_class: home
 
 {%- assign n = 0 -%}
 
-<section class="wrap hero">
+<div class="hs" data-hs>
+<div class="hs__stage">
+{% include home-laser-slide.html %}
+<section class="wrap hero hs__slide hs__slide--audit" data-step="2">
   <div class="hero__text">
     <p class="eyebrow">{{ profile.name }} · {{ profile.location }}</p>
     <h1>Precise tools for messy business files.</h1>
@@ -24,6 +28,13 @@ body_class: home
     {% include visuals/audit.html %}
   </div>
 </section>
+</div>
+<nav class="wrap hs__nav" aria-label="Home sections">
+  <button type="button" class="hs__step" data-go="1" data-hu="Lézerkalkulátor"><i></i><b>01</b><span>Laser calculator</span></button>
+  <button type="button" class="hs__step" data-go="2" data-hu="Szoftvereszközök"><i></i><b>02</b><span>Software tools</span></button>
+</nav>
+</div>
+<script src="{{ '/assets/js/home-stepper.js' | relative_url }}?v={{ site.time | date: '%s' }}" defer></script>
 {%- if site.feedback_api != "" %}
 <script src="{{ '/assets/js/feedback.js' | relative_url }}?v={{ site.time | date: '%s' }}" defer></script>
 {%- endif %}
