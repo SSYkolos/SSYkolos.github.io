@@ -485,7 +485,8 @@
       frames++; slow += real;
       if (frames >= 45) { if (slow / frames > 27) low = true; frames = 0; slow = 0; }
     }
-    if (!(holdPaused && now >= END)) now += Math.min(.05, real / 1000) * speed;
+    // the pointer only holds the finished picture: the cut must first cool down fully
+    if (!(holdPaused && now >= COOLED)) now += Math.min(.05, real / 1000) * speed;
     render(now);
     if (autoOn && now >= AUTO) { showAudit(); return; }
     if (!autoOn && now >= COOLED) { running = false; return; }
