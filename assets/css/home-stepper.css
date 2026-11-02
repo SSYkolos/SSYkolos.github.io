@@ -1,70 +1,31 @@
-/* Home page: laser slide, then the "messy files" hero. Without JavaScript both simply stand one under the other. */
+/* Home page scene "The cut". Without JavaScript the two parts simply stand one under the other. */
 [data-l="hu"] { display: none; }
 .hs--hu [data-l="hu"] { display: inline; }
 .hs--hu [data-l="en"] { display: none; }
-.hs__title { font-size: clamp(2.3rem, 5.6vw, 4.1rem); margin-top: 20px; max-width: 16ch; }
-.hs__title em { font-style: normal; color: var(--accent); }
-.hs__cut svg { display: block; width: 100%; height: auto; padding: 14px 18px 6px; box-sizing: border-box; overflow: visible; }
 
-.hs-shape { fill: none; stroke: var(--text); stroke-width: 1px; stroke-linecap: round; stroke-dasharray: 1.02; stroke-dashoffset: 1.02;
-  transform-box: fill-box; transform-origin: center; animation: hs-draw 2.2s .2s cubic-bezier(.45,.05,.55,.95) forwards;
-  transition: transform .75s cubic-bezier(.65,0,.2,1), opacity .3s .6s, stroke .4s; }
-.hs-shape--h1 { animation-duration: .3s; animation-delay: 2.45s; }
-.hs-shape--h2 { animation-duration: .3s; animation-delay: 2.8s; }
-.hs-shape--slot { animation-duration: .55s; animation-delay: 3.15s; }
-.hs-shape--h3 { animation-duration: .3s; animation-delay: 3.75s; }
-.hs-beam { fill: var(--accent); filter: drop-shadow(0 0 2px var(--accent)); opacity: 0; offset-path: path("M0 100H160V20A20 20 0 0 0 140 0H0Z"); offset-rotate: 0deg;
-  animation: hs-beam 2.2s .2s cubic-bezier(.45,.05,.55,.95) forwards; }
-@keyframes hs-draw { to { stroke-dashoffset: 0; } }
-@keyframes hs-beam { 0% { offset-distance: 0; opacity: 1; } 96% { opacity: 1; } 100% { offset-distance: 100%; opacity: 0; } }
-.hs__facts .readout__sum dd { color: var(--accent); }
+.hs__slide--laser { padding-block: 40px; }
+.hs__who { margin: 0; font: 500 13px var(--mono); letter-spacing: .08em; text-transform: uppercase; color: var(--accent); }
+.hs__title { font-size: clamp(1.5rem, 2.7vw, 2.15rem); line-height: 1.15; margin: 10px 0 0; max-width: 17ch; letter-spacing: -.02em; }
+.hs__sub { margin: 10px 0 18px; max-width: 34ch; font-size: .98rem; line-height: 1.5; color: var(--muted); }
 
-/* Stage and step control exist only when the script runs */
 .hs__nav { display: none; }
-.hs--js .hs__stage { display: grid; }
+.hs--js .hs__stage { display: grid; position: relative; overflow: hidden; }
+.hs--js .hs__stage > canvas { position: absolute; inset: 0; width: 100%; height: 100%; pointer-events: none; z-index: 2; }
 .hs--js .hs__slide { grid-area: 1 / 1; min-width: 0; }
-.hs--js .hs__nav { display: flex; gap: 18px; padding-bottom: clamp(24px, 4vw, 44px); }
+.hs--js .hs__slide--laser { position: relative; z-index: 3; align-self: start; }
+.hs--js .hs__intro { max-width: 340px; }
+/* The first part stands on the dark cutting bed in both colour themes */
+.hs--js .hs__title { color: #eef1f4; }
+.hs--js .hs__sub { color: #aeb6c0; }
+.hs--js .hs__who { color: #ff8a4c; }
+.hs--js .hs__nav { display: flex; gap: 18px; padding-top: 16px; padding-bottom: clamp(24px, 4vw, 44px); }
 .hs__step { flex: 0 1 220px; background: none; border: 0; padding: 12px 0 0; text-align: left; cursor: pointer; color: var(--faint); font: 500 12.5px var(--mono); position: relative; }
 .hs__step::before, .hs__step i { content: ""; position: absolute; top: 0; left: 0; height: 2px; width: 100%; background: var(--line-strong); }
 .hs__step i { width: 0; background: var(--accent); }
 .hs__step b { font-weight: 500; margin-right: 8px; }
 .hs__step[aria-current="true"] { color: var(--text); }
 .hs__step[aria-current="true"] b { color: var(--accent); }
-.hs__step[aria-current="true"] i { width: 100%; }
 .hs__step:focus-visible { outline: 2px solid var(--accent); outline-offset: 4px; }
-.hs.is-playing .hs__step[data-go="1"] i { width: 0; animation: hs-fill 9s linear forwards; }
-.hs.is-paused .hs__step[data-go="1"] i { animation-play-state: paused; }
-@keyframes hs-fill { to { width: 100%; } }
-
-/* The move: text gives way, the part's five contours draw out into five lines, the lines become the audit's rows */
-.hs--js .hero__text, .hs--js .hero__visual .readout { transition: opacity .4s, translate .55s cubic-bezier(.2,.7,.2,1); }
-/* the hidden slide stays rendered so its transforms can run; `inert` from the script takes it out of reach */
-.hs--js .hs__slide:not(.is-on) { pointer-events: none; }
-.hs--js .hs__slide:not(.is-on) .hero__text { opacity: 0; translate: 0 12px; }
-.hs--js .hs__slide--audit:not(.is-on) .readout { opacity: 0; }
-.hs--js .hs__slide--audit.is-on .hero__text { transition-delay: .35s; }
-.hs--js .hs__slide--audit.is-on .readout { transition-delay: .45s; }
-.hs--js .hs__slide--laser:not(.is-on) .readout { opacity: 0; transition-delay: .55s; }
-.hs--js .hs__slide--laser:not(.is-on) .readout__head, .hs--js .hs__slide--laser:not(.is-on) .hs__facts { opacity: 0; transition: opacity .25s; }
-.hs--js .hs__slide--audit .readout__rows > div, .hs--js .hs__slide--audit .readout__verdict { transition: opacity .4s, translate .5s cubic-bezier(.2,.7,.2,1); }
-.hs--js .hs__slide--audit:not(.is-on) .readout__rows > div, .hs--js .hs__slide--audit:not(.is-on) .readout__verdict { opacity: 0; translate: 0 8px; }
-.hs--js .hs__slide--audit.is-on .readout__rows > div:nth-child(1) { transition-delay: .55s; }
-.hs--js .hs__slide--audit.is-on .readout__rows > div:nth-child(2) { transition-delay: .62s; }
-.hs--js .hs__slide--audit.is-on .readout__rows > div:nth-child(3) { transition-delay: .69s; }
-.hs--js .hs__slide--audit.is-on .readout__rows > div:nth-child(4) { transition-delay: .76s; }
-.hs--js .hs__slide--audit.is-on .readout__rows > div:nth-child(5) { transition-delay: .83s; }
-.hs--js .hs__slide--audit.is-on .readout__verdict { transition-delay: .95s; }
-.hs--js .hs__slide--laser:not(.is-on) .hs-beam { display: none; }
-/* dashes off while it moves: a non-scaling stroke keeps the lines crisp but does not honour pathLength */
-.hs--js .hs__slide--laser:not(.is-on) .hs-shape { stroke: var(--accent); opacity: 0; vector-effect: non-scaling-stroke; stroke-dasharray: none; }
-.hs--js .hs__slide--laser:not(.is-on) .hs-shape--outline { transform: translateY(40px) scaleY(.005); }
-.hs--js .hs__slide--laser:not(.is-on) .hs-shape--h1 { transform: translate(60px, -70px) scale(17.8, .05); }
-.hs--js .hs__slide--laser:not(.is-on) .hs-shape--h2 { transform: translate(-60px, -50px) scale(17.8, .05); }
-.hs--js .hs__slide--laser:not(.is-on) .hs-shape--slot { transform: scale(2.67, .02); }
-.hs--js .hs__slide--laser:not(.is-on) .hs-shape--h3 { transform: translate(60px, 50px) scale(17.8, .05); }
-
-@media (prefers-reduced-motion: reduce) {
-  .hs-shape { animation: none; stroke-dashoffset: 0; transition: none; }
-  .hs-beam { display: none; }
-  .hs--js .hs__slide, .hs--js .hs__slide *, .hs--js .hero__text, .hs--js .hero__visual .readout { transition: none !important; }
-}
+.hs-flash .verdict { animation: hs-flash .7s ease-out; display: inline-block; }
+@keyframes hs-flash { 0% { transform: scale(1.5); filter: brightness(1.8); } 100% { transform: none; filter: none; } }
+@media (prefers-reduced-motion: reduce) { .hs-flash .verdict { animation: none; } }
