@@ -7,20 +7,63 @@ hu:
   title_html: Azonnali ár a honlapján.<br><em>A végső szó az Öné.</em>
   lede: "Árkalkulátor lézervágó műhelyeknek. A vevő feltölti a DXF- vagy DWG-rajzát, és azonnal tájékoztató árat lát, az Önök áraival számolva. Önök megkapják a rajzot és a kalkulációt, majd jóváhagyják vagy átírják az árat."
   cta: Kérek próbaoldalt
-  cta_try: Kipróbálom
+  cta_try: Megnézem
   demo_kicker: Próbálja ki
   demo_title: Ezt látja a vevő
   demo_note: "Élő bemutató, kitalált műhellyel és kitalált árakkal. Töltsön fel saját DXF- vagy DWG-rajzot, vagy válasszon egy mintát. Nem megy ki e-mail, és a rajzot nem tároljuk."
   demo_bar: PÉLDA Lézervágó Kft. · élő bemutató
   cta_subject: Lézervágási árkalkulátor próbaoldal
   cta_how: Így működik
-  note: "Új termék, az első műhelyekkel közösen állítjuk be. Az éles próba 30 napig ingyenes, kötelezettség nélkül."
+  note: "A honlapjához igazítjuk, és mi építjük be. Új termék, az első műhelyekkel közösen állítjuk be. Az éles próba 30 napig ingyenes, kötelezettség nélkül."
   sample: Minta, kitalált árakkal
   sheet: 160 × 100 mm · szénacél, 3 mm · 25 db
   cut_label: Vágáshossz
   cut: 0,719 m
   pierce_label: Beszúrás
   gross_label: Bruttó, 25 db
+  skins_kicker: Bármilyen honlapba
+  skins_title: Ugyanaz a kalkulátor, a honlapja arcával
+  skins_note: "Nem sablont kap: a betűtípust, a színeket és a formákat a saját honlapjához igazítjuk, és be is építjük. Váltson a három kitalált műhely között: mindegyikben ugyanaz az élő kalkulátor fut."
+  skins:
+    - {id: skin-ipari, tab: Ipari, name: MINTA Acél Kft., headline: Lézervágás 25 mm-ig, sub: "Töltse fel a rajzát, és azonnal látja az árat.", cls: ipari}
+    - {id: skin-klasszikus, tab: Klasszikus, name: PÉLDA Lemez Bt., headline: Lemezmegmunkálás 1998 óta, sub: "Ajánlatkérés egyszerűen, a rajza alapján.", cls: klasszikus}
+    - {id: skin-modern, tab: Modern, name: MINTA Lézerstúdió, headline: Egyedi alkatrészek gyorsan, sub: "Rajz, anyag, darabszám, és már látja is az árat.", cls: modern}
+  site_nav: [Szolgáltatások, Árajánlat, Kapcsolat]
+  cap_kicker: Képességek
+  cap_title: Amit a vevője egy helyen megkap
+  vis:
+    part: alkatrész
+    parts:
+      - [konzol.dxf, "Szénacél, 3 mm, 25 db"]
+      - [karima.dxf, "Rozsdamentes, 2 mm, 10 db"]
+      - [szerelolap.dwg, "Alumínium, 4 mm, 5 db"]
+    add: + Újabb rajz
+    front: Előoldal
+    back: Hátoldal
+    deburr_off: Sorjázás nélkül
+    deburr_on: Sorjázással
+    per_piece: darabonként
+    instant: Azonnali ár
+    manual: Kézi ajánlat
+    photo: Fotó
+    lead: "Gyártás: 3–5 munkanap"
+    net: Nettó
+    vat: Áfa 27%
+    gross: Bruttó
+    steps: [Azonnali ár, Visszaigazoló levél, Végleges ár e-mailben]
+    gross_amount: "18 898 Ft"
+    gross_deburr: "19 812 Ft"
+    net_amount: "14 880 Ft"
+    vat_amount: "4 018 Ft"
+  price_kicker: Árazás
+  price_title: Szinte minden állítható, és ha az Ön árképzése más, a képletét beépítjük
+  price_text: "A rendszer alapból ezekből az elemekből számol, és mindegyik műhelyenként beállítható. Ha Önöknél más a számítás, például percdíjjal vagy saját felárakkal dolgoznak, azt a műhely számára külön megírjuk."
+  price_items: [Anyagár kilóra vagy m²-re, Hulladékarány, Vágás méterre vagy gépórából, Beszúrás vastagság szerint, Apró részletek felára, Gravírozás, Sorjázás, Beállítási díj, Árrés, Minimum rendelési érték, Kerekítés, Áfa és pénznem]
+  shop_kicker: A műhelynek
+  shop_title: És ami Önöknek jár
+  live_kicker: Élő bemutató
+  live_title: Próbálja ki, a levelekkel együtt
+  live_note: "Ez már az oldalunkba illesztett kalkulátor. Töltsön fel saját rajzot vagy válasszon mintát, majd kérje az ajánlatot. Adatkezelési okból csak egy e-mail-címet kérünk: erre küldjük a vevőnek és a műhelynek szóló levelet is, mintha élesben történne."
   how_kicker: Az ajánlatkérés után
   how_title: A kéréstől a végleges árig
   how_note: "Ha a vevő elküldi a kérést, ez történik. A nézetek a valódi rendszer minta-eredményét mutatják, kitalált árakkal és kitalált vevővel."
@@ -94,14 +137,13 @@ hu:
     - [Többféle rajz, "DXF és DWG azonnali árral. PDF, STEP, IGES vagy fotó esetén kézi ajánlatot kér."]
     - [Visszaigazolás, "Azonosítóval ellátott levelet kap, majd e-mailben a végleges árat. Magyarul és angolul is használható."]
   offer_b:
-    - [Saját árképzés, "Anyagár kilóra vagy négyzetméterre, vágás méterre vagy gépórából, beszúrás, beállítási díj, minimum, árrés, hulladékarány és kerekítés."]
     - [Saját kezelőfelület, "Az árait a műhely később maga is módosíthatja egy külön adminisztrációs oldalon."]
-    - [Saját megjelenés, "A kalkulátor a műhely nevével, logójával és színével jelenik meg."]
+    - [Saját megjelenés, "A kalkulátor a műhely nevével, logójával, színeivel, betűtípusával és formáival jelenik meg."]
     - [Kész ajánlatkérés, "A rajz mellékletben, a vevő adataival és a teljes kalkulációval, több alkatrésznél alkatrészenként is."]
     - [Jóváhagyás vagy átírás, "A nettó ár a levélből megnyitott oldalon módosítható, megjegyzés is írható a vevőnek."]
     - [Kézi ellenőrzés küszöbbel, "Megadhatja, mekkora darabszám vagy végösszeg fölött kerüljön minden ár kézi ellenőrzésre."]
     - [Rétegek kizárása, "A keret, a méretvonal és más, nem vágandó réteg kizárható az árazásból."]
-    - [Beállítást vállalunk, "Az árak felvételét és a korábbi munkákra hangolást elvégezzük, a szolgáltatást mi üzemeltetjük."]
+    - [Beállítást vállalunk, "Az árak felvételét, a hangolást, az illesztést és a beépítést elvégezzük, a szolgáltatást mi üzemeltetjük."]
   lanes_kicker: Bizonytalan rajzra nincs találgatás
   lanes_title: Minden rajz a három út egyikére kerül
   lanes:
@@ -121,11 +163,11 @@ hu:
   setup_title: Az Önök áraival, az Önök honlapján
   setup:
     - title: Felvesszük az árait
-      text: "Anyagok, vastagságok, táblaméret, beállítási díj és minimum rendelési érték. Kilós anyagárral és gépórából számolt vágási díjjal is működik."
+      text: "Anyagok, vastagságok, táblaméret, díjak és minimum rendelési érték. Ha más a számításuk, megírjuk hozzá."
     - title: Hangoljuk a korábbi munkáin
       text: "10–15 korábbi munka rajzát és árát összevetjük a számítással. Addig a kapott ár csak becslés, ezért élesítés előtt ezt együtt ellenőrizzük."
-    - title: Kikerül a honlapra
-      text: "Egy sor kód. Ha a honlapjára nem tehető ilyen kód, a kalkulátor saját címén, egy gombról is elérhető."
+    - title: Illesztjük és beépítjük
+      text: "A megjelenést a honlapjához igazítjuk, és beépítjük. Ha a honlapjába nem tehető ilyen kód, a kalkulátor saját címén, egy gombról is elérhető."
   figures:
     - value: "0,24 s"
       label: "egy minta konzol teljes árazása az élő rendszeren, 2026. novemberi mérés"
@@ -159,20 +201,63 @@ en:
   title_html: An instant price on your website.<br><em>The final word stays yours.</em>
   lede: "A quote calculator for laser cutting shops. Your customer uploads a DXF or DWG drawing and instantly sees an indicative price, calculated from your rates. You receive the drawing and the calculation, then approve or change the price."
   cta: Ask for a trial page
-  cta_try: Try it
+  cta_try: See it
   demo_kicker: Try it
   demo_title: This is what your customer sees
   demo_note: "A live demo with a made-up shop and made-up prices. Upload your own DXF or DWG, or pick a sample. No e-mail goes out and the drawing is not stored."
   demo_bar: SAMPLE shop · live demo
   cta_subject: Laser quote calculator trial page
   cta_how: How it works
-  note: "A new product, set up together with our first shops. The live trial is free for 30 days, with no obligation."
+  note: "We fit it to your website and install it. A new product, set up together with our first shops. The live trial is free for 30 days, with no obligation."
   sample: Sample with made-up prices
   sheet: 160 × 100 mm · mild steel, 3 mm · 25 pcs
   cut_label: Cut length
   cut: 0.719 m
   pierce_label: Pierces
   gross_label: Gross, 25 pcs
+  skins_kicker: On any website
+  skins_title: The same calculator, in your website's style
+  skins_note: "You don't get a template: we match the font, colours and shapes to your site, and we install it for you. Switch between three made-up shops: the same live calculator runs in each."
+  skins:
+    - {id: skin-ipari, tab: Industrial, name: SAMPLE Steel Ltd., headline: Laser cutting up to 25 mm, sub: Upload your drawing and see the price at once., cls: ipari}
+    - {id: skin-klasszikus, tab: Classic, name: SAMPLE Sheet Co., headline: Sheet metal work since 1998, sub: Request a quote simply from your drawing., cls: klasszikus}
+    - {id: skin-modern, tab: Modern, name: SAMPLE Laser Studio, headline: "Custom parts, quickly", sub: "Drawing, material, quantity, and there's your price.", cls: modern}
+  site_nav: [Services, Quote, Contact]
+  cap_kicker: Capabilities
+  cap_title: Everything your customer gets in one place
+  vis:
+    part: part
+    parts:
+      - [bracket.dxf, "Mild steel, 3 mm, 25 pcs"]
+      - [flange.dxf, "Stainless, 2 mm, 10 pcs"]
+      - [plate.dwg, "Aluminium, 4 mm, 5 pcs"]
+    add: + Add drawing
+    front: Front
+    back: Back
+    deburr_off: Without deburring
+    deburr_on: With deburring
+    per_piece: per piece
+    instant: Instant price
+    manual: Manual quote
+    photo: Photo
+    lead: "Ready in 3–5 working days"
+    net: Net
+    vat: VAT 27%
+    gross: Gross
+    steps: [Instant price, Confirmation e-mail, Final price by e-mail]
+    gross_amount: "HUF 18,898"
+    gross_deburr: "HUF 19,812"
+    net_amount: "HUF 14,880"
+    vat_amount: "HUF 4,018"
+  price_kicker: Pricing
+  price_title: Almost everything is adjustable, and if your pricing differs, we build in your formula
+  price_text: "By default the system calculates from these elements, each set per shop. If you price differently, for example per minute or with your own surcharges, we write it for your shop."
+  price_items: [Material per kilo or m², Scrap rate, Cutting per metre or from machine time, Piercing by thickness, Small-detail surcharge, Engraving, Deburring, Setup fee, Margin, Minimum order value, Rounding, VAT and currency]
+  shop_kicker: For the shop
+  shop_title: And what you get
+  live_kicker: Live demo
+  live_title: Try it, e-mails included
+  live_note: "This calculator is fitted into our own site. Upload your drawing or pick a sample, then request the quote. For privacy reasons we only ask for an e-mail address: both the customer's and the shop's e-mail go there, as they would in real use."
   how_kicker: After the request
   how_title: From request to final price
   how_note: "When the customer sends the request, this happens. These views show the real system's sample result, with made-up prices and a made-up customer."
@@ -246,14 +331,13 @@ en:
     - [Many kinds of drawing, "DXF and DWG with an instant price. PDF, STEP, IGES or a photo go in as a manual quote request."]
     - [Confirmation, "An e-mail with a reference number, then the final price by e-mail. Available in Hungarian and English."]
   offer_b:
-    - [Your own pricing, "Material per kilo or square metre, cutting per metre or from machine time, piercing, setup fee, minimum, margin, scrap and rounding."]
     - [Your own admin page, "You can change your rates yourself later on a separate admin page."]
-    - [Your own look, "The calculator shows your shop's name, logo and colour."]
+    - [Your own look, "The calculator shows your shop's name, logo, colours, font and shapes."]
     - [A complete quote request, "The drawing attached, the customer's details and the full calculation, part by part for several parts."]
     - [Approve or change, "Change the net price on the page opened from the e-mail, and add a note for the customer."]
     - [Manual check by threshold, "Set the quantity or total above which every price goes to a manual check."]
     - [Exclude layers, "Frames, dimensions and other layers that are not cut can be left out of the price."]
-    - [Setup done for you, "We enter your rates, tune them on past jobs and run the service."]
+    - [Setup done for you, "We enter your rates, tune them, fit and install the calculator, and run the service."]
   lanes_kicker: No guessing on uncertain drawings
   lanes_title: Every drawing takes one of three routes
   lanes:
@@ -273,11 +357,11 @@ en:
   setup_title: Your rates, on your website
   setup:
     - title: We enter your rates
-      text: "Materials, thicknesses, sheet size, setup fee and minimum order value. Prices per kilo and cutting rates based on machine time both work."
+      text: "Materials, thicknesses, sheet size, fees and minimum order value. If you calculate differently, we write it for you."
     - title: We tune it on your past jobs
       text: "We compare the calculation with the drawings and prices of 10–15 past jobs. Until then the price is only an estimate, so we check this together before going live."
-    - title: It goes on your website
-      text: "One line of code. If your site cannot take it, the calculator also works at its own address, behind a button."
+    - title: We fit and install it
+      text: "We match the look to your site and install it. If your site cannot take the code, the calculator also works at its own address, behind a button."
   figures:
     - value: "0.24 s"
       label: "to fully price a sample bracket on the live system, measured November 2026"
